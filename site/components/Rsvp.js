@@ -23,7 +23,7 @@ function validateRsvp({ userRsvps, eventRsvps, event }) {
   return { okay: true };
 }
 
-const Rsvp = ({ children, event, text, themeColor }) => {
+const Rsvp = ({ children, event, text }) => {
   const eventId = event.id;
   const isPast = new Date() > new Date(event.startTime);
   const { isAuthenticated, isLoading, user } = useAuth();
@@ -81,7 +81,7 @@ const Rsvp = ({ children, event, text, themeColor }) => {
       component: (
         <ButtonWrapper>
           <span css={{ marginRight: '0.5em', flex: 1 }}>{text}</span>
-          <Loading size="xsmall" color={themeColor} />
+          <Loading size="xsmall" />
         </ButtonWrapper>
       ),
     });
@@ -118,7 +118,6 @@ const Rsvp = ({ children, event, text, themeColor }) => {
         <Button
           disabled={mutationLoading || isGoing}
           isSelected={hasResponded && isGoing}
-          background={themeColor}
           onClick={respondYes}
         >
           Yes
@@ -126,7 +125,6 @@ const Rsvp = ({ children, event, text, themeColor }) => {
         <Button
           disabled={mutationLoading || !isGoing}
           isSelected={hasResponded && !isGoing}
-          background={themeColor}
           onClick={respondNo}
         >
           No
@@ -153,14 +151,14 @@ const ButtonWrapper = props => (
   />
 );
 
-const Button = ({ background, children, isSelected, ...props }) => (
+const Button = ({ children, isSelected, ...props }) => (
   <ButtonPrimitive
     css={{
       boxSizing: 'border-box',
       marginLeft: '0.25em',
       minWidth: 92,
     }}
-    background={isSelected ? background : null}
+    background={isSelected ? '#b591da' : null}
     outline={!isSelected}
     size="small"
     {...props}

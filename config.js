@@ -2,7 +2,7 @@ const CONFIG = {
     name: 'MusesCodeJS',
     twitterHandle: '@MusesCodeJS',
     siteUrl: 'https://musescodejs.org/',
-    themeColor: '#b591da',
+    themeColor: '#7985F0',
     logo: {
       src: '/logo.png',
       width: 64,

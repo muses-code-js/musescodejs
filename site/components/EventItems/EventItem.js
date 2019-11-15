@@ -15,7 +15,6 @@ const EventItem = event => {
     startTime,
     description,
     talks,
-    themeColor,
     locationAddress,
     locationDescription,
     maxRsvps,
@@ -25,14 +24,13 @@ const EventItem = event => {
     ? formatFutureDate(startTime)
     : formatPastDate(startTime);
 
-  const hex = themeColor && themeColor.slice(1);
 
   return (
     <li {...props} css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
       <div
         css={{
           backgroundColor: 'white',
-          borderTop: `solid 8px ${themeColor || colors.greyLight}`,
+          borderTop: `solid 8px ${'#b591da' || colors.greyLight}`,
           boxShadow: shadows.sm,
           margin: gridSize,
           padding: `${gridSize * 3}px ${gridSize * 3}px 0`,
@@ -50,7 +48,7 @@ const EventItem = event => {
         }}
       >
         <div css={{ maxHeight: 400, overflow: 'hidden' }}>
-          <Link href={`/event/[id]?hex=${hex}`} as={`/event/${id}?hex=${hex}`} passHref>
+          <Link href={`/event/[id]`} as={`/event/${id}`} passHref>
             <a
               css={{
                 color: 'inherit',
@@ -88,7 +86,7 @@ const EventItem = event => {
               />
             </a>
           </Link>
-          <Rsvp event={event} text="Attending?" themeColor={themeColor}>
+          <Rsvp event={event} text="Attending?">
             {({ component }) => (component ? <RsvpPositioner>{component}</RsvpPositioner> : null)}
           </Rsvp>
         </div>

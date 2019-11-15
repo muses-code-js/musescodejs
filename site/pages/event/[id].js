@@ -27,7 +27,7 @@ const Event = ({ id, loadingColor }) => {
     return <p>Event not found</p>;
   }
 
-  const { description, name, startTime, locationAddress, themeColor, talks } = data.Event;
+  const { description, name, startTime, locationAddress, talks } = data.Event;
   const { allRsvps } = data;
 
   const prettyDate = isInFuture(startTime)
@@ -45,15 +45,15 @@ const Event = ({ id, loadingColor }) => {
         <meta property="og:type" content="article" />
         <meta name="twitter:description" content={metaDescription} />
       </Meta>
-      <Navbar background={themeColor} />
-      <Hero align="left" backgroundColor={themeColor} superTitle={prettyDate} title={name}>
+      <Navbar />
+      <Hero align="left" superTitle={prettyDate} title={name}>
         <p css={{ fontWeight: 100 }}>{locationAddress}</p>
         <Html markup={description} />
       </Hero>
 
       <Container css={{ marginTop: gridSize * 3 }}>
         <div css={mq({ float: [null, 'right'] })}>
-          <Rsvp event={data.Event} themeColor={themeColor}>
+          <Rsvp event={data.Event}>
             {({ message, component }) => component || message}
           </Rsvp>
         </div>

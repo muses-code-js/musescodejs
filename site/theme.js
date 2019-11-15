@@ -1,12 +1,15 @@
 export const colors = {
-  greyDark: '#182126',
-  greyMedium: '#8c8c8c',
-  greyLight: '#EEF3F5',
-  purple: '#A03FFF',
+  greyDark: '#222222',
+  greyMedium: '#333333',
+  greyLight: '#828C90',
+  purple: '#7985F0',
+  pink: '#DA3296',
+  yellow: '#FFC962',
   red: '#EB5757',
-  blue: '#2D9CDB',
-  aqua: '#2EDDB3',
-  yellow: '#FFE221',
+  blue: '#38A7E4',
+  orange: '#EC855A',
+  rose: '#FA94D9',
+  aqua: '#7DDBBA',
 };
 
 export const breakpoints = {

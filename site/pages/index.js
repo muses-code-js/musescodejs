@@ -40,7 +40,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // Featured Event
 const FeaturedEvent = ({ isLoading, error, event }) => {
-  const { description, id, locationAddress, maxRsvps, name, startTime, talks, themeColor } =
+  const { description, id, locationAddress, maxRsvps, name, startTime, talks } =
     event || {};
   const { data, loading: queryLoading, error: queryError } = useQuery(GET_EVENT_RSVPS, {
     variables: { event: id },
@@ -61,8 +61,6 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
     ? formatFutureDate(startTime)
     : formatPastDate(startTime);
 
-  const hex = themeColor ? themeColor.slice(1) : null;
-
   const { allRsvps } = data || {};
   const attending = allRsvps ? `${allRsvps.length}${maxRsvps ? `/${maxRsvps}` : ''}` : undefined;
   return (
@@ -70,8 +68,8 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
       <div css={{ boxShadow: '0px 4px 94px rgba(0, 0, 0, 0.15)' }}>
         <div
           css={{
-            backgroundColor: themeColor,
-            color: getForegroundColor(themeColor),
+            backgroundColor: 'white',
+            color: 'black',
             display: 'block',
             padding: '2rem',
           }}
@@ -96,7 +94,7 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
                 >
                   {prettyDate}
                 </p>
-                <Link href={`/event/[id]?hex=${hex}`} as={`/event/${id}?hex=${hex}`} passHref>
+                <Link href={`/event/[id]`} as={`/event/${id}`} passHref>
                   <a
                     css={{
                       color: 'inherit',
@@ -136,7 +134,7 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
               justifyContent: 'space-between',
             })}
           >
-            <Rsvp event={event} themeColor={themeColor}>
+            <Rsvp event={event}>
               {({ message, component }) => component || message}
             </Rsvp>
             <div
@@ -262,10 +260,10 @@ const Home = ({ now }) => {
 
   return (
     <div>
-      <Meta titleExclusive={meetup.name} description={meetup.intro} />
+      <Meta titleExclusive={meetup.name} description={meetup.description} />
       <Navbar background={colors.greyDark} />
       <Hero title={meetup.name}>
-        <Html markup={meetup.homeIntro} />
+        <p>Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around Australia.</p>
       </Hero>
       <FeaturedEvent isLoading={eventsLoading} error={eventsError} event={featuredEvent} />
       <Container css={{ marginTop: '3rem' }}>

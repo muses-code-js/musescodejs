@@ -11,7 +11,7 @@ const SIZE_MAP = {
   xlarge: 72,
 };
 
-export default function Loading({ color, isCentered, size }) {
+export default function Loading({ isCentered, size }) {
   const sizePx = SIZE_MAP[size];
 
   return (
@@ -20,7 +20,7 @@ export default function Loading({ color, isCentered, size }) {
         fill="none"
         fillRule="evenodd"
         height={`${sizePx}px`}
-        stroke={color}
+        stroke="#b591da"
         strokeWidth="2"
         viewBox="0 0 38 38"
         width={`${sizePx}px`}
@@ -45,12 +45,10 @@ export default function Loading({ color, isCentered, size }) {
 }
 
 Loading.propTypes = {
-  color: PropTypes.string,
   isCentered: PropTypes.bool,
   size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
 };
 Loading.defaultProps = {
-  color: 'currentColor',
   isCentered: false,
   size: 'medium',
 };
