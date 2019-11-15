@@ -23,9 +23,9 @@ const Footer = ({ callToAction = true }) => {
       <div css={{ position: 'relative' }}>
         {callToAction && (
           <CallToAction>
-            <Html markup={meetup.footer.callToActionText} />
+            <h2>Join our meetup!</h2>
             <Button background={button.bg} foreground={button.fg} href="/signup">
-              {meetup.footer.callToActionButtonLabel}
+              Join us now
             </Button>
           </CallToAction>
         )}
@@ -51,7 +51,8 @@ const Footer = ({ callToAction = true }) => {
           alt={meetup.name}
           css={{ marginRight: gridSize * 2 }}
         />
-        <Html markup={meetup.footer.copyrightText} />
+        <p>Copyright © Muses Code JS</p>
+        <p>Powered by <a href="https://v5.keystonejs.com">KeystoneJS</a>.</p>
       </section>
     </div>
   );
