@@ -9,7 +9,6 @@ export const EVENT_DATA = gql`
     locationAddress
     locationDescription
     description
-    themeColor
     maxRsvps
     talks {
       id
