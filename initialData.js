@@ -97,7 +97,6 @@ const initialData = {
     {
       name: 'Free pizza',
       status: 'active',
-      themeColor: '#334455',
       // Default to "1 month from now"
       startTime: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString(),
       description:
@@ -110,26 +109,24 @@ const initialData = {
     {
       name: 'Fyre Festival',
       status: 'active',
-      themeColor: '#334455',
       startTime: new Date(Date.now() + 2000 * 60 * 60 * 24 * 30).toISOString(),
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat, est et porttitor ultricies, odio nisi consequat arcu, eget ultrices nulla elit in augue. Fusce accumsan mattis felis eget lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent commodo velit id cursus bibendum. Vivamus pellentesque, velit semper ullamcorper ullamcorper, massa mauris laoreet odio, vitae hendrerit orci lacus sit amet augue.',
-      durationMins: 5,
-      maxRsvps: 5000,
+      durationMins: 120,
+      maxRsvps: 500,
       isRsvpAvailable: true,
-      locationAddress: 'Exuma, Bahamas',
+      locationAddress: 'Microsoft Reactor',
     },
     {
-      name: 'Catalina Wine Mixer',
+      name: 'Javascript Full Day Workshop',
       status: 'active',
-      themeColor: '#334455',
       startTime: new Date(Date.now() + 1500 * 60 * 60 * 24 * 30).toISOString(),
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat, est et porttitor ultricies, odio nisi consequat arcu, eget ultrices nulla elit in augue. Fusce accumsan mattis felis eget lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent commodo velit id cursus bibendum. Vivamus pellentesque, velit semper ullamcorper ullamcorper, massa mauris laoreet odio, vitae hendrerit orci lacus sit amet augue.',
+        'We believe that any woman should try programming at least once in their life. There for we created a community where in friendly atmosphere with great vibe you can try programming first time or if you already code - learn something new about JavaScript and/or Node.js. Our full day coding bootcamps are also a great opportunity to grow your network and meet new people with similar interests. Come and join our event for women with lunch provided.',
       durationMins: 150,
-      maxRsvps: 2500,
+      maxRsvps: 200,
       isRsvpAvailable: true,
-      locationAddress: 'Catalina Island',
+      locationAddress: 'Microsoft Reactor',
     },
   ],
 };
