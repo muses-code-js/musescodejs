@@ -7,15 +7,12 @@ import { colors, gridSize, shadows } from '../theme';
 import { getForegroundColor } from '../helpers';
 import { mq } from '../helpers/media';
 
-const { publicRuntimeConfig } = getConfig();
-
 const Footer = ({ callToAction = true }) => {
-  const { meetup } = publicRuntimeConfig;
   const marginTop = (callToAction ? 16 : 32) * gridSize;
   const slantHeight = callToAction ? 15 : 5;
   const button = {
-    bg: meetup.themeColor,
-    fg: getForegroundColor(meetup.themeColor),
+    bg: colors.pink,
+    fg: getForegroundColor(colors.pink),
   };
 
   return (
@@ -33,7 +30,7 @@ const Footer = ({ callToAction = true }) => {
       </div>
       <section
         css={{
-          background: colors.greyDark,
+          background: colors.purple,
           color: 'white',
           padding: `${gridSize * 8}px 0`,
           textAlign: 'center',
@@ -44,15 +41,8 @@ const Footer = ({ callToAction = true }) => {
           },
         }}
       >
-        <img
-          src={meetup.logo.src}
-          width={meetup.logo.width}
-          height={meetup.logo.height}
-          alt={meetup.name}
-          css={{ marginRight: gridSize * 2 }}
-        />
-        <p>Copyright © Muses Code JS</p>
-        <p>Powered by <a href="https://v5.keystonejs.com">KeystoneJS</a>.</p>
+        <p><a href='/code-conduct'>Code of Conduct</a></p>
+        <p>Copyright © Muses Code JS, powered by <a href="https://v5.keystonejs.com" target="_blank" rel="noopener noreferrer">KeystoneJS</a>.</p>
       </section>
     </div>
   );
@@ -96,7 +86,7 @@ const Slant = ({ height }) => (
     viewBox="0 0 100 100"
     preserveAspectRatio="none"
   >
-    <polygon fill={colors.greyDark} points="0, 0 100, 100 0, 100" />
+    <polygon fill={colors.purple} points="0, 0 100, 100 0, 100" />
   </svg>
 );
 
