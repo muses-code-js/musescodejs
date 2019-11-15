@@ -100,7 +100,6 @@ exports.Event = {
   fields: {
     name: { type: Text },
     status: { type: Select, options: 'draft, active', defaultValue: 'draft' },
-    themeColor: { type: Text },
     startTime: { type: DateTime },
     durationMins: { type: Integer },
     description: { type: Wysiwyg },
