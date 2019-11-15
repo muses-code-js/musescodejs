@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-
 import Link from 'next/link';
 import Rsvp from '../../components/Rsvp';
 import { H3, H5, Html, PinIcon } from '../../primitives';
@@ -30,7 +29,7 @@ const EventItem = event => {
       <div
         css={{
           backgroundColor: 'white',
-          borderTop: `solid 8px ${'#b591da' || colors.greyLight}`,
+          borderTop: `solid 8px ${colors.pink}`,
           boxShadow: shadows.sm,
           margin: gridSize,
           padding: `${gridSize * 3}px ${gridSize * 3}px 0`,

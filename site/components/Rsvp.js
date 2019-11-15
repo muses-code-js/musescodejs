@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { jsx } from '@emotion/core';
-
+import getConfig from 'next/config';
 import { Button as ButtonPrimitive, CheckmarkIcon, Loading } from '../primitives';
 import { useAuth } from '../lib/authetication';
 import { GET_RSVPS, UPDATE_RSVP, ADD_RSVP } from '../graphql/rsvps';
 import AuthModal from './auth/modal';
+import { color } from '../theme';
 
 function validateRsvp({ userRsvps, eventRsvps, event }) {
   if (!event || !event.isRsvpAvailable) {
@@ -158,7 +159,7 @@ const Button = ({ children, isSelected, ...props }) => (
       marginLeft: '0.25em',
       minWidth: 92,
     }}
-    background={isSelected ? '#b591da' : null}
+    background={isSelected ? colors.purple : null}
     outline={!isSelected}
     size="small"
     {...props}

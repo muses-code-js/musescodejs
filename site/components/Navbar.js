@@ -9,7 +9,7 @@ import { useAuth } from '../lib/authetication';
 import { SignoutIcon } from '../primitives';
 import { getForegroundColor, useLogoDimension } from '../helpers';
 import { mq } from '../helpers/media';
-import { fontSizes, gridSize, shadows } from '../theme';
+import { colors, fontSizes, gridSize, shadows } from '../theme';
 import AuthModal from './auth/modal';
 
 const ThemeContext = createContext();
@@ -51,10 +51,10 @@ const NavLink = ({ href, as, ...props }) => (
 const NavButton = props => (
   <NavLink
     css={mq({
-      backgroundColor: meetup.themeColor,
+      backgroundColor: colors.pink,
       border: 'none',
       borderRadius: 40,
-      color: getForegroundColor(meetup.themeColor),
+      color: getForegroundColor(colors.pink),
       fontWeight: 600,
       lineHeight: 1,
       marginRight: [0, 0],

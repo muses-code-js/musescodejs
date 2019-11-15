@@ -2,6 +2,7 @@
 
 import { jsx } from '@emotion/core';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 const SIZE_MAP = {
   xsmall: 24,
@@ -20,7 +21,7 @@ export default function Loading({ isCentered, size }) {
         fill="none"
         fillRule="evenodd"
         height={`${sizePx}px`}
-        stroke="#b591da"
+        stroke={colors.purple}
         strokeWidth="2"
         viewBox="0 0 38 38"
         width={`${sizePx}px`}
