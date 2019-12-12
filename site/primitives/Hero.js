@@ -57,7 +57,7 @@ Hero.propTypes = {
 };
 Hero.defaultProps = {
   align: 'center',
-  backgroundColor: colors.greyDark,
+  backgroundColor: colors.purple,
 };
 
 // styled components

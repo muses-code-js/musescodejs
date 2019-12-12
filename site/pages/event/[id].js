@@ -48,7 +48,7 @@ const Event = ({ id, loadingColor }) => {
       <Navbar />
       <Hero align="left" superTitle={prettyDate} title={name}>
         <p css={{ fontWeight: 100 }}>{locationAddress}</p>
-        <Html markup={description} />
+        <p>{description}</p>
       </Hero>
 
       <Container css={{ marginTop: gridSize * 3 }}>

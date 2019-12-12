@@ -261,7 +261,7 @@ const Home = ({ now }) => {
   return (
     <div>
       <Meta titleExclusive={meetup.name} description={meetup.description} />
-      <Navbar background={colors.greyDark} />
+      <Navbar background={colors.purple} />
       <Hero title={meetup.name}>
         <p>Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around Australia.</p>
       </Hero>
