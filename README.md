@@ -24,7 +24,7 @@ Start: `yarn dev`
 
 ### Access Admin Area
 
-Keystone Admin UI: http://localhost:5000/admin
+Keystone Admin UI: http://localhost:3000/admin
 username: admin@keystonejs.com
 password: 12345678 (defined on .env file)
 

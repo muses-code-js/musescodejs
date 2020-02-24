@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const meetup = require('../config');
-const serverUrl = process.env.SERVER_URL || 'http://localhost:5000';
+const serverUrl = process.env.SERVER_URL || 'http://localhost:3000';
 
 module.exports = {
   publicRuntimeConfig: {
