@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
@@ -11,6 +11,7 @@ const {
   Relationship,
   Select,
   Text,
+  Slug,
 } = require('@keystonejs/fields');
 const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
@@ -181,8 +182,20 @@ exports.Sponsor = {
     name: { type: Text },
     website: { type: Text },
     logo: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+    level: {
+      type: Relationship,
+      ref: 'SponsorLevel',
+      many: false,
+    },
   },
 };
+
+exports.SponsorLevel = {
+  fields: {
+    name: { type: Text },
+    badge: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+  },
+};  
 
 exports.ForgottenPasswordToken = {
   access: {

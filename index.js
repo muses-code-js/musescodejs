@@ -9,14 +9,14 @@ const { NextApp } = require('@keystone-alpha/app-next');
 
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 
-const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken } = require('./schema');
+const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken, SponsorLevel } = require('./schema');
 
 const initialiseData = require('./initialData');
 
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter(),
-  onConnect: initialiseData,
+  // onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);
@@ -26,6 +26,7 @@ keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
 keystone.createList('Sponsor', Sponsor);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
+keystone.createList('SponsorLevel', SponsorLevel);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
@@ -38,7 +39,7 @@ const adminApp = new AdminUIApp({
   pages: [
     {
       label: 'Meetup',
-      children: ['Event', 'Talk', 'Organiser', 'Sponsor'],
+      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'SponsorLevel'],
     },
     {
       label: 'People',
