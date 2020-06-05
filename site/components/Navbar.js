@@ -167,6 +167,7 @@ const Navbar = ({ background = 'white', ...props }) => {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/about">About</NavLink>
           <NavLink href="/events">Events</NavLink>
+          <NavLink href="/resources">Resources</NavLink>
         </div>
         {isAuthenticated ? <UserActions user={user} /> : <AnonActions />}
       </Header>
