@@ -20,6 +20,7 @@
     "@keystonejs/app-admin-ui": "^6.0.2",
     "@keystonejs/app-graphql": "^5.0.0",
     "@keystonejs/auth-password": "^5.0.0",
+    "@keystonejs/field-content": "^7.0.0",
     "@keystonejs/fields": "^11.0.0",
     "@keystonejs/fields-wysiwyg-tinymce": "^5.0.0",
     "@keystonejs/file-adapters": "^6.0.2",

@@ -184,6 +184,16 @@ exports.Sponsor = {
   },
 };
 
+exports.Post = {
+  access: DEFAULT_LIST_ACCESS,
+  fields: {
+    title: { type: Text },
+    author: { type: Text },
+    date: { type: DateTime },
+    description: { type: Wysiwyg },
+  },
+};
+
 exports.ForgottenPasswordToken = {
   access: {
     create: true,
