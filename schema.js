@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uuid = require('uuid/v4');
+const uuid = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
