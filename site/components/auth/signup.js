@@ -1,18 +1,16 @@
 /** @jsx jsx */
-
+import gql from 'graphql-tag';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import Router from 'next/router';
 import { jsx } from '@emotion/core';
-
 import { useAuth } from '../../lib/authetication';
 import { Button, Field, Label, Input } from '../../primitives/forms';
 import { gridSize, colors } from '../../theme';
-import { CREATE_USER } from '../../graphql/users';
 
 const onChange = handler => e => handler(e.target.value);
 
-export default () => {
+const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,8 +23,8 @@ export default () => {
       try {
         await signin({ email, password });
         setErrorState(false);
-      } finally {
-        setErrorState(false);
+      } catch {
+        setErrorState(true);
       }
     },
     onError: () => {
@@ -105,3 +103,13 @@ export default () => {
     </>
   );
 };
+
+export default Signup;
+
+const CREATE_USER = gql`
+  mutation CreateUser($name: String!, $email: String!, $password: String!) {
+    createUser(data: { name: $name, email: $email, password: $password }) {
+      id
+    }
+  }
+`;
