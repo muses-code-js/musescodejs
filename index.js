@@ -18,7 +18,6 @@ const {
   Sponsor,
   Post,
   ForgottenPasswordToken,
-  Press,
 } = require('./schema');
 
 const initialiseData = require('./initialData');
@@ -37,7 +36,6 @@ keystone.createList('Organiser', Organiser);
 keystone.createList('Sponsor', Sponsor);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
 keystone.createList('Post', Post);
-keystone.createList('Press', Press);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
@@ -50,7 +48,7 @@ const adminApp = new AdminUIApp({
   pages: [
     {
       label: 'Meetup',
-      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'Post', 'Press'],
+      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'Post'],
     },
     {
       label: 'People',

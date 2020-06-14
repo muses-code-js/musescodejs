@@ -32,7 +32,6 @@ const News = () => {
         ) : (
           <NewsItems posts={data.allPosts} />
         )}
-        <H2 hasSeparator>Press Releases</H2>
       </Container>
       <Footer />
     </>

@@ -195,19 +195,6 @@ exports.Post = {
   },
 };
 
-exports.Press = {
-  access: DEFAULT_LIST_ACCESS,
-  fields: {
-    member: { type: Relationship, ref: 'User', many: false },
-    name: { type: Text },
-    image: { type: CloudinaryImage, adapter: cloudinaryAdapter },
-    title: { type: Text },
-    author: { type: Text },
-    date: { type: DateTime },
-    description: { type: Wysiwyg },
-  },
-};
-
 exports.ForgottenPasswordToken = {
   access: {
     create: true,
