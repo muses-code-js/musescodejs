@@ -8,12 +8,12 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_POSTS } from '../graphql/posts';
 import NewsItems from '../components/NewsItems';
 
-import { Container, H1, Loading } from '../primitives';
+import { Container, H2, Loading } from '../primitives';
 
 const News = () => {
   const { data, loading, error } = useQuery(GET_ALL_POSTS);
   if (error) {
-    console.error('Failed to load events', error);
+    console.error('Failed to load articles.', error);
   }
   return (
     <>
@@ -24,9 +24,7 @@ const News = () => {
 
       <Navbar />
       <Container css={{ marginTop: gridSize * 3 }}>
-        <H1 hasSeparator css={{ marginBottom: '0.66em' }}>
-          News
-        </H1>
+        <H2 hasSeparator>Articles</H2>
         {loading ? (
           <Loading isCentered size="xlarge" />
         ) : error ? (
@@ -34,6 +32,7 @@ const News = () => {
         ) : (
           <NewsItems posts={data.allPosts} />
         )}
+        <H2 hasSeparator>Press Releases</H2>
       </Container>
       <Footer />
     </>

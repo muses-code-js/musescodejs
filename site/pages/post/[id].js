@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
-import { withApollo } from '../../lib/withApollo';
 
-import { Error, Hero, Loading, H4 } from '../../primitives';
+import { Error, Hero, Loading, H4, Html, Container } from '../../primitives';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import Meta, { makeMetaUrl } from '../../components/Meta';
@@ -41,8 +40,10 @@ const Post = ({ id, loadingColor }) => {
       <Navbar />
       <Hero align="left" superTitle={prettyDate} title={title}>
         <H4 css={{ fontWeight: 100 }}>By: {author}</H4>
-        <p>{description}</p>
       </Hero>
+      <Container>
+        <Html markup={description} />
+      </Container>
       <Footer />
     </>
   );

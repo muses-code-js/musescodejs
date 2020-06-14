@@ -33,7 +33,7 @@ const NewsItem = post => {
           },
         }}
       >
-        <div css={{ maxHeight: 400, overflow: 'hidden' }}>
+        <div css={{ maxHeight: 250, overflow: 'hidden' }}>
           <Link href={`/post/[id]`} as={`/post/${id}`} passHref>
             <a
               css={{
@@ -57,7 +57,7 @@ const NewsItem = post => {
               </H4>
               {author ? (
                 <p css={{ alignItems: 'center', color: colors.greyMedium, display: 'flex' }}>
-                  By: {author}
+                  Posted by: {author}
                 </p>
               ) : null}
               <Html
@@ -65,7 +65,7 @@ const NewsItem = post => {
                 css={{
                   a: {
                     color: 'inherit',
-                    pointerEvents: 'none',
+                    pointerPosts: 'none',
                     textDecoration: 'none',
                   },
                 }}
