@@ -18,7 +18,7 @@ const SignIn = () => {
   // if the user is logged in, redirect to the homepage
   useEffect(() => {
     if (isAuthenticated) {
-      Router.push('/');
+      Router.push('/profile');
     }
   }, [isAuthenticated]);
 

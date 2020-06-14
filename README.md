@@ -1,6 +1,6 @@
 # MusesCodeJS
 
-Project [link](https://www.notion.so/thinkmill/405b8f494d804fa48377362c1316e79d?v=8e5c965fde9846329b251f7a5ed1ecb5)
+Project [link](https://github.com/muses-code-js/musescodejs/projects/1)
 
 A free, open source website. Powered by [Keystone 5](https://www.keystonejs.com/), [Next.js](https://nextjs.org/) and [Emotion](https://emotion.sh/).
 
@@ -16,7 +16,18 @@ To run locally:
 
 Make sure mongodb-community status is `started` by running `brew services list`.
 
-Run `yarn dev`
+Create a `.env` file based on the example available in this folder (`.env.example`) with the right information or create free accounts for these services. 
+
+Make sure you installed all dependencies running `yarn` before start `yarn dev`
+
+Start: `yarn dev`
+
+### Access Admin Area
+
+Keystone Admin UI: http://localhost:3000/admin
+username: admin@keystonejs.com
+password: 12345678 (defined on .env file)
+
 
 ### Installing MongoDB
 

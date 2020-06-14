@@ -25,7 +25,7 @@ const initialiseData = require('./initialData');
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter(),
-  // onConnect: initialiseData,
+  onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);

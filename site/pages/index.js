@@ -182,45 +182,45 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
   );
 };
 
-const Sponsors = () => {
-  const { data: { allSponsors } = {}, loading, error } = useQuery(GET_SPONSORS);
-  return (
-    <Container css={{ textAlign: 'center' }}>
-      <H3>Our sponsors</H3>
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <Error error={error} />
-      ) : (
-        <ul
-          css={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
-          {allSponsors.map(sponsor => (
-            <li key={sponsor.id} css={{ flex: 1, margin: 12 }}>
-              <a href={sponsor.website} target="_blank">
-                {sponsor.logo ? (
-                  <img
-                    alt={sponsor.name}
-                    css={{ maxWidth: '100%', maxHeight: 140 }}
-                    src={sponsor.logo.publicUrl}
-                  />
-                ) : (
-                  sponsor.name
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </Container>
-  );
-};
+// const Sponsors = () => {
+//   const { data: { allSponsors } = {}, loading, error } = useQuery(GET_SPONSORS);
+//   return (
+//     <Container css={{ textAlign: 'center' }}>
+//       <H3>Our sponsors</H3>
+//       {loading ? (
+//         <Loading />
+//       ) : error ? (
+//         <Error error={error} />
+//       ) : (
+//         <ul
+//           css={{
+//             display: 'flex',
+//             justifyContent: 'space-between',
+//             alignItems: 'center',
+//             listStyle: 'none',
+//             padding: 0,
+//           }}
+//         >
+//           {allSponsors.map(sponsor => (
+//             <li key={sponsor.id} css={{ flex: 1, margin: 12 }}>
+//               <a href={sponsor.website} target="_blank">
+//                 {sponsor.logo ? (
+//                   <img
+//                     alt={sponsor.name}
+//                     css={{ maxWidth: '100%', maxHeight: 140 }}
+//                     src={sponsor.logo.publicUrl}
+//                   />
+//                 ) : (
+//                   sponsor.name
+//                 )}
+//               </a>
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </Container>
+//   );
+// };
 
 function processEventsData(data) {
   if (!data || !data.upcomingEvents || !data.previousEvents) {
@@ -270,9 +270,9 @@ const Home = ({ now }) => {
         {featuredEvent && featuredEvent.talks ? <Talks talks={featuredEvent.talks} /> : null}
       </Container>
       <Section css={{ padding: '3rem 0' }}>
-        <Container>
+        {/* <Container>
           <Sponsors />
-        </Container>
+        </Container> */}
       </Section>
       {moreEvents.length ? (
         <>
