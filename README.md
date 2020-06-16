@@ -22,6 +22,19 @@ Make sure you installed all dependencies running `yarn` before start `yarn dev`
 
 Start: `yarn dev`
 
+### Mocking Database
+If it's the first time you are running it locally you can mock a DB with initial content you can add the following code inside the `index.js` in the root.
+
+```js
+const initialiseData = require('./initialData');
+
+const keystone = new Keystone({
+  name: 'MusesCodeJS',
+  adapter: new MongooseAdapter(),
+  onConnect: initialiseData,
+});
+```
+
 ### Access Admin Area
 
 Keystone Admin UI: http://localhost:3000/admin
