@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { withApollo } from '../../lib/withApollo';
 
 import Rsvp from '../../components/Rsvp';
-import { Avatar, Container, Error, Hero, H1, H2, Html, Loading } from '../../primitives';
+import { Avatar, Container, Error, Hero, H1, H2, Loading } from '../../primitives';
 import Talks from '../../components/Talks';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -53,9 +53,7 @@ const Event = ({ id, loadingColor }) => {
 
       <Container css={{ marginTop: gridSize * 3 }}>
         <div css={mq({ float: [null, 'right'] })}>
-          <Rsvp event={data.Event}>
-            {({ message, component }) => component || message}
-          </Rsvp>
+          <Rsvp event={data.Event}>{({ message, component }) => component || message}</Rsvp>
         </div>
         <H2 hasSeparator css={mq({ marginBottom: '2rem', marginTop: ['2rem', null] })}>
           Talks
