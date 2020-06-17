@@ -7,8 +7,6 @@ const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { NextApp } = require('@keystone-alpha/app-next');
 
-const { Text, Checkbox, Wysiwyg, DateTime } = require('@keystonejs/fields');
-
 const {
   Event,
   Talk,

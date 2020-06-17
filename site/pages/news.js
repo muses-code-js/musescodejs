@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
-import { colors, gridSize } from '../theme';
+import { gridSize } from '../theme';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_POSTS } from '../graphql/posts';
 import NewsItems from '../components/NewsItems';

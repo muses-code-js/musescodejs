@@ -7,12 +7,12 @@ import { formatPastDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
 const NewsItem = post => {
-  const { id, title, author, date, description, ...props } = post;
+  const { id, title, author, date, description } = post;
 
   const prettyDate = formatPastDate(date);
 
   return (
-    <li {...props} css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
+    <li css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
       <div
         css={{
           backgroundColor: 'white',

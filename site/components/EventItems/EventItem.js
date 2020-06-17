@@ -23,7 +23,6 @@ const EventItem = event => {
     ? formatFutureDate(startTime)
     : formatPastDate(startTime);
 
-
   return (
     <li {...props} css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
       <div
