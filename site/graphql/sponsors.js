@@ -6,30 +6,28 @@ export const GET_SPONSORS = gql`
       id
       name
       website
-      logo {
-        publicUrl
+      level {
+        id
+        name
+        colour
       }
-    }
-  }
-`;
-
-
-export const SPONSOR_DATA = gql`
-  fragment GetSponsor on Sponsor {
-    id
-    name
-    website
-    logo {
-      publicUrl
+      logo {
+        id
+      }
     }
   }
 `;
 
 export const GET_ALL_SPONSORS = gql`
   {
-    allSponsors(orderBy: "name") {
-      ...GetSponsor
+    allSponsors {
+      id,
+      name,
+      category,
+      logo {
+        id
+      },
+  
     }
   }
-  ${SPONSOR_DATA}
-  `;
+`;

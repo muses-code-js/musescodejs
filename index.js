@@ -9,7 +9,7 @@ const { NextApp } = require('@keystone-alpha/app-next');
 
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 
-const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken, SponsorLevel } = require('./schema');
+const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken, Post } = require('./schema');
 
 const initialiseData = require('./initialData');
 
@@ -26,7 +26,7 @@ keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
 keystone.createList('Sponsor', Sponsor);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
-keystone.createList('SponsorLevel', SponsorLevel);
+keystone.createList('Post', Post);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
@@ -39,7 +39,7 @@ const adminApp = new AdminUIApp({
   pages: [
     {
       label: 'Meetup',
-      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'SponsorLevel'],
+      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'Post'],
     },
     {
       label: 'People',

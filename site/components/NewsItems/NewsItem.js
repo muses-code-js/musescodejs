@@ -1,30 +1,18 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import Link from 'next/link';
-import Rsvp from '../../components/Rsvp';
-import { H3, H5, Html, PinIcon } from '../../primitives';
+import { H4, H5, Html } from '../../primitives';
 import { colors, gridSize, shadows } from '../../theme';
-import { isInFuture, formatPastDate, formatFutureDate } from '../../helpers';
+import { formatPastDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
-const EventItem = event => {
-  const {
-    id,
-    name,
-    startTime,
-    description,
-    talks,
-    locationAddress,
-    locationDescription,
-    maxRsvps,
-    ...props
-  } = event;
-  const prettyDate = isInFuture(startTime)
-    ? formatFutureDate(startTime)
-    : formatPastDate(startTime);
+const NewsItem = post => {
+  const { id, title, author, date, description } = post;
+
+  const prettyDate = formatPastDate(date);
 
   return (
-    <li {...props} css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
+    <li css={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
       <div
         css={{
           backgroundColor: 'white',
@@ -45,8 +33,8 @@ const EventItem = event => {
           },
         }}
       >
-        <div css={{ maxHeight: 400, overflow: 'hidden' }}>
-          <Link href={`/event/[id]`} as={`/event/${id}`}>
+        <div css={{ maxHeight: 250, overflow: 'hidden' }}>
+          <Link href={`/post/[id]`} as={`/post/${id}`} passHref>
             <a
               css={{
                 color: 'inherit',
@@ -61,15 +49,15 @@ const EventItem = event => {
               <H5 as="div" css={{ textTransform: 'uppercase' }}>
                 {prettyDate}
               </H5>
-              <H3
+              <H4
                 size={4}
                 css={{ wordWrap: 'break-word', lineHeight: '1.25', marginBottom: gridSize }}
               >
-                {name}
-              </H3>
-              {locationDescription ? (
+                {title}
+              </H4>
+              {author ? (
                 <p css={{ alignItems: 'center', color: colors.greyMedium, display: 'flex' }}>
-                  <PinIcon css={{ marginRight: '0.5em' }} /> {locationDescription}
+                  Posted by: {author}
                 </p>
               ) : null}
               <Html
@@ -77,16 +65,13 @@ const EventItem = event => {
                 css={{
                   a: {
                     color: 'inherit',
-                    pointerEvents: 'none',
+                    pointerPosts: 'none',
                     textDecoration: 'none',
                   },
                 }}
               />
             </a>
           </Link>
-          <Rsvp event={event} text="Attending?">
-            {({ component }) => (component ? <RsvpPositioner>{component}</RsvpPositioner> : null)}
-          </Rsvp>
         </div>
       </div>
     </li>
@@ -109,21 +94,5 @@ const Mask = props => (
     {...props}
   />
 );
-const RsvpPositioner = props => (
-  <div
-    css={{
-      background: 'white',
-      boxShadow: '0 -1px 0 rgba(0, 0, 0, 0.1)',
-      bottom: 0,
-      boxSizing: 'border-box',
-      left: 0,
-      padding: `${gridSize * 2}px ${gridSize * 3}px`,
-      position: 'absolute',
-      right: 0,
-      zIndex: 20,
-    }}
-    {...props}
-  />
-);
 
-export default EventItem;
+export default NewsItem;

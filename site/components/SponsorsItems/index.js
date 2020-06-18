@@ -1,30 +1,31 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 
-import SponsorsItem from './SponsorsItem'
+import SponsorCard from './SponsorCard';
 import { gridSize } from '../../theme';
 
-const SponsorsItems = ({ sponsors, ... props }) => {
-  return(
-    <ul
-      css={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        marginLeft: -gridSize,
-        maringRight: -gridSize,
-        padding: 0,
-        listStyle: 'none',
-      }}
-      {... props}
-    >
-      {sponsors.map((sponsor) => (
-        <SponsorsItem
-          key={sponsor.id}
-        {...sponsor}
-        />
-      ))}
-    </ul>
-  );
-};
+const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
+    return(
+      <div
+        css={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          marginLeft: -gridSize,
+          maringRight: -gridSize,
+          padding: `${gridSize * 3}px ${gridSize * 3}px ${gridSize * 3}px`,
+          listStyle: 'none',
+        }}
+        {... props}
+      >
+        {sponsors.map((sponsor) => (
+          <SponsorCard
+            key={sponsor.id}
+          {...sponsor}
+          />
+        ))}
+      </div>
+    );
+  };
 
-export default SponsorsItems;
+export default SponsorItems;

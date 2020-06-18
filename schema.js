@@ -182,20 +182,20 @@ exports.Sponsor = {
     name: { type: Text },
     website: { type: Text },
     logo: { type: CloudinaryImage, adapter: cloudinaryAdapter },
-    level: {
-      type: Relationship,
-      ref: 'SponsorLevel',
-      many: false,
-    },
+    category: { type: Select, options: 'Select, Gold, Silver, Bronze', defaultValue: 'Select' },
   },
 };
 
-exports.SponsorLevel = {
+exports.Post = {
+  access: DEFAULT_LIST_ACCESS,
   fields: {
-    name: { type: Text },
-    badge: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+    member: { type: Relationship, ref: 'User', many: false },
+    title: { type: Text },
+    author: { type: Text },
+    date: { type: DateTime },
+    description: { type: Wysiwyg },
   },
-};  
+};
 
 exports.ForgottenPasswordToken = {
   access: {
