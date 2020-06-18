@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
@@ -181,6 +181,17 @@ exports.Sponsor = {
     name: { type: Text },
     website: { type: Text },
     logo: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+  },
+};
+
+exports.Post = {
+  access: DEFAULT_LIST_ACCESS,
+  fields: {
+    member: { type: Relationship, ref: 'User', many: false },
+    title: { type: Text },
+    author: { type: Text },
+    date: { type: DateTime },
+    description: { type: Wysiwyg },
   },
 };
 

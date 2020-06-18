@@ -30,9 +30,21 @@ const About = () => {
           About
         </H1>
         <Content>
-          <p>Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around Australia.</p>
-          <p>We believe that everyone should try programming at least once in their life. Therefore we created a community where, in a friendly atmosphere with a great vibe you can try programming for the first time or, if you already code, learn something new about JavaScript and/or Node.js.</p>
-          <p>Our half day coding bootcamps are also a great opportunity to grow your network and meet new people with similar interests. Come and join our next half-day coding bootcamp with lunch provided.</p>
+          <p>
+            Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around
+            Australia.
+          </p>
+          <p>
+            We believe that everyone should try programming at least once in their life. Therefore
+            we created a community where, in a friendly atmosphere with a great vibe you can try
+            programming for the first time or, if you already code, learn something new about
+            JavaScript and/or Node.js.
+          </p>
+          <p>
+            Our half day coding bootcamps are also a great opportunity to grow your network and meet
+            new people with similar interests. Come and join our next half-day coding bootcamp with
+            lunch provided.
+          </p>
         </Content>
 
         {loading ? (
@@ -56,7 +68,7 @@ const About = () => {
       <Footer />
     </>
   );
-}
+};
 
 const twitterLink = handle => `https://twitter.com/${handle.slice(1)}`;
 
