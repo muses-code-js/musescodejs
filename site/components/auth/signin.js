@@ -28,6 +28,7 @@ export default ({ onSuccess, onClickForgot }) => {
         onSuccess();
       }
     } catch (error) {
+      setIsLoading(false);
       setErrorState(true);
     }
   };
