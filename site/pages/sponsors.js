@@ -14,7 +14,6 @@ import { GET_ALL_SPONSORS } from '../graphql/sponsors';
 
 function Sponsors() {
   const { data, loading, error } = useQuery(GET_ALL_SPONSORS);
-
   
   if (error) {
     console.error('Failed to load sponsors', error);
@@ -25,7 +24,7 @@ function Sponsors() {
       <Meta title="Sponsors"/>
       <Navbar />
       <Container css={{ marginTop: gridSize * 3}}>
-       <H2>Sponsors</H2>
+      <H2 hasSeparator>Sponsors</H2>
        {loading ? (
           <Loading isCentered size="xlarge" />
         ) : error ? (

@@ -1,29 +1,27 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useQuery } from '@apollo/react-hooks';
-import { H3 } from '../../primitives';
 import { Image } from 'cloudinary-react';
 import { colors, gridSize, shadows } from '../../theme';
 import { mq } from '../../helpers/media';
+import ReactImageTooltip from 'react-image-tooltip'
 
 const SponsorCard = sponsor => {
   const {
     id,
     name,
     category,
+    website,
     logo,
     ...props
   } = sponsor;
-  
-
 
   return (
-  
   <li {...props} ccss={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
     
     <div
         css={{
           display: 'flex',
+          flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'white', 
@@ -45,13 +43,15 @@ const SponsorCard = sponsor => {
           },
         }}
       >
-     <Image cloudName="dnlhzvisl" publicId={logo.id} width="100" crop="scale" />
-
-        
-      </div>
-    
+  
+      <ReactImageTooltip>
+        <a href={website} target="_blank">
+          <Image cloudName="dnlhzvisl" publicId={logo.id} width="100" crop="scale"alt={name}/>
+        </a>
+      </ReactImageTooltip>
+      
+    </div>
   </li>
-
   );
 };
 

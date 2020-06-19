@@ -24,6 +24,7 @@ export const GET_ALL_SPONSORS = gql`
       id,
       name,
       category,
+      website,
       logo {
         id
       },
