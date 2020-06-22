@@ -20,7 +20,7 @@ const {
 
 const keystone = new Keystone({
   name: 'MusesCodeJS',
-  adapter: new MongooseAdapter(),
+  adapter: new MongooseAdapter(), 
 });
 
 keystone.createList('Event', Event);
