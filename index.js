@@ -12,11 +12,20 @@ const { Text, Checkbox, Password } = require('@keystonejs/fields');
 const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken, Post } = require('./schema');
 
 const initialiseData = require('./initialData');
+const {
+  Event,
+  Talk,
+  User,
+  Rsvp,
+  Organiser,
+  Sponsor,
+  Post,
+  ForgottenPasswordToken,
+} = require('./schema');
 
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter(),
-  onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);
