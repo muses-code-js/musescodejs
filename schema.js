@@ -197,17 +197,6 @@ exports.Post = {
   },
 };
 
-exports.Post = {
-  access: DEFAULT_LIST_ACCESS,
-  fields: {
-    member: { type: Relationship, ref: 'User', many: false },
-    title: { type: Text },
-    author: { type: Text },
-    date: { type: DateTime },
-    description: { type: Wysiwyg },
-  },
-};
-
 exports.ForgottenPasswordToken = {
   access: {
     create: true,

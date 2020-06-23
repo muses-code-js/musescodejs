@@ -9,9 +9,6 @@ const { NextApp } = require('@keystone-alpha/app-next');
 
 const { Text, Checkbox, Password } = require('@keystonejs/fields');
 
-const { Event, Talk, User, Rsvp, Organiser, Sponsor, ForgottenPasswordToken, Post } = require('./schema');
-
-const initialiseData = require('./initialData');
 const {
   Event,
   Talk,
@@ -22,6 +19,7 @@ const {
   Post,
   ForgottenPasswordToken,
 } = require('./schema');
+
 
 const keystone = new Keystone({
   name: 'MusesCodeJS',

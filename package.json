@@ -24,9 +24,11 @@
     "@keystonejs/fields-wysiwyg-tinymce": "5.3.0",
     "@keystonejs/file-adapters": "7.0.0",
     "@keystonejs/keystone": "11.0.0",
+    "add": "^2.0.6",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
+    "cloudinary-react": "^1.5.1",
     "cross-env": "^7.0.2",
     "date-fns": "^2.6.0",
     "dotenv": "^8.2.0",
@@ -36,7 +38,9 @@
     "isomorphic-unfetch": "^3.0.0",
     "lodash.uniqby": "^4.7.0",
     "react-apollo": "^3.1.5",
+    "react-image-tooltip": "^4.0.2",
     "react-toast-notifications": "^2.2.5",
-    "uuid": "^8.1.0"
+    "uuid": "^8.1.0",
+    "yarn": "^1.22.4"
   }
 }
