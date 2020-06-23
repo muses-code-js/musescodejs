@@ -131,7 +131,7 @@ const initialData = {
   ],
   Post: [
     {
-      member: 'Admin User',
+      member: 'Organiser 2',
       title: 'First Post',
       author: 'Amanda Smith',
       date: '2020-04-23',
@@ -143,8 +143,14 @@ const initialData = {
       title: 'Second Post',
       author: 'Ben White ',
       date: '2020-05-05',
-      description:
-        'Suspendisse potenti. Suspendisse nec est nunc. Nunc eu sodales est. Integer eu sem sodales, commodo enim eu, tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Donec at condimentum lectus. Integer pellentesque nec velit vel pretium. Etiam sollicitudin malesuada arcu in elementum. In nec ullamcorper dui, id eleifend sem. Sed varius luctus dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia quam diam, a dapibus sem faucibus a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.',
+      description: `<h1><span style="color: #236fa1;">First Paragraph&nbsp;</span></h1>
+        <p><span style="color: #000000;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.</span></p>
+        <ul>
+        <li>Praesent eleifend,</li>
+        <li>Quisque in.</li>
+        </ul>
+        <h2><span style="color: #ba372a;">Second Paragraph</span></h2>
+        <p>Suspendisse potenti. Suspendisse nec est nunc. Nunc eu sodales est. Integer eu sem sodales, commodo enim eu, tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Donec at condimentum lectus. Integer pellentesque nec velit vel pretium. Etiam sollicitudin malesuada arcu in elementum. In nec ullamcorper dui, id eleifend sem. Sed varius luctus dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia quam diam, a dapibus sem faucibus a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>`,
     },
   ],
 };
