@@ -129,4 +129,22 @@ const initialData = {
       locationAddress: 'Microsoft Reactor',
     },
   ],
+  Post: [
+    {
+      member: 'Admin User',
+      title: 'First Post',
+      author: 'Amanda Smith',
+      date: '2020-04-23',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.Praesent eleifend, nulla a varius pretium, libero nisl vestibulum orci, at maximus turpis odio at quam. Praesent aliquet egestas mauris, ut varius erat tincidunt at. Integer in lacus eu diam porttitor posuere. Curabitur quis lorem non nunc efficitur feugiat tempor ut odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur massa magna, pretium sed nisl ac, porta dignissim urna. Etiam enim eros, consectetur sed lacus et, commodo mattis leo. Proin malesuada ligula ut enim posuere sagittis.',
+    },
+    {
+      member: 'Organiser 1',
+      title: 'Second Post',
+      author: 'Ben White ',
+      date: '2020-05-05',
+      description:
+        'Suspendisse potenti. Suspendisse nec est nunc. Nunc eu sodales est. Integer eu sem sodales, commodo enim eu, tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Donec at condimentum lectus. Integer pellentesque nec velit vel pretium. Etiam sollicitudin malesuada arcu in elementum. In nec ullamcorper dui, id eleifend sem. Sed varius luctus dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia quam diam, a dapibus sem faucibus a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.',
+    },
+  ],
 };
