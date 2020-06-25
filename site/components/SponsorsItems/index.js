@@ -2,9 +2,13 @@
 import { jsx } from '@emotion/core';
 import SponsorCard from './SponsorCard'
 import { gridSize } from '../../theme';
-import { H4 } from '../../primitives';
+import { H5 } from '../../primitives';
 
 const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
+
+  const platinumSponsors = sponsors.filter(function(sponsor) {
+    return sponsor.category == "Platinum";
+  })
 
   const goldSponsors = sponsors.filter(function(sponsor) {
     return sponsor.category == "Gold";
@@ -31,6 +35,33 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
       }}
       {... props}
     >
+      {platinumSponsors.length > 0 &&
+        <div 
+        css={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          flexDirection: 'column',
+          padding: `${gridSize * 3}px 0px 0px`
+        }}>
+          <H5>Platinum Sponsors</H5>
+          <div
+          css={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            marginTop: '0.5rem',
+          }}
+          >
+            {platinumSponsors.map((sponsor) => (
+            <SponsorCard
+              key={sponsor.id}
+            {...sponsor}
+            />
+          ))}
+          </div>
+        </div>
+      }      
+
       {goldSponsors.length > 0 &&
         <div 
         css={{
@@ -39,7 +70,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           flexDirection: 'column',
           padding: `${gridSize * 3}px 0px 0px`
         }}>
-          <H4>Gold Sponsors</H4>
+          <H5>Gold Sponsors</H5>
           <div
           css={{
             display: 'flex',
@@ -66,7 +97,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           flexDirection: 'column',
           padding: `${gridSize * 3}px 0px 0px`,
         }}>
-          <H4>Silver Sponsors</H4>
+          <H5>Silver Sponsors</H5>
           <div
           css={{
             display: 'flex',
@@ -93,7 +124,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           flexDirection: 'column',
           padding: `${gridSize * 3}px 0px 0px`,
         }}>
-          <H4>Bronze Sponsors</H4>
+          <H5>Bronze Sponsors</H5>
           <div
           css={{
             display: 'flex',

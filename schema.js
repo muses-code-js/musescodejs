@@ -182,7 +182,7 @@ exports.Sponsor = {
     name: { type: Text, isRequired: true },
     website: { type: Text },
     logo: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
-    category: { type: Select, options: 'Select, Gold, Silver, Bronze', isRequired: true },
+    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
   },
 };
 

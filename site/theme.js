@@ -11,8 +11,9 @@ export const colors = {
   rose: '#FA94D9',
   aqua: '#7DDBBA',
   gold: '#FFD700',
-  silver: '#C0C0C0',
+  silver: '#B4B4B4',
   bronze: '#cd7f32',
+  platinum: '#D7D7D7',
 
 };
 

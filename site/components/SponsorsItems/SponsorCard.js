@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Image } from 'cloudinary-react';
+import { Image, cloudName } from 'cloudinary-react';
 import { colors, gridSize, shadows } from '../../theme';
 import { mq } from '../../helpers/media';
 import ReactImageTooltip from 'react-image-tooltip'
