@@ -20,7 +20,6 @@ const {
   ForgottenPasswordToken,
 } = require('./schema');
 
-
 const initialiseData = require('./initialData');
 
 const keystone = new Keystone({
