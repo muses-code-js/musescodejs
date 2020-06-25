@@ -10,17 +10,17 @@ import { gridSize } from '../theme';
 
 import { Container, H2} from '../primitives';
 
-const ContactAnchor = (props) => {
-    return (
-        <a css={{
-            color: 'inherit',
-            textDecoration: 'none',
-            ':hover': { textDecoration: 'underline' },
-            }}
-            {...props}    
-        />        
-    );
-};
+// const ContactAnchor = (props) => {
+//     return (
+//         <a css={{
+//             color: 'inherit',
+//             textDecoration: 'none',
+//             ':hover': { textDecoration: 'underline' },
+//             }}
+//             {...props}    
+//         />        
+//     );
+// };
 
 const ContactUs = ({...props}) => {
     return (
@@ -33,7 +33,7 @@ const ContactUs = ({...props}) => {
             <Container css={{ marginTop: gridSize * 3 }}>
                 <H2 hasSeparator>Contact Us</H2>
                 <Content {...props}>
-                    <p>If you would like to be a mentor on one of our upcoming events fill in the <ContactAnchor
+                    {/* <p>If you would like to be a mentor on one of our upcoming events fill in the <ContactAnchor
                         href="https://goo.gl/forms/Sj2ItylzLXOHc2342"
                         rel="noopener noreferrer" target="_blank">
                         Mentor's form
@@ -51,7 +51,7 @@ const ContactUs = ({...props}) => {
                         rel="noopener noreferrer" target="_blank">
                         Sponsor's form
                         </ContactAnchor> and one of our organizators will get in touch with you shortly.
-                    </p>
+                    </p> */}
                     <ContactForm css={{marginTop: gridSize * 5}} />
                 </Content>                              
                 
