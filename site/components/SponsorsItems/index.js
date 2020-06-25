@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import SponsorCard from './SponsorCard'
-import { gridSize } from '../../theme';
+import { gridSize, colors } from '../../theme';
 import { H5 } from '../../primitives';
 
 const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
@@ -28,9 +28,8 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        marginLeft: -gridSize,
-        maringRight: -gridSize,
-        padding: `${gridSize * 3}px ${gridSize * 3}px ${gridSize * 3}px`,
+        padding: `${gridSize * 2}px 0px ${gridSize * 3}px`,
+        margin: gridSize,
         listStyle: 'none',
       }}
       {... props}
@@ -41,9 +40,8 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
-          padding: `${gridSize * 3}px 0px 0px`
         }}>
-          <H5>Platinum Sponsors</H5>
+          <H5 >Platinum Sponsors</H5>
           <div
           css={{
             display: 'flex',

@@ -2,18 +2,23 @@
 import { useQuery } from '@apollo/react-hooks';
 import { jsx } from '@emotion/core';
 
-import { Container, H2, Loading } from '../primitives';
+import { Container, H2, Loading, Button } from '../primitives';
 import SponsorItem from '../components/SponsorsItems';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
-import { gridSize } from '../theme';
+import { colors, gridSize } from '../theme';
+import { getForegroundColor } from '../helpers';
 
 
 import { GET_ALL_SPONSORS } from '../graphql/sponsors';
 
 function Sponsors() {
   const { data, loading, error } = useQuery(GET_ALL_SPONSORS);
+  const button = {
+    bg: colors.cornflowerblue,
+    fg: getForegroundColor(colors.cornflowerblue)
+  };
   
   if (error) {
     console.error('Failed to load sponsors', error);
@@ -24,14 +29,25 @@ function Sponsors() {
       <Meta title="Sponsors"/>
       <Navbar />
       <Container css={{ marginTop: gridSize * 3}}>
-      <H2 hasSeparator>Sponsors</H2>
-       {loading ? (
-          <Loading isCentered size="xlarge" />
-        ) : error ? (
-          <p>Something went wrong. Please try again.</p>
-        ) : (
-          <SponsorItem sponsors={data.allSponsors}/> 
-        )}
+        <div css={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <H2 hasSeparator>Sponsors</H2>
+          <Button css={{ color: `${colors.white}`}}background={button.bg} foreground={button.fg} size='small' href="/new-sponsor">Become a Sponsor</Button>
+        </div>
+        <p>Supporting MusesCodeJS is an excellent opportunity to contribute to the community by encouraging women who 
+          haven’t had the chance to understand/experience what it’s like to build the internet. 
+        </p>
+        {loading ? (
+            <Loading isCentered size="xlarge" />
+          ) : error ? (
+            <p>Something went wrong. Please try again.</p>
+          ) : (
+            <SponsorItem sponsors={data.allSponsors}/> 
+          )}
       </Container>
       <Footer />
     </>

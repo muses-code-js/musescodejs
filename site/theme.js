@@ -3,6 +3,8 @@ export const colors = {
   greyMedium: '#333333',
   greyLight: '#828C90',
   purple: '#7985F0',
+  amethyst: '#AB69E5',
+  cornflowerblue: '#7987E9',
   pink: '#DA3296',
   yellow: '#FFC962',
   red: '#EB5757',
@@ -11,9 +13,10 @@ export const colors = {
   rose: '#FA94D9',
   aqua: '#7DDBBA',
   gold: '#FFD700',
-  silver: '#B4B4B4',
-  bronze: '#cd7f32',
+  silver: '#808080',
+  bronze: '#cd5832',
   platinum: '#D7D7D7',
+  white: '#FFFF',
 
 };
 
