@@ -21,9 +21,12 @@ const {
 } = require('./schema');
 
 
+const initialiseData = require('./initialData');
+
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter(),
+  onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);
