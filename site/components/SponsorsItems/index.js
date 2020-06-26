@@ -28,6 +28,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
+        alignContent: 'center',
         padding: `${gridSize * 2}px 0px ${gridSize * 3}px`,
         margin: gridSize,
         listStyle: 'none',
@@ -40,6 +41,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
+          alignItems: 'center',
         }}>
           <H5 >Platinum Sponsors</H5>
           <div
@@ -66,6 +68,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
+          alignItems: 'center',
           padding: `${gridSize * 3}px 0px 0px`
         }}>
           <H5>Gold Sponsors</H5>
@@ -93,6 +96,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
+          alignItems: 'center',
           padding: `${gridSize * 3}px 0px 0px`,
         }}>
           <H5>Silver Sponsors</H5>

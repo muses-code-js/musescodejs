@@ -15,7 +15,8 @@ const {
   User,
   Rsvp,
   Organiser,
-  Sponsor,
+  SponsorList,
+  SponsorRequest,
   Post,
   ForgottenPasswordToken,
 } = require('./schema');
@@ -33,7 +34,8 @@ keystone.createList('Rsvp', Rsvp);
 keystone.createList('Talk', Talk);
 keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
-keystone.createList('Sponsor', Sponsor);
+keystone.createList('SponsorList', SponsorList);
+keystone.createList('SponsorRequest', SponsorRequest);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
 keystone.createList('Post', Post);
 
@@ -48,11 +50,15 @@ const adminApp = new AdminUIApp({
   pages: [
     {
       label: 'Meetup',
-      children: ['Event', 'Talk', 'Organiser', 'Sponsor', 'Post'],
+      children: ['Event', 'Talk', 'Organiser', 'Post'],
     },
     {
       label: 'People',
       children: ['User', 'Rsvp'],
+    },
+    {
+      label: 'Sponsors',
+      children: ['SponsorList', 'SponsorRequest'],
     },
   ],
 });

@@ -17,9 +17,12 @@ const newSponsor = () => {
       <Container css={{ marginTop: gridSize * 3}}>
         <H2 hasSeparator>Become a Sponsor</H2>
         <p>
-          Thanks so much for being willing to sponsor us! We really appreciate our sponsors - these events aren't possible with the the venue, food, 
+          Thanks so much for being willing to sponsor us! We really appreciate our sponsors - these events aren't possible without the venue, food, 
           and wifi our sponsors provide. And being a sponsor is a great way to show our members your offices, let them know if you're hiring, and make 
           it clear how much the industry supports women in IT.
+        </p>
+        <p>
+          Please, fill in the form below, and one of our organizators will get in touch with you shortly.
         </p>
         <Signup />
       </Container>

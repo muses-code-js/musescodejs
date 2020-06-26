@@ -176,16 +176,6 @@ exports.Rsvp = {
   },
 };
 
-exports.Sponsor = {
-  access: DEFAULT_LIST_ACCESS,
-  fields: {
-    name: { type: Text, isRequired: true },
-    website: { type: Text },
-    logo: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
-    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
-  },
-};
-
 exports.Post = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
@@ -405,4 +395,36 @@ exports.ForgottenPasswordToken = {
       },
     },
   ],
+};
+
+exports.SponsorList = {
+  access: DEFAULT_LIST_ACCESS,
+  fields: {
+    company: { type: Text, isRequired: true },
+    website: { type: Text },
+    logo: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
+    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
+  },
+};
+
+const options = [
+  { value: 'Host', label: "Host" },
+  { value: 'FoodDrinks', label: "Food and Drinks" },
+  { value: 'HostFoodDrinks', label: "Host and provide food/drinks" },
+  { value: 'OtherExpenses', label: "Cover different minor expenses" },
+];
+
+exports.SponsorRequest = {
+  access: DEFAULT_LIST_ACCESS,
+  fields: {
+    company: { type: Text, isRequired: true },
+    email: { type: Text, isRequired: true},
+    city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Hobart, Canberra, Wollongong, Other', isRequired: true },
+    name: { type: Text, isRequired: true},
+    option: { type: Select, options, isRequired: true},
+    address: { type: Text, isRequired: false},
+    capacity: { type: Text, isRequired: false},
+    notes: { type: Text, isRequired: false},
+    status: { type: Select, options: 'Pending, Analysing, Approved, Rejected', isRequired: true},
+  },
 };
