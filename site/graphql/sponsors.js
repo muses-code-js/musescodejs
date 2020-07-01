@@ -4,13 +4,9 @@ export const GET_SPONSORS = gql`
   query {
     allSponsors {
       id
-      name
+      company
       website
-      level {
-        id
-        name
-        colour
-      }
+      category 
       logo {
         id
       }
@@ -22,7 +18,7 @@ export const GET_ALL_SPONSORS = gql`
   {
     allSponsors {
       id,
-      name,
+      company,
       category,
       website,
       logo {

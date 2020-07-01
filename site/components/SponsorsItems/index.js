@@ -124,6 +124,7 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
           display: 'flex',
           flexWrap: 'wrap',
           flexDirection: 'column',
+          alignItems: 'center',
           padding: `${gridSize * 3}px 0px 0px`,
         }}>
           <H5>Bronze Sponsors</H5>

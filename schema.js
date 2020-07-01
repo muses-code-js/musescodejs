@@ -397,7 +397,7 @@ exports.ForgottenPasswordToken = {
   ],
 };
 
-exports.SponsorList = {
+exports.Sponsor = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
     company: { type: Text, isRequired: true },

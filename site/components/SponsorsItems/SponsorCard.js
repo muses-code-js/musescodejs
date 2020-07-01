@@ -46,7 +46,7 @@ const SponsorCard = sponsor => {
   
       <ReactImageTooltip>
         <a href={website} target="_blank">
-          <Image cloudName="dnlhzvisl" publicId={logo.id} width="100" crop="scale"alt={name}/>
+          <Image cloudName="dnlhzvisl" publicId={logo.id} width="100" crop="scale" alt={website}/>
         </a>
       </ReactImageTooltip>
       

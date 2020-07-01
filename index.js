@@ -15,7 +15,7 @@ const {
   User,
   Rsvp,
   Organiser,
-  SponsorList,
+  Sponsor,
   SponsorRequest,
   Post,
   ForgottenPasswordToken,
@@ -34,7 +34,7 @@ keystone.createList('Rsvp', Rsvp);
 keystone.createList('Talk', Talk);
 keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
-keystone.createList('SponsorList', SponsorList);
+keystone.createList('Sponsor', Sponsor);
 keystone.createList('SponsorRequest', SponsorRequest);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
 keystone.createList('Post', Post);
@@ -57,8 +57,8 @@ const adminApp = new AdminUIApp({
       children: ['User', 'Rsvp'],
     },
     {
-      label: 'Sponsors',
-      children: ['SponsorList', 'SponsorRequest'],
+      label: 'Sponsorship',
+      children: ['Sponsor', 'SponsorRequest'],
     },
   ],
 });
