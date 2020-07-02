@@ -4,7 +4,7 @@ import { jsx } from '@emotion/core';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
-import ContactForm from '../components/ContactForm';
+import FormContainer from '../components/ContactForm/index';
 
 import { gridSize } from '../theme';
 
@@ -22,7 +22,7 @@ const ContactUs = ({...props}) => {
             <Container css={{ marginTop: gridSize * 3 }}>
                 <H2 hasSeparator>Contact Us</H2>
                 <Content {...props}>                    
-                    <ContactForm css={{marginTop: gridSize * 5}} />
+                    <FormContainer css={{ marginTop: gridSize * 5 }} />
                 </Content>                      
             </ Container>
             <Footer />
