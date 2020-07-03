@@ -203,15 +203,7 @@ exports.Enquiry = {
   fields: {
     name: { type: Text, isRequired: true },
     email: { type: String, isRequired: true },
-    city: { type: Select, options: [
-      { value: 'Sydney', label: 'Sydney' },
-      { value: 'Melbourne', label: 'Melbourne' },
-      { value: 'Brisbane', label: 'Brisbane' },
-      { value: 'Perth', label: 'Perth' },
-      { value: 'Canberra', label: 'Canberra' },
-      { value: 'Hobart', label: 'Hobart' },
-      { value: 'Wollongong', label: 'Wollongong' },      
-    ]},
+    city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong'},      
     message: { type: String, isRequired: true },
     createdAt: { type: DateTime, default: Date.now },
   }

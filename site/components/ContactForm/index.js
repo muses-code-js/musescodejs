@@ -1,72 +1,78 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useState, useRef } from 'react';
+import { SEND_MESSAGE } from '../../graphql/enquiries';
+import { useMutation } from '@apollo/react-hooks';
+import { colors } from '../../theme';
 
-//import { colors, gridSize, borderRadius } from '../theme';
-
-//import { Input, Label, Button } from '../primitives/forms';
 import FormFields from './FormFields';
 
-class FormContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      city: '',
-      message: ''
-    };
-    this.cityOptions = [
-      'Sydney',
-      'Melbourne',
-      'Brisbane',
-      'Perth',
-      'Canberra',
-      'Hobart',
-      'Wollongong'
-    ];
-    this.form = React.createRef();
-    this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this);
-    this.handleSubmission = this.handleSubmission.bind(this);    
-  }  
+const FormContainer = ({ ...props }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [message, setMessage] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
+  const form = useRef();
+  const cityOptions = [
+    'Sydney',
+    'Melbourne',
+    'Brisbane',
+    'Perth',
+    'Canberra',
+    'Hobart',
+    'Wollongong',
+  ];
+  const [sendMessage, { data, loading, error }] = useMutation(SEND_MESSAGE, {
+    onCompleted: () => {
+      console.log('success');
+    },
+    onError: () => {
+      console.log('failure');
+      console.log(data);
+    },
+  });
 
-  handleChange(e) {
+  const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    this.setState({[name]: value});
-  }
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'city':
+        setCity(value);
+        break;
+      default:
+        setMessage(value);
+        break;
+    }
+  };
 
-  validate() {
-    return this.form.current.reportValidity();
-  }
+  const validate = () => {
+    return form.current.reportValidity();
+  };
 
-  handleSubmission(e) {
+  const handleSubmission = e => {
     e.preventDefault();
-    if (this.validate()) {
-     const newMessage = {        
-      name: this.state.name,
-      email: this.state.email,
-      city: this.state.city,
-      message: this.state.message,
-      createdAt: new Date
-      };
-    console.log(newMessage);   
-    }    
-  }
+    if (validate()) {
+      setCreatedAt(new Date());
+      sendMessage({ variables: {name, email, city, message, createdAt } });
+    }
+  };
 
-  render() {
-    return (
-      <div {...this.props}>
-        <form ref={this.form} onSubmit={this.handleSubmission}>
-          <FormFields       
-          //onClick={this.validate}
-          onChange={this.handleChange}
-          options={this.cityOptions}
-          /> 
-        </form>        
-      </div>      
-    );
-  }
-}
+  return (
+    <div {...props}>
+      <form ref={form} onSubmit={handleSubmission}>
+        <FormFields onClick={validate} onChange={handleChange} options={cityOptions} />
+      </form>
+      {loading && <p css={{ color: colors.purple }}>Sending message... </p>}
+      {error && <p css={{ color: colors.red }}>Message failed to send. Try again, please.</p>}
+    </div>
+  );
+};
 
 export default FormContainer;
