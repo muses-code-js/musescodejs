@@ -133,6 +133,7 @@ const initialData = {
     {
       member: 'Organiser 2',
       title: 'First Post',
+      slug: 'first-post',
       author: 'Amanda Smith',
       date: '2020-04-23',
       description:
@@ -141,6 +142,7 @@ const initialData = {
     {
       member: 'Organiser 1',
       title: 'Second Post',
+      slug: 'second-post',
       author: 'Ben White ',
       date: '2020-05-05',
       description: `<h1><span style="color: #236fa1;">First Paragraph&nbsp;</span></h1>

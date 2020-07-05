@@ -4,6 +4,7 @@ export const POST_DATA = gql`
   fragment PostData on Post {
     id
     title
+    slug
     author
     date
     description
@@ -20,10 +21,19 @@ export const GET_ALL_POSTS = gql`
 `;
 
 export const GET_POST_DETAILS = gql`
-  query GetPostDetails($post: ID!) {
-    Post(where: { id: $post }) {
+  query GetPostDetails($slug: String) {
+    allPosts(where: { slug: $slug }) {
       ...PostData
     }
   }
   ${POST_DATA}
 `;
+
+// export const GET_POST_DETAILS = gql`
+//   query GetPostDetails($post: ID!) {
+//     Post(where: { id: $post }) {
+//       ...PostData
+//     }
+//   }
+//   ${POST_DATA}
+// `;

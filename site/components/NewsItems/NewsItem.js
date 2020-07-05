@@ -7,7 +7,7 @@ import { formatPastDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
 const NewsItem = post => {
-  const { id, title, author, date, description } = post;
+  const { id, title, slug, author, date, description } = post;
 
   const prettyDate = formatPastDate(date);
 
@@ -34,13 +34,13 @@ const NewsItem = post => {
         }}
       >
         <div css={{ maxHeight: 250, overflow: 'hidden' }}>
-          <Link href={`/post/[id]`} as={`/post/${id}`} passHref>
+          <Link href={`/post/[slug]`} as={`/post/${slug}`} passHref>
             <a
               css={{
                 color: 'inherit',
                 textDecoration: 'none',
 
-                ':hover h3': {
+                ':hover h4': {
                   textDecoration: 'underline',
                 },
               }}

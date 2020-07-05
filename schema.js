@@ -11,6 +11,7 @@ const {
   Relationship,
   Select,
   Text,
+  Slug,
 } = require('@keystonejs/fields');
 const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
@@ -189,6 +190,7 @@ exports.Post = {
   fields: {
     member: { type: Relationship, ref: 'User', many: false },
     title: { type: Text },
+    slug: { type: Slug, from: 'title' },
     author: { type: Text },
     date: { type: DateTime },
     description: { type: Wysiwyg },

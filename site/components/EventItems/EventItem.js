@@ -46,7 +46,7 @@ const EventItem = event => {
         }}
       >
         <div css={{ maxHeight: 400, overflow: 'hidden' }}>
-          <Link href={`/event/[id]`} as={`/event/${id}`}>
+          <Link href={`/event/[id]`} as={`/event/${id}`} passHref>
             <a
               css={{
                 color: 'inherit',
