@@ -99,3 +99,26 @@ export const Link = ({ href, as, ...props }) => (
     />
   </NextLink>
 );
+
+export const Select = props => (
+  <select
+    css={{
+      background: 0,
+      border: '1px solid rgba(0, 0, 0, 0.1)',
+      borderRadius: borderRadius,
+      boxSizing: 'border-box',
+      color: colors.greyDark,
+      fontSize: 'inherit',
+      margin: `${gridSize / 2}px 0`,
+      outline: 0,
+      padding: `${gridSize * 1.5}px ${gridSize * 2}px`,
+      width: '100%',
+
+      ':focus': {
+        backgroundColor: 'white',
+        borderColor: 'rgba(0, 0, 0, 0.33)',
+      },
+    }}
+    {...props}
+  />
+);

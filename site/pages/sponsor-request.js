@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
 import { gridSize } from '../theme';
-import Signup from '../components/auth/signup';
+import SponsorForm from '../components/SponsorRequest';
 
 const newSponsor = () => {
   return (
@@ -24,7 +24,7 @@ const newSponsor = () => {
         <p>
           Please, fill in the form below, and one of our organizators will get in touch with you shortly.
         </p>
-        <Signup />
+        <SponsorForm />
       </Container>
       <Footer callToAction={false} />
     </>
