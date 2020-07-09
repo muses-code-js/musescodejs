@@ -175,6 +175,15 @@ exports.Rsvp = {
   },
 };
 
+exports.Resource = {
+  access: DEFAULT_LIST_ACCESS,
+  fields: {
+    title: { type: Text },
+    topic: { type: Text },
+    level: { type: Text }
+  },
+};
+
 exports.Sponsor = {
   access: DEFAULT_LIST_ACCESS,
   fields: {

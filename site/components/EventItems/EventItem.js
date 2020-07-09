@@ -8,6 +8,8 @@ import { isInFuture, formatPastDate, formatFutureDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
 const EventItem = event => {
+  console.log("List")
+    console.log(event)
   const {
     id,
     name,

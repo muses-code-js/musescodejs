@@ -15,6 +15,7 @@ const {
   Organiser,
   Sponsor,
   Post,
+  Resource,
   ForgottenPasswordToken,
 } = require('./schema');
 
@@ -29,6 +30,7 @@ keystone.createList('Talk', Talk);
 keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
 keystone.createList('Sponsor', Sponsor);
+keystone.createList('Resource', Resource);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
 keystone.createList('Post', Post);
 
