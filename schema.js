@@ -100,6 +100,7 @@ exports.Event = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
     name: { type: Text },
+    slug: { type: Slug, from: 'name' },
     status: { type: Select, options: 'draft, active', defaultValue: 'draft' },
     startTime: { type: DateTime },
     durationMins: { type: Integer },

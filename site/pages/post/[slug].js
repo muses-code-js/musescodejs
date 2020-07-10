@@ -22,7 +22,6 @@ const Post = ({ slug, loadingColor }) => {
   const postObj = data.allPosts.find(postObj => postObj.slug == slug);
 
   if (!postObj) {
-    // return <p>Post not found</p>;
     return <Error message="Post not found" />;
   }
 

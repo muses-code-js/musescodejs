@@ -5,6 +5,7 @@ export const EVENT_DATA = gql`
   fragment EventData on Event {
     id
     name
+    slug
     startTime
     locationAddress
     locationDescription
@@ -53,11 +54,11 @@ export const GET_ALL_EVENTS = gql`
 `;
 
 export const GET_EVENT_DETAILS = gql`
-  query GetEventDetails($event: ID!) {
-    Event(where: { id: $event }) {
+  query GetEventDetails($eventSlug: String) {
+    allEvents(where: { slug: $eventSlug }) {
       ...EventData
     }
-    allRsvps(where: { event: { id: $event }, user_is_null: false }) {
+    allRsvps(where: { event: { slug: $eventSlug }, user_is_null: false }) {
       id
       user {
         id

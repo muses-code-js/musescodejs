@@ -96,6 +96,7 @@ const initialData = {
   Event: [
     {
       name: 'Free pizza',
+      slug: 'free-pizza',
       status: 'active',
       // Default to "1 month from now"
       startTime: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString(),
@@ -108,6 +109,7 @@ const initialData = {
     },
     {
       name: 'Fyre Festival',
+      slug: 'fyre-festival',
       status: 'active',
       startTime: new Date(Date.now() + 2000 * 60 * 60 * 24 * 30).toISOString(),
       description:
@@ -119,6 +121,7 @@ const initialData = {
     },
     {
       name: 'Javascript Full Day Workshop',
+      slug: 'javascript-full-day-workshop',
       status: 'active',
       startTime: new Date(Date.now() + 1500 * 60 * 60 * 24 * 30).toISOString(),
       description:
