@@ -18,21 +18,20 @@ const SponsorForm = () => {
   const [address, setAddress] = useState('');
   const [capacity, setCapacity] = useState('');
   const [notes, setNotes] = useState('');
-  const [errorState, setErrorState] = useState(false);
 
-  const [createSponsorRequest, { data, loading, error }] = useMutation(CREATE_SPONSOR_REQUEST}
-  
+  const [createSponsorRequest, { loading, error }] = useMutation(CREATE_SPONSOR_REQUEST);
+
+  const handleSubmission = e => {
+    e.preventDefault();
+    createSponsorRequest({ variables: {company, contact, email, city, sponsoroption, address, capacity, notes} });
+  };
 
   return (
     <>
-    {errorState && <p css={{ color: colors.red }}>An unknown error has occured</p>}
     <form
       css={{ marginTop: gridSize *3 }}
-      noValidate
-      onSubmit={e => {
-        e.preventDefault();
-        createSponsorRequest({ variables: {company, contact, email, city, sponsoroption, address, capacity, notes} });
-      }}
+      onSubmit={handleSubmission} 
+      method="post"
     >
       <Field>
         <Label htmlFor="company">Company</Label>
@@ -77,6 +76,7 @@ const SponsorForm = () => {
         <Select 
           defaultValue={'DEFAULT'}
           onChange={onChange(setCity)}
+          value={city}
         >
           <option value="DEFAULT" disabled>Select ...</option>
           <option value="Sydney">Sydney</option>
@@ -93,6 +93,7 @@ const SponsorForm = () => {
         <Select 
           defaultValue={'DEFAULT'}
           onChange={onChange(setSponsorOption)}
+          value={sponsoroption}
         >
           <option value="DEFAULT" disabled>Select ...</option>
           <option value="Host">Host</option>
@@ -164,8 +165,27 @@ const SponsorForm = () => {
 export default SponsorForm;
 
 const CREATE_SPONSOR_REQUEST = gql`
-  mutation CreateSponsorRequest($company: String!, $contact: String!, $email: String!, $city: String!, $sponsoroption: String!, $address: String!, $capacity: String!, $notes: String!) {
-    createSponsorRequest(data: { company: $company, contact: $contact, email: $email, city: $city, , sponsoroption: $sponsoroption, address: $address, capacity: $capacity, notes: $notes }) {
+  mutation CreateSponsorRequest(
+    $company: String!
+    $contact: String!
+    $email: String!
+    $city: EnquiryCityType!
+    $sponsoroption: EnquirySponsorOption!
+    $address: String!
+    $capacity: String!
+    $notes: String!
+    ){
+    createSponsorRequest(
+      data: { 
+        company: $company
+        contact: $contact
+        email: $email
+        city: $city
+        sponsoroption: $sponsoroption
+        address: $address
+        capacity: $capacity
+        notes: $notes 
+      }){
       id
     }
   }

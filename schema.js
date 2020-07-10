@@ -415,7 +415,11 @@ const options = [
 ];
 
 exports.SponsorRequest = {
-  access: DEFAULT_LIST_ACCESS,
+  access: {
+    create: true,
+    update: access.userIsAdmin,
+    delete: access.userIsAdmin
+  },
   fields: {
     company: { type: Text, isRequired: true },
     email: { type: Text, isRequired: true},
@@ -425,6 +429,6 @@ exports.SponsorRequest = {
     address: { type: Text, isRequired: false},
     capacity: { type: Text, isRequired: false},
     notes: { type: Text, isRequired: false},
-    status: { type: Select, options: 'Pending, Analysing, Approved, Rejected', isRequired: true},
+    // status: { type: Select, options: 'Pending, Analysing, Approved, Rejected', isRequired: true},
   },
 };
