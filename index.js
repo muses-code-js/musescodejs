@@ -7,8 +7,6 @@ const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { NextApp } = require('@keystone-alpha/app-next');
 
-const { Text, Checkbox, Password } = require('@keystonejs/fields');
-
 const {
   Event,
   Talk,
@@ -21,12 +19,9 @@ const {
   ForgottenPasswordToken,
 } = require('./schema');
 
-const initialiseData = require('./initialData');
-
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter(),
-  onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);
