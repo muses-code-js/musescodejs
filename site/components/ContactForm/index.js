@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState, useRef } from 'react';
-import { SEND_MESSAGE } from '../../graphql/enquiries';
+import { SEND_ENQUIRY } from '../../graphql/enquiries';
 import { useMutation } from '@apollo/react-hooks';
 import { colors } from '../../theme';
 
@@ -12,7 +12,6 @@ const FormContainer = ({ ...props }) => {
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
   const [message, setMessage] = useState('');
-  const [createdAt, setCreatedAt] = useState('');
   const form = useRef();
   const cityOptions = [
     'Sydney',
@@ -23,56 +22,31 @@ const FormContainer = ({ ...props }) => {
     'Hobart',
     'Wollongong',
   ];
-  const [sendMessage, { data, loading, error }] = useMutation(SEND_MESSAGE, {
-    onCompleted: () => {
-      console.log('success');
-    },
-    onError: () => {
-      console.log('failure');
-      console.log(data);
-    },
-  });
+  const [sendEnquiry, {loading, error}] = useMutation(SEND_ENQUIRY);
 
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'city':
-        setCity(value);
-        break;
-      default:
-        setMessage(value);
-        break;
-    }
-  };
-
-  const validate = () => {
-    return form.current.reportValidity();
-  };
+    name === 'name' ? setName(value) :
+    name === 'email' ? setEmail(value) :
+    name === 'city' ? setCity(value) : setMessage(value);
+  }
 
   const handleSubmission = e => {
     e.preventDefault();
-    if (validate()) {
-      setCreatedAt(new Date());
-      sendMessage({ variables: {name, email, city, message, createdAt } });
-    }
+    const createdAt = new Date();
+    sendEnquiry({ variables: { name, email, city, message, createdAt } });
   };
 
   return (
     <div {...props}>
-      <form ref={form} onSubmit={handleSubmission}>
-        <FormFields onClick={validate} onChange={handleChange} options={cityOptions} />
+      <form ref={form} onSubmit={handleSubmission} method="post">
+        <FormFields onChange={handleChange} options={cityOptions} />
       </form>
-      {loading && <p css={{ color: colors.purple }}>Sending message... </p>}
       {error && <p css={{ color: colors.red }}>Message failed to send. Try again, please.</p>}
+      {/* {!error && <p css={{ color: colors.purple }}>Thank you for contacting us!</p>} */}
     </div>
   );
-};
+}
 
 export default FormContainer;

@@ -8,4 +8,5 @@ module.exports = routes()
   .add('signup')
   .add('about')
   .add('events', '/events')
-  .add('event', '/event/:id', 'event');
+  .add('event', '/event/:id', 'event')
+  .add('enquiry');

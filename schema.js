@@ -197,15 +197,16 @@ exports.Post = {
 
 exports.Enquiry = {
   access: {
-    create: false,
-    edit: false
+    create: true,
+    update: access.userIsAdmin,
+    delete: access.userIsAdmin
   },
   fields: {
     name: { type: Text, isRequired: true },
     email: { type: String, isRequired: true },
     city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong'},      
     message: { type: String, isRequired: true },
-    createdAt: { type: DateTime, default: Date.now },
+    createdAt: { type: DateTime, isRequired: true },
   }
 }
 
