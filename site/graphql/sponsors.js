@@ -1,23 +1,5 @@
 import gql from 'graphql-tag';
 
-export const GET_SPONSORS = gql`
-  query {
-    allSponsors {
-      id
-      name
-      website
-      level {
-        id
-        name
-        colour
-      }
-      logo {
-        id
-      }
-    }
-  }
-`;
-
 export const GET_ALL_SPONSORS = gql`
   {
     allSponsors {
@@ -25,10 +7,16 @@ export const GET_ALL_SPONSORS = gql`
       name,
       category,
       website,
-      logo {
-        id
+      image {
+        publicUrlTransformed(
+          transformation: { 
+          crop: "fit"
+          flags: "progressive"
+          height: "100"
+          quality: "auto"
+          width: "100"}
+        )
       },
-  
     }
   }
 `;

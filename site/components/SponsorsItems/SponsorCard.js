@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Image, cloudName } from 'cloudinary-react';
 import { colors, gridSize, shadows } from '../../theme';
 import { mq } from '../../helpers/media';
-import ReactImageTooltip from 'react-image-tooltip'
 
 const SponsorCard = sponsor => {
   const {
@@ -11,7 +9,7 @@ const SponsorCard = sponsor => {
     name,
     category,
     website,
-    logo,
+    image,
     ...props
   } = sponsor;
 
@@ -43,13 +41,10 @@ const SponsorCard = sponsor => {
           },
         }}
       >
-  
-      <ReactImageTooltip>
         <a href={website} target="_blank">
-          <Image cloudName="dnlhzvisl" publicId={logo.id} width="100" crop="scale"alt={name}/>
+           <img src={image.publicUrlTransformed}></img>
         </a>
-      </ReactImageTooltip>
-      
+
     </div>
   </li>
   );
