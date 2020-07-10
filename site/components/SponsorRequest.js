@@ -80,6 +80,34 @@ const SponsorForm = () => {
           <option value="Other">Other</option>
         </ Select>
       </Field>
+      <Field>
+        <Label htmlFor="sponsoroption">Would you prefer to host meetups (see questions below) or sponsor food and drinks for a workshop?</Label>
+        <Select onChange={onChange('sponsoroption')}> 
+          <option value="Host">Host</option>
+          <option value="FoodDrinks">Food and drinks</option>
+          <option value="HostFoodDrinks">Host and provide food/drinks</option>
+          <option value="OtherExpenses">Cover different minor expenses</option>
+        </ Select>
+      </Field>
+
+
+      {/* Questions for Host */}
+
+        { sponsoroption === 'Host' &&
+          <Field>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            autoComplete="email"
+            id="email"
+            onChange={onChange(setEmail)}
+            placeholder="you@awesome.com"
+            required
+            type="text"
+            value={email}
+          />
+          </Field>
+        }
+
 
       {/* {loading ? (
           <Button disabled>Submitting request...</Button>
