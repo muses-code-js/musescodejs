@@ -1,13 +1,16 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState, useRef } from 'react';
+
+import Router from 'next/router';
 import { SEND_ENQUIRY } from '../../graphql/enquiries';
 import { useMutation } from '@apollo/react-hooks';
+
 import { colors } from '../../theme';
 
 import FormFields from './FormFields';
 
-const FormContainer = ({ ...props }) => {
+const ContactForm = ({ ...props }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
@@ -22,7 +25,11 @@ const FormContainer = ({ ...props }) => {
     'Hobart',
     'Wollongong',
   ];
-  const [sendEnquiry, {loading, error}] = useMutation(SEND_ENQUIRY);
+  const [sendEnquiry, {error}] = useMutation(SEND_ENQUIRY, {
+    onCompleted: () => {
+      Router.push('/contact/thanks');
+    },
+  });
 
   const handleChange = e => {
     const name = e.target.name;
@@ -44,9 +51,8 @@ const FormContainer = ({ ...props }) => {
         <FormFields onChange={handleChange} options={cityOptions} />
       </form>
       {error && <p css={{ color: colors.red }}>Message failed to send. Try again, please.</p>}
-      {/* {!error && <p css={{ color: colors.purple }}>Thank you for contacting us!</p>} */}
     </div>
   );
 }
 
-export default FormContainer;
+export default ContactForm;
