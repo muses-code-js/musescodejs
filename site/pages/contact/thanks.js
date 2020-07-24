@@ -33,7 +33,7 @@ will be in touch with you shortly.</p>
 };
 
 const divStyle = {  
-    height: 200,
+    height: 300,
     textAlign: "center",  
 }
 
