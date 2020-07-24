@@ -4546,19 +4546,6 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-cloudinary-core@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.9.0.tgz#ca225d671faafea5a839004210226c64668bfdde"
-  integrity sha512-PvnRSb9Hk6myk6Ai59GonCRC3OsbVKcoARTK9sl+lZ/CMnwOV0SLkx21JcjehZ2CqUe1hVy23axEOyMdCBRicA==
-
-cloudinary-react@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.5.1.tgz#35c9d21fc77ece3185f13896feb84ba88c8fa63c"
-  integrity sha512-9PlLQqFqP/w+9Hg3ugE2kdXmbXz0IvCWdbh1Zt0a45rveg7x0u6ZYFvUIN5dc3XksPqn6GJAs6D8/AgwipUKOA==
-  dependencies:
-    cloudinary-core "^2.9.0"
-    prop-types "^15.6.2"
-
 cloudinary@^1.21.0:
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-1.22.0.tgz#48a36aab98838f910d350300419e2b10e4eb7e6b"
@@ -10690,11 +10677,6 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-fast-compare "^2.0.2"
     react-side-effect "^1.1.0"
-
-react-image-tooltip@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/react-image-tooltip/-/react-image-tooltip-4.0.2.tgz#097e27cd614daf15624860d3fe92a752e0389c70"
-  integrity sha512-JhBAw1Y/eLLZMrgc49M1CQjjfGtJ67VgzG93KcvO2o7LKfWKURT1W9yH5Rn2rHcXdFdN8oUG5e70gSwV8pdn4A==
 
 react-image@^4.0.0:
   version "4.0.1"

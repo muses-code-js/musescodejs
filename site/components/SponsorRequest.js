@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { jsx } from '@emotion/core';
 import { Button, Field, Label, Input, Select } from '../primitives/forms';
-import { gridSize, colors } from '../theme';
+import { gridSize } from '../theme';
 
 const onChange = handler => e => handler(e.target.value);
 
@@ -14,16 +14,33 @@ const SponsorForm = () => {
   const [contact, setContact] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
-  const [sponsoroption, setSponsorOption] = useState('');
+  const [sponsor, setSponsor] = useState('');
   const [address, setAddress] = useState('');
   const [capacity, setCapacity] = useState('');
   const [notes, setNotes] = useState('');
+  const cityOptions = [
+    'Sydney',
+    'Melbourne',
+    'Brisbane',
+    'Perth',
+    'Canberra',
+    'Hobart',
+    'Wollongong',
+  ];
+
+  const sponsorOptions = [
+    'Host',
+    'Food and drinks',
+    'Host and provide food/drinks',
+    'Cover different minor expenses',
+  ];
 
   const [createSponsorRequest, { loading, error }] = useMutation(CREATE_SPONSOR_REQUEST);
 
   const handleSubmission = e => {
     e.preventDefault();
-    createSponsorRequest({ variables: {company, contact, email, city, sponsoroption, address, capacity, notes} });
+    createSponsorRequest({ variables: {company, contact, email, city, sponsor, address, capacity, notes} });
+    console.log(`${company}, ${contact}, ${email}, ${city}, ${sponsor}, ${address}, ${capacity}, ${notes}`);
   };
 
   return (
@@ -34,7 +51,7 @@ const SponsorForm = () => {
       method="post"
     >
       <Field>
-        <Label htmlFor="company">Company</Label>
+        <Label htmlFor="company">Company *</Label>
         <Input
           autoComplete="company"
           autoFocus
@@ -43,24 +60,21 @@ const SponsorForm = () => {
           placeholder="Company Name"
           required
           type="text"
-          value={company}
         />
       </Field>
       <Field>
-        <Label htmlFor="contact">Contact Person</Label>
+        <Label htmlFor="contact">Contact Person *</Label>
         <Input
           autoComplete="contact"
-          autoFocus
           id="contact"
           onChange={onChange(setContact)}
           placeholder="Contact Name"
           required
           type="text"
-          value={contact}
         />
       </Field>
       <Field>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">Email *</Label>
         <Input
           autoComplete="email"
           id="email"
@@ -68,70 +82,50 @@ const SponsorForm = () => {
           placeholder="you@awesome.com"
           required
           type="text"
-          value={email}
         />
       </Field>
       <Field>
-        <Label htmlFor="city">City in which you want to sponsor event</Label>
+        <Label htmlFor="city">City in which you want to sponsor event *</Label>
         <Select 
-          defaultValue={'DEFAULT'}
+          id="city"
           onChange={onChange(setCity)}
-          value={city}
-        >
-          <option value="DEFAULT" disabled>Select ...</option>
-          <option value="Sydney">Sydney</option>
-          <option value="Melbourne">Melbourne</option>
-          <option value="Brisbane">Brisbane</option>
-          <option value="Perth">Perth</option>
-          <option value="Hobart">Hobart</option>
-          <option value="Wollongong">Wollongong</option>
-          <option value="Other">Other</option>
-        </ Select>
+          options={cityOptions}
+        />
+        
       </Field>
       <Field>
-        <Label htmlFor="sponsoroption">Would you prefer to host meetups (see questions below) or sponsor food and drinks for a workshop?</Label>
-        <Select 
-          defaultValue={'DEFAULT'}
-          onChange={onChange(setSponsorOption)}
-          value={sponsoroption}
-        >
-          <option value="DEFAULT" disabled>Select ...</option>
-          <option value="Host">Host</option>
-          <option value="FoodDrinks">Food and drinks</option>
-          <option value="HostFoodDrinks">Host and provide food/drinks</option>
-          <option value="OtherExpenses">Cover different minor expenses</option>
-        </ Select>
-      </Field>
-      
+        <Label htmlFor="sponsor">Would you prefer to host meetups (see questions below) or sponsor food and drinks for a workshop? *</Label>
+        <Select
+          id="sponsor"
+          onChange={onChange(setSponsor)}
+          options={sponsorOptions}
+        />
+      </Field>   
 
       {/* Questions for Host */}
 
-        { sponsoroption.includes('Host') && 
+        { sponsor.includes('Host') && 
           <form>
             <Field>
               <Label htmlFor="address">What is your company's address?</Label>
               <Input
                 autoComplete="address"
-                autoFocus
                 id="address"
                 onChange={onChange(setAddress)}
                 placeholder="Company Address"
-                required
                 type="text"
-                value={address}
+                value={""}
               />
             </Field> 
             <Field>
               <Label htmlFor="capacity">Our non-technical workshops need a projector, seats, and occasionally tables. If you're able to host an event like this, about how many attendees would fit?</Label>
               <Input
                 autoComplete="capacity"
-                autoFocus
                 id="capacity"
                 onChange={onChange(setCapacity)}
                 placeholder="Attendees Capacity"
-                required
                 type="text"
-                value={capacity}
+                value={""}
               />
             </Field>
           </form>
@@ -143,11 +137,9 @@ const SponsorForm = () => {
         <Label htmlFor="notes">Anything else?</Label>
         <Input
           autoComplete="notes"
-          autoFocus
           id="notes"
           onChange={onChange(setNotes)}
           placeholder="Message"
-          required
           type="text"
           value={notes}
         />
@@ -165,29 +157,10 @@ const SponsorForm = () => {
 export default SponsorForm;
 
 const CREATE_SPONSOR_REQUEST = gql`
-  mutation CreateSponsorRequest(
-    $company: String!
-    $contact: String!
-    $email: String!
-    $city: EnquiryCityType!
-    $sponsoroption: EnquirySponsorOption!
-    $address: String!
-    $capacity: String!
-    $notes: String!
-    ){
-    createSponsorRequest(
-      data: { 
-        company: $company
-        contact: $contact
-        email: $email
-        city: $city
-        sponsoroption: $sponsoroption
-        address: $address
-        capacity: $capacity
-        notes: $notes 
-      }){
-      id
-    }
+mutation CreateSponsorRequest($company: String!, $contact: String!, $email: String!, $city: SponsorRequestCityType!, $sponsor: SponsorRequestSponsorType!, $address: String, $capacity: String, $notes: String) {
+  createSponsorRequest(data: { company: $company, contact: $contact, email: $email, city: $city, sponsor: $sponsor, address: $address, capacity: $capacity, notes: $notes }) {
+    id
   }
+}
 `;
 

@@ -422,13 +422,12 @@ exports.SponsorRequest = {
   },
   fields: {
     company: { type: Text, isRequired: true },
+    contact: { type: Text, isRequired: true},
     email: { type: Text, isRequired: true},
     city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Hobart, Canberra, Wollongong, Other', isRequired: true },
-    contact: { type: Text, isRequired: true},
-    sponsoroption: { type: Select, options, isRequired: true},
+    sponsor: { type: Select, options: options, isRequired: true},
     address: { type: Text, isRequired: false},
     capacity: { type: Text, isRequired: false},
     notes: { type: Text, isRequired: false},
-    // status: { type: Select, options: 'Pending, Analysing, Approved, Rejected', isRequired: true},
   },
 };

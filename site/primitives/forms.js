@@ -120,5 +120,18 @@ export const Select = props => (
       },
     }}
     {...props}
-  />
+    >
+
+    <option value="" >
+        {props.placeholder} 
+      </option>
+      {props.options.map(option => {
+        return (
+          <option key={option} value={option} label={option}>
+            {option}
+          </option>
+        );  
+      })}
+    
+  </select>
 );
