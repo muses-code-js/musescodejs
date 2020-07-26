@@ -9,6 +9,7 @@ import Meta from '../components/Meta';
 import { gridSize } from '../theme';
 
 import ForgotPasswordForm from '../components/auth/forgotPassword';
+// import ForgotPasswordForm from '../components/auth/forgot_password';
 
 const ForgotPassword = () => {
   return (
@@ -17,6 +18,7 @@ const ForgotPassword = () => {
       <Navbar background="white" />
       <Container width={420} css={{ marginTop: gridSize * 3 }}>
         <H1>Forgot password</H1>
+        {/* <ForgotPasswordForm /> */}
         <ForgotPasswordForm />
       </Container>
       <Footer callToAction={false} />
