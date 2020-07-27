@@ -26,7 +26,7 @@ const newSponsor = () => {
         </p>
         <SponsorForm />
       </Container>
-      <Footer callToAction={false} />
+      <Footer/>
     </>
   );
 };

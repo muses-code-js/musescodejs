@@ -53,35 +53,37 @@ const SponsorForm = () => {
       <Field>
         <Label htmlFor="company">Company *</Label>
         <Input
-          autoComplete="company"
           autoFocus
           id="company"
+          type="text"
           onChange={onChange(setCompany)}
           placeholder="Company Name"
+          minLength="2"
+          maxLength="50"
           required
-          type="text"
         />
       </Field>
       <Field>
         <Label htmlFor="contact">Contact Person *</Label>
         <Input
-          autoComplete="contact"
           id="contact"
+          type="text"
           onChange={onChange(setContact)}
           placeholder="Contact Name"
+          maxLength="50"
           required
-          type="text"
+
         />
       </Field>
       <Field>
         <Label htmlFor="email">Email *</Label>
         <Input
-          autoComplete="email"
           id="email"
+          type="text"
           onChange={onChange(setEmail)}
           placeholder="you@awesome.com"
+          maxLength="100"
           required
-          type="text"
         />
       </Field>
       <Field>
@@ -90,6 +92,7 @@ const SponsorForm = () => {
           id="city"
           onChange={onChange(setCity)}
           options={cityOptions}
+          placeholder="Select the city"
         />
         
       </Field>
@@ -99,6 +102,7 @@ const SponsorForm = () => {
           id="sponsor"
           onChange={onChange(setSponsor)}
           options={sponsorOptions}
+          placeholder="Select a option"
           
         />
       </Field>   
@@ -110,22 +114,21 @@ const SponsorForm = () => {
             <Field>
               <Label htmlFor="address">What is your company's address?</Label>
               <Input
-                autoComplete="address"
                 id="address"
+                type="text"
                 onChange={onChange(setAddress)}
                 placeholder="Company Address"
-                type="text"
-                
+                maxLength="100"
               />
             </Field> 
             <Field>
               <Label htmlFor="capacity">Our non-technical workshops need a projector, seats, and occasionally tables. If you're able to host an event like this, about how many attendees would fit?</Label>
               <Input
-                autoComplete="capacity"
                 id="capacity"
                 onChange={onChange(setCapacity)}
-                placeholder="Attendees Capacity"
-                type="text"
+                placeholder="Number of Attendees Capacity"
+                type="number"
+                maxLength="10"
               />
             </Field>
         </>
@@ -136,22 +139,24 @@ const SponsorForm = () => {
         <Field>
         <Label htmlFor="notes">Anything else?</Label>
         <Input
-          autoComplete="notes"
           id="notes"
+          type="text"
           onChange={onChange(setNotes)}
           placeholder="Message"
-          type="text"
-          value={notes}
+          maxLength="300"
         />
       </Field> 
       {loading ? (
           <Button disabled>Submitting request...</Button>
+        ) : error ? (
+          <p css={{ color: colors.red }}>Something went wrong. Please try again.</p>
         ) : (
           <Button type="submit">Submit</Button>
         )}
     </form>
     </>
   );
-}
+};
+
 
 export default SponsorForm;
