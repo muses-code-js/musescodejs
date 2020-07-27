@@ -407,13 +407,6 @@ exports.Sponsor = {
   },
 };
 
-const options = [
-  { value: 'Host', label: "Host" },
-  { value: 'FoodDrinks', label: "Food and Drinks" },
-  { value: 'HostFoodDrinks', label: "Host and provide food/drinks" },
-  { value: 'OtherExpenses', label: "Cover different minor expenses" },
-];
-
 exports.SponsorRequest = {
   access: {
     create: true,
@@ -424,10 +417,11 @@ exports.SponsorRequest = {
     company: { type: Text, isRequired: true },
     contact: { type: Text, isRequired: true},
     email: { type: Text, isRequired: true},
-    city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Hobart, Canberra, Wollongong, Other', isRequired: true },
-    sponsor: { type: Select, options: options, isRequired: true},
+    city: { type: Text, isRequired: true },
+    sponsor: { type: Text, isRequired: true},
     address: { type: Text, isRequired: false},
     capacity: { type: Text, isRequired: false},
     notes: { type: Text, isRequired: false},
+    status: { type: Select, options: 'new, approved', defaultValue: 'new' },
   },
 };

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 
-import gql from 'graphql-tag';
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { jsx } from '@emotion/core';
 import { Button, Field, Label, Input, Select } from '../primitives/forms';
 import { gridSize } from '../theme';
+import { CREATE_SPONSOR_REQUEST } from '../graphql/sponsors'
 
 const onChange = handler => e => handler(e.target.value);
 
@@ -18,6 +18,7 @@ const SponsorForm = () => {
   const [address, setAddress] = useState('');
   const [capacity, setCapacity] = useState('');
   const [notes, setNotes] = useState('');
+
   const cityOptions = [
     'Sydney',
     'Melbourne',
@@ -30,8 +31,8 @@ const SponsorForm = () => {
 
   const sponsorOptions = [
     'Host',
-    'Food and drinks',
-    'Host and provide food/drinks',
+    'Food and Drinks',
+    'Host and Food/ Drinks',
     'Cover different minor expenses',
   ];
 
@@ -40,7 +41,6 @@ const SponsorForm = () => {
   const handleSubmission = e => {
     e.preventDefault();
     createSponsorRequest({ variables: {company, contact, email, city, sponsor, address, capacity, notes} });
-    console.log(`${company}, ${contact}, ${email}, ${city}, ${sponsor}, ${address}, ${capacity}, ${notes}`);
   };
 
   return (
@@ -99,13 +99,14 @@ const SponsorForm = () => {
           id="sponsor"
           onChange={onChange(setSponsor)}
           options={sponsorOptions}
+          
         />
       </Field>   
 
       {/* Questions for Host */}
 
-        { sponsor.includes('Host') && 
-          <form>
+       { sponsor.includes('Host') && 
+       <>
             <Field>
               <Label htmlFor="address">What is your company's address?</Label>
               <Input
@@ -114,7 +115,7 @@ const SponsorForm = () => {
                 onChange={onChange(setAddress)}
                 placeholder="Company Address"
                 type="text"
-                value={""}
+                
               />
             </Field> 
             <Field>
@@ -125,11 +126,10 @@ const SponsorForm = () => {
                 onChange={onChange(setCapacity)}
                 placeholder="Attendees Capacity"
                 type="text"
-                value={""}
               />
             </Field>
-          </form>
-        }
+        </>
+        } 
         
         {/* Notes */}
 
@@ -155,12 +155,3 @@ const SponsorForm = () => {
 }
 
 export default SponsorForm;
-
-const CREATE_SPONSOR_REQUEST = gql`
-mutation CreateSponsorRequest($company: String!, $contact: String!, $email: String!, $city: SponsorRequestCityType!, $sponsor: SponsorRequestSponsorType!, $address: String, $capacity: String, $notes: String) {
-  createSponsorRequest(data: { company: $company, contact: $contact, email: $email, city: $city, sponsor: $sponsor, address: $address, capacity: $capacity, notes: $notes }) {
-    id
-  }
-}
-`;
-
