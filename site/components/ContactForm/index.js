@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import Router from 'next/router';
 import { SEND_ENQUIRY } from '../../graphql/enquiries';
@@ -14,8 +14,7 @@ const ContactForm = ({ ...props }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
-  const [message, setMessage] = useState('');
-  const form = useRef();
+  const [message, setMessage] = useState('');  
   const cityOptions = [
     'Sydney',
     'Melbourne',
@@ -47,8 +46,8 @@ const ContactForm = ({ ...props }) => {
 
   return (
     <div {...props}>
-      <form ref={form} onSubmit={handleSubmission} method="post">
-        <FormFields onChange={handleChange} options={cityOptions} />
+      <form onSubmit={handleSubmission} method="post">
+        <FormFields onChange={handleChange} options={cityOptions} textArea={true} btnText="Send your message" />
       </form>
       {error && <p css={{ color: colors.red }}>Message failed to send. Try again, please.</p>}
     </div>
