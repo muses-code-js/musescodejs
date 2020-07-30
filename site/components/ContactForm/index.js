@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { colors } from '../../theme';
 
-import FormFields from './FormFields';
+import { FormFields } from './FormFields';
 
 const ContactForm = ({ ...props }) => {
   const [name, setName] = useState('');

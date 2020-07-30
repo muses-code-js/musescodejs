@@ -8,9 +8,9 @@ import { Input, Label, Button, TextArea, Select } from '../../primitives/forms';
 
 const style = {marginBottom: gridSize * 2.5};
 
-const Asterisk = () => <span css={{color: colors.red}}>*</span>
+export const Asterisk = () => <span css={{color: colors.red}}>*</span>
 
-const FormFields = ({children, textArea, btnText, ...props}) => {
+export const FormFields = ({children, textArea, btnText, ...props}) => {
   const [ labelHelp, selectHelp, inputOther, labelComment, inputComment ] = Children.toArray(children);
   
   return (
@@ -66,4 +66,3 @@ const FormFields = ({children, textArea, btnText, ...props}) => {
   );
 };
 
-export default FormFields;
