@@ -210,6 +210,23 @@ exports.Enquiry = {
   }
 }
 
+exports.Volunteer = {
+  access: {
+    create: true,
+    update: access.userIsAdmin,
+    delete: access.userIsAdmin
+  },
+  fields: {
+    name: { type: Text, isRequired: true },
+    email: { type: String, isRequired: true },
+    city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong', isRequired: true},      
+    how: { type: Select, dataType: 'string', options: ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'], isRequired: true },
+    other: { type: String },
+    comment: { type: String },
+    // createdAt: { type: DateTime, isRequired: true },
+  }
+}
+
 exports.ForgottenPasswordToken = {
   access: {
     create: true,

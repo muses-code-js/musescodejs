@@ -9,4 +9,5 @@ module.exports = routes()
   .add('about')
   .add('events', '/events')
   .add('event', '/event/:id', 'event')
-  .add('contact', 'contact/thanks');
+  .add('contact', 'contact/thanks')
+  .add('volunteer', 'volunteer/thanks')

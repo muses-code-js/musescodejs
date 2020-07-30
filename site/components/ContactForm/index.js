@@ -8,7 +8,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { colors } from '../../theme';
 
-import FormFields from './FormFields';
+import { FormFields } from './FormFields';
 
 const ContactForm = ({ ...props }) => {
   const [name, setName] = useState('');
@@ -48,7 +48,7 @@ const ContactForm = ({ ...props }) => {
   return (
     <div {...props}>
       <form ref={form} onSubmit={handleSubmission} method="post">
-        <FormFields onChange={handleChange} options={cityOptions} />
+        <FormFields onChange={handleChange} options={cityOptions} btnText="Send your message" />
       </form>
       {error && <p css={{ color: colors.red }}>Message failed to send. Try again, please.</p>}
     </div>
