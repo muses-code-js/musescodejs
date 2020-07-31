@@ -28,13 +28,7 @@ const VolunteersForm = () => {
     'Wollongong',
   ];
   
-  const howOptions = ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'];
-
-  const [sendEnquiry, { error }] = useMutation(BECOME_VOLUNTEER, {
-    onCompleted: () => {
-      Router.push('/volunteer/thanks');
-    },
-  });
+  const howOptions = ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'];  
 
   const handleChange = e => {
     const name = e.target.name;
@@ -55,6 +49,12 @@ const VolunteersForm = () => {
       ? setOther(value)
       : setComment(value);
   };
+
+  const [sendEnquiry, { error }] = useMutation(BECOME_VOLUNTEER, {
+    onCompleted: () => {
+      Router.push('/volunteer/thanks');
+    }
+  });
 
   const handleSubmission = e => {
     e.preventDefault();
@@ -103,7 +103,6 @@ const VolunteersForm = () => {
           </FormFields>
         </form>
       </div>
-
       {error && <p css={{ color: colors.red }}>Application failed to send. Try again, please.</p>}
     </div>
   );

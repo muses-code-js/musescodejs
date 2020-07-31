@@ -36,7 +36,7 @@ const Thanks = () => {
 };
 
 const divStyle = {
-  height: 350,
+  height: 300,
   textAlign: 'center',
 };
 

@@ -4,7 +4,7 @@ import { jsx } from '@emotion/core';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
-import VolunteersForm from '../components/MentorsForm/index';
+import VolunteersForm from '../components/VolunteersForm/index';
 
 import { gridSize } from '../theme';
 import { Container, H2 } from '../primitives';
