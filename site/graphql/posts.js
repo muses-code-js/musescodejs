@@ -28,12 +28,3 @@ export const GET_POST_DETAILS = gql`
   }
   ${POST_DATA}
 `;
-
-// export const GET_POST_DETAILS = gql`
-//   query GetPostDetails($post: ID!) {
-//     Post(where: { id: $post }) {
-//       ...PostData
-//     }
-//   }
-//   ${POST_DATA}
-// `;
