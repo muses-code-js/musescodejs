@@ -180,7 +180,8 @@ exports.Resource = {
   fields: {
     title: { type: Text },
     topic: { type: Text },
-    level: { type: Text }
+    level: { type: Text },
+    url: { type: Text }
   },
 };
 

@@ -6,6 +6,7 @@ export const RESOURCE_DATA = gql`
         title
         topic
         level
+        url
     }
 `;
 
@@ -16,6 +17,7 @@ export const GET_ALL_RESOURCES = gql`
       title
       topic
       level
+      url
     }
   }
 `;

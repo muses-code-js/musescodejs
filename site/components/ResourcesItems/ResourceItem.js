@@ -8,7 +8,7 @@ import { H3 } from '../../primitives';
 const ResourceItem = list => {
 
     const listItems = list.resources.map((item, i) =>
-        <li key={item.id}>
+        <li css={{position:'relative'}} key={item.id}>
             <div
                 css={{
                     display: 'flex',
@@ -36,6 +36,17 @@ const ResourceItem = list => {
                 <p css={{ width: '33%'}}>{item.level}</p>
                 
             </div>
+            <a 
+                css={{ 
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    cursor: "pointer"
+                }} 
+                href={item.url}>
+            </a>
         </li>
     );
 

@@ -26,7 +26,7 @@ function Resources(){
            <Container css={{ marginTop: gridSize * 3 }}>
                 <div css={{ display: 'flex', justifyContent: 'space-between'}}>
                     <H2 hasSeparator css={{color: `${colors.pink}`, marginBottom: `${gridSize *7}px`}}>Resources</H2>
-                    <SearchBar placeholder="Search Here"  />
+                    <SearchBar placeholder="Search"  />
                 </div>
             {loading ? (
                 <Loading isCentered size="xlarge" />
