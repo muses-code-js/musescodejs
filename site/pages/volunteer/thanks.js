@@ -43,7 +43,6 @@ const divStyle = {
 const btnStyle = {
   marginTop: gridSize * 2,
   color: 'white',
-  cursor: 'pointer',
 };
 
 export default Thanks;

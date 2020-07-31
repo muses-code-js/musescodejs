@@ -50,7 +50,7 @@ const ContactForm = ({ ...props }) => {
 
   return (
     <div {...props}>
-      <form ref={form} onSubmit={handleSubmission} method="post">
+      <form onSubmit={handleSubmission} method="post">
         <FormFields 
         onChange={handleChange} 
         options={cityOptions} 

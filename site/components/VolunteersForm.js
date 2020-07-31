@@ -3,12 +3,12 @@ import { jsx } from '@emotion/core';
 import { useState } from 'react';
 
 import Router from 'next/router';
-import { BECOME_VOLUNTEER } from '../../graphql/volunteers';
+import { BECOME_VOLUNTEER } from '../graphql/volunteers';
 import { useMutation } from '@apollo/react-hooks';
 
-import { colors, gridSize, fontSizes } from '../../theme';
-import { Input, Label, Select } from '../../primitives/forms';
-import { FormFields, Asterisk } from '../ContactForm/FormFields';
+import { colors, gridSize, fontSizes } from '../theme';
+import { Input, Label, Select } from '../primitives/forms';
+import { FormFields, Asterisk } from './ContactForm/FormFields';
 
 const VolunteersForm = () => {
   const [name, setName] = useState('');
@@ -16,7 +16,7 @@ const VolunteersForm = () => {
   const [city, setCity] = useState('');
   const [how, setHow] = useState('');
   const [other, setOther] = useState('');
-  const [comment, setComment] = useState('');  
+  const [comment, setComment] = useState('');
 
   const cityOptions = [
     'Sydney',
@@ -27,14 +27,13 @@ const VolunteersForm = () => {
     'Hobart',
     'Wollongong',
   ];
-  
-  const howOptions = ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'];  
+
+  const howOptions = ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'];
 
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (name === 'how' && value === 'Other') setOther(true);
     if (name === 'how' && value != 'Other') setOther('');
 
     name === 'name'
@@ -53,7 +52,7 @@ const VolunteersForm = () => {
   const [sendEnquiry, { error }] = useMutation(BECOME_VOLUNTEER, {
     onCompleted: () => {
       Router.push('/volunteer/thanks');
-    }
+    },
   });
 
   const handleSubmission = e => {
@@ -67,7 +66,7 @@ const VolunteersForm = () => {
         Thank you for your interest in volunteering with us. If you have no experience at
         mentorship/organisation that is fine, as we're always happy to give opportunities for people
         to contribute to community and develop new skills. Volunteering with us will give you a
-        great line in your CV and bunch of new connections.
+        great line in your CV and a bunch of new connections.
       </p>
       <div>
         <form onSubmit={handleSubmission} method="post">
@@ -89,7 +88,7 @@ const VolunteersForm = () => {
               css={fieldsStyle}
               required
             />
-            {other && (
+            {how === 'Other' && (
               <Input
                 type="text"
                 name="other"
@@ -114,9 +113,6 @@ const pStyle = {
   marginBottom: gridSize * 5,
 };
 
-const fieldsStyle = {
-  marginBottom: gridSize * 2.5,
-  width: '100%',
-};
+const fieldsStyle = { marginBottom: gridSize * 2.5 };
 
 export default VolunteersForm;
