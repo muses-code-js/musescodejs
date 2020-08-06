@@ -6,31 +6,14 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { NextApp } = require('@keystone-alpha/app-next');
-
-const {
-  Event,
-  Talk,
-  User,
-  Rsvp,
-  Organiser,
-  Sponsor,
-  Post,
-  ForgottenPasswordToken,
-} = require('./schema');
+const { createLists } = require('./lists');
 
 const keystone = new Keystone({
-  name: 'MusesCodeJS',
+  name: 'muses-code-js',
   adapter: new MongooseAdapter(),
 });
 
-keystone.createList('Event', Event);
-keystone.createList('Rsvp', Rsvp);
-keystone.createList('Talk', Talk);
-keystone.createList('User', User);
-keystone.createList('Organiser', Organiser);
-keystone.createList('Sponsor', Sponsor);
-keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
-keystone.createList('Post', Post);
+createLists(keystone);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
