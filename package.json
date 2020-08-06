@@ -24,6 +24,7 @@
     "@keystonejs/fields-wysiwyg-tinymce": "5.3.4",
     "@keystonejs/file-adapters": "7.0.2",
     "@keystonejs/keystone": "13.0.0",
+    "@keystonejs/server-side-graphql-client": "^1.0.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
@@ -36,6 +37,7 @@
     "lodash.uniqby": "^4.7.0",
     "react-apollo": "^3.1.5",
     "react-toast-notifications": "^2.2.5",
+    "react-use-form-state": "^0.13.1",
     "uuid": "^8.1.0"
   }
 }

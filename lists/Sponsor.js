@@ -3,7 +3,7 @@ const { DEFAULT_LIST_ACCESS } = require('../lib/access');
 const { cloudinaryAdapter } = require('../lib/cloudinary-adapter');
 
 module.exports = function(keystone) {
-  keystone.createLIst('Sponsor', {
+  keystone.createList('Sponsor', {
     access: DEFAULT_LIST_ACCESS,
     fields: {
       name: { type: Text },

@@ -24,4 +24,15 @@ module.exports = function(keystone) {
       expiresAt: { type: DateTime, isRequired: true },
     },
   });
+
+  keystone.extendGraphQLSchema({
+    mutations: [
+      {
+        schema: 'startPasswordRecovery(email: String!): String',
+        resolver: () => {
+          return 'hello';
+        },
+      },
+    ],
+  });
 };

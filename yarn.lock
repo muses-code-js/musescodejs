@@ -2553,6 +2553,11 @@
     "@keystonejs/utils" "^5.4.1"
     cuid "^2.1.8"
 
+"@keystonejs/server-side-graphql-client@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/server-side-graphql-client/-/server-side-graphql-client-1.0.0.tgz#0daed4e049d20d00be77af47f36460cc2c9c3e84"
+  integrity sha512-89U82cp70L/vMXRqqlVZWPQ4ACgmG/WtPutky+Kq3WiDU5qqbfPUq2C9+sMTXw8aTeAnvoMFifpe8QmnIU2hpg==
+
 "@keystonejs/session@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/session/-/session-8.0.0.tgz#f30556fc72189b05b5d9b5b1076a541e14d64d93"
@@ -11165,6 +11170,11 @@ react-uid@^2.2.0:
   integrity sha512-tsPZ77GR0pISGYmpCLHAbZTabKXZ7zBniKPVqVMMfnXFyo39zq5g/psIlD5vLTKkjQEhWOO8JhqcHnxkwNu6eA==
   dependencies:
     tslib "^1.10.0"
+
+react-use-form-state@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/react-use-form-state/-/react-use-form-state-0.13.1.tgz#891e678cf6248e4668bfffc1112833c2d98a2e82"
+  integrity sha512-h0b+KFykqihTpjHKOi8fKZ3aaFqZofkAMof4K2rkCgC8FaU7JnkjzCAPv9lVJjDuf9AAmFHFM1PPMzPtzdwY3Q==
 
 react-virtualized@^9.12.0:
   version "9.21.2"

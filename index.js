@@ -10,7 +10,10 @@ const { createLists } = require('./lists');
 
 const keystone = new Keystone({
   name: 'muses-code-js',
-  adapter: new MongooseAdapter(),
+  adapter: new MongooseAdapter({
+    mongoUri: 'mongodb://localhost/muses-code-js',
+  }),
+  cookieSecret: 'qwerty',
 });
 
 createLists(keystone);

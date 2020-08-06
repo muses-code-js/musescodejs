@@ -1,4 +1,5 @@
 const { Relationship, Select } = require('@keystonejs/fields');
+const { access } = require('../lib/access');
 
 module.exports = function(keystone) {
   keystone.createList('Rsvp', {
