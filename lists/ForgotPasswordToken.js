@@ -1,6 +1,6 @@
 const { DateTime, Text, Relationship } = require('@keystonejs/fields');
 const { gql } = require('apollo-server-express');
-const uuid = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 const { access } = require('../lib/access');
 
 module.exports = function(keystone) {
@@ -32,7 +32,7 @@ module.exports = function(keystone) {
       {
         schema: 'startPasswordRecovery(email: String!): Boolean',
         resolver: async (obj, { email }, context) => {
-          const token = uuid();
+          const token = uuidv4();
           const tokenExpiration =
             parseInt(process.env.RESET_PASSWORD_TOKEN_EXPIRY) || 1000 * 60 * 60 * 24;
           const now = Date.now();
