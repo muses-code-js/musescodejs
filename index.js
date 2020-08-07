@@ -14,7 +14,6 @@ const {
   Rsvp,
   Organiser,
   Sponsor,
-  SponsorRequest,
   Post,
   ForgottenPasswordToken,
 } = require('./schema');
