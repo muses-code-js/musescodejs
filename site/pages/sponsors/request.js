@@ -2,12 +2,12 @@
 
 import { jsx } from '@emotion/core';
 
-import { Container, H2 } from '../primitives';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import Meta from '../components/Meta';
-import { gridSize } from '../theme';
-import SponsorForm from '../components/SponsorRequest';
+import { Container, H2 } from '../../primitives';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import Meta from '../../components/Meta';
+import { gridSize } from '../../theme';
+import SponsorForm from '../../components/SponsorRequest';
 
 const newSponsor = () => {
   return (

@@ -398,16 +398,6 @@ exports.ForgottenPasswordToken = {
 };
 
 exports.Sponsor = {
-  access: DEFAULT_LIST_ACCESS,
-  fields: {
-    company: { type: Text, isRequired: true },
-    website: { type: Text },
-    image: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
-    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
-  },
-};
-
-exports.SponsorRequest = {
   access: {
     create: true,
     update: access.userIsAdmin,
@@ -415,13 +405,45 @@ exports.SponsorRequest = {
   },
   fields: {
     company: { type: Text, isRequired: true },
-    contact: { type: Text, isRequired: true},
+    contact: { type: Text, isRequired: true },
+    website: { type: Text },
+    image: { type: CloudinaryImage, adapter: cloudinaryAdapter},
+    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze' },
+    linkedin: { type: Text },
+    twitter: { type: Text },
+    facebook: { type: Text },
+    instagram: { type: Text },
+    blurb: { type: Text },
     email: { type: Text, isRequired: true},
     city: { type: Text, isRequired: true },
-    sponsor: { type: Text, isRequired: true},
-    address: { type: Text, isRequired: false},
-    capacity: { type: Text, isRequired: false},
-    notes: { type: Text, isRequired: false},
-    status: { type: Select, options: 'new, approved', defaultValue: 'new' },
+    address: { type: Text },
+    capacity: { type: Text },
+    notes: { type: Text },
+    sponsor: 
+    { 
+      type: Select, 
+      dataType:'string', 
+      options: 
+      [
+        'Host',
+        'Food and Drinks',
+        'Host and Food/ Drinks',
+        'Cover different minor expenses'
+      ],
+      isRequired: true
+    },
+
+    status: 
+    { 
+      type: Select,  
+      dataType:'string', 
+      options: 
+      [
+        'New',
+        'Sent Proposal',
+        'Approved',
+      ],
+      defaultValue: 'New' 
+    },
   },
 };

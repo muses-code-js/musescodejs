@@ -36,7 +36,7 @@ function Sponsors() {
           alignItems: 'center',
         }}>
           <H2 hasSeparator>Sponsors</H2>
-          <Button css={{ color: `${colors.white}`}}background={button.bg} foreground={button.fg} size='small' href="/sponsor-request">Become a Sponsor</Button>
+          <Button css={{ color: `${colors.white}`}}background={button.bg} foreground={button.fg} size='small' href="/sponsors/request">Become a Sponsor</Button>
         </div>
         <p>Supporting MusesCodeJS is an excellent opportunity to contribute to the community by encouraging women who 
           haven’t had the chance to understand/experience what it’s like to build the internet. 

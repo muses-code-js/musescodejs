@@ -9,5 +9,4 @@ module.exports = routes()
   .add('about')
   .add('events', '/events')
   .add('event', '/event/:id', 'event')
-  .add ('sponsors', '/sponsors')
-  .add ('sponsor-request', '/sponsor-request/thanks');
+  .add ('sponsors', 'sponsors/thanks')

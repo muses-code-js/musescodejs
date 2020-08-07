@@ -1,10 +1,11 @@
 /** @jsx jsx */
 
+import Router from 'next/router';
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { jsx } from '@emotion/core';
 import { Button, Field, Label, Input, Select } from '../primitives/forms';
-import { gridSize } from '../theme';
+import { gridSize, colors } from '../theme';
 import { CREATE_SPONSOR_REQUEST } from '../graphql/sponsors'
 
 const onChange = handler => e => handler(e.target.value);
@@ -36,11 +37,15 @@ const SponsorForm = () => {
     'Cover different minor expenses',
   ];
 
-  const [createSponsorRequest, { loading, error }] = useMutation(CREATE_SPONSOR_REQUEST);
+  const [createSponsor, { loading, error }] = useMutation(CREATE_SPONSOR_REQUEST, {
+    onCompleted: () => {
+       Router.push('/sponsors/thanks')
+    }
+  });
 
   const handleSubmission = e => {
     e.preventDefault();
-    createSponsorRequest({ variables: {company, contact, email, city, sponsor, address, capacity, notes} });
+    createSponsor({ variables: {company, contact, email, city, sponsor, address, capacity, notes} });
   };
 
   return (
@@ -93,6 +98,7 @@ const SponsorForm = () => {
           onChange={onChange(setCity)}
           options={cityOptions}
           placeholder="Select the city"
+          required
         />
         
       </Field>
@@ -103,6 +109,7 @@ const SponsorForm = () => {
           onChange={onChange(setSponsor)}
           options={sponsorOptions}
           placeholder="Select a option"
+          required
           
         />
       </Field>   
@@ -146,9 +153,7 @@ const SponsorForm = () => {
           maxLength="300"
         />
       </Field> 
-      {loading ? (
-          <Button disabled>Submitting request...</Button>
-        ) : error ? (
+        { error ? (
           <p css={{ color: colors.red }}>Something went wrong. Please try again.</p>
         ) : (
           <Button type="submit">Submit</Button>

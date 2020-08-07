@@ -7,6 +7,7 @@ export const GET_ALL_SPONSORS = gql`
       company,
       category,
       website,
+      status,
       image {
         publicUrlTransformed(
           transformation: { 
@@ -23,7 +24,7 @@ export const GET_ALL_SPONSORS = gql`
 `;
 
 export const CREATE_SPONSOR_REQUEST = gql`
-mutation CreateSponsorRequest (
+mutation CreateSponsor (
   $company: String!, 
   $contact: String!, 
   $email: String!, 
@@ -33,7 +34,7 @@ mutation CreateSponsorRequest (
   $capacity: String, 
   $notes: String
   ){
-  createSponsorRequest (
+  createSponsor (
     data:{ 
       company: $company, 
       contact: $contact, 

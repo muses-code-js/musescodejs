@@ -1,25 +1,37 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import SponsorCard from './SponsorCard'
-import { gridSize, colors } from '../../theme';
+import { gridSize } from '../../theme';
 import { H5 } from '../../primitives';
 
 const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
 
   const platinumSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Platinum";
-  })
+    return (
+      sponsor.category == 'Platinum' && 
+      sponsor.status == 'Approved'
+    )
+  })  
 
   const goldSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Gold";
+    return (
+      sponsor.category == 'Gold' && 
+      sponsor.status == 'Approved'
+    ) 
   })
 
   const silverSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Silver";
+    return (
+      sponsor.category == 'Silver' && 
+      sponsor.status == 'Approved'
+    )
   })
 
   const bronzeSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Bronze";
+    return (
+      sponsor.category == 'Bronze' && 
+      sponsor.status == 'Approved'
+    ) 
   })
 
   return(

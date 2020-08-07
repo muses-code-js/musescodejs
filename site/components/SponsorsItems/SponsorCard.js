@@ -6,14 +6,16 @@ import { mq } from '../../helpers/media';
 const SponsorCard = sponsor => {
   const {
     id,
-    name,
+    company,
     category,
     website,
     image,
+    status,
     ...props
   } = sponsor;
 
   return (
+
   <li {...props} ccss={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
     
     <div

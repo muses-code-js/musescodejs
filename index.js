@@ -30,7 +30,6 @@ keystone.createList('Talk', Talk);
 keystone.createList('User', User);
 keystone.createList('Organiser', Organiser);
 keystone.createList('Sponsor', Sponsor);
-keystone.createList('SponsorRequest', SponsorRequest);
 keystone.createList('ForgottenPasswordToken', ForgottenPasswordToken);
 keystone.createList('Post', Post);
 
@@ -53,7 +52,7 @@ const adminApp = new AdminUIApp({
     },
     {
       label: 'Sponsorship',
-      children: ['Sponsor', 'SponsorRequest'],
+      children: ['Sponsor'],
     },
   ],
 });
