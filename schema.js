@@ -100,6 +100,7 @@ exports.Event = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
     name: { type: Text },
+    slug: { type: Slug, from: 'name' },
     status: { type: Select, options: 'draft, active', defaultValue: 'draft' },
     startTime: { type: DateTime },
     durationMins: { type: Integer },
@@ -191,6 +192,7 @@ exports.Post = {
   fields: {
     member: { type: Relationship, ref: 'User', many: false },
     title: { type: Text },
+    slug: { type: Slug, from: 'title' },
     author: { type: Text },
     date: { type: DateTime },
     description: { type: Wysiwyg },

@@ -96,6 +96,7 @@ const initialData = {
   Event: [
     {
       name: 'Free pizza',
+      slug: 'free-pizza',
       status: 'active',
       // Default to "1 month from now"
       startTime: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30).toISOString(),
@@ -108,6 +109,7 @@ const initialData = {
     },
     {
       name: 'Fyre Festival',
+      slug: 'fyre-festival',
       status: 'active',
       startTime: new Date(Date.now() + 2000 * 60 * 60 * 24 * 30).toISOString(),
       description:
@@ -119,6 +121,7 @@ const initialData = {
     },
     {
       name: 'Javascript Full Day Workshop',
+      slug: 'javascript-full-day-workshop',
       status: 'active',
       startTime: new Date(Date.now() + 1500 * 60 * 60 * 24 * 30).toISOString(),
       description:
@@ -127,6 +130,32 @@ const initialData = {
       maxRsvps: 200,
       isRsvpAvailable: true,
       locationAddress: 'Microsoft Reactor',
+    },
+  ],
+  Post: [
+    {
+      member: 'Organiser 2',
+      title: 'First Post',
+      slug: 'first-post',
+      author: 'Amanda Smith',
+      date: '2020-04-23',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.Praesent eleifend, nulla a varius pretium, libero nisl vestibulum orci, at maximus turpis odio at quam. Praesent aliquet egestas mauris, ut varius erat tincidunt at. Integer in lacus eu diam porttitor posuere. Curabitur quis lorem non nunc efficitur feugiat tempor ut odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur massa magna, pretium sed nisl ac, porta dignissim urna. Etiam enim eros, consectetur sed lacus et, commodo mattis leo. Proin malesuada ligula ut enim posuere sagittis.',
+    },
+    {
+      member: 'Organiser 1',
+      title: 'Second Post',
+      slug: 'second-post',
+      author: 'Ben White ',
+      date: '2020-05-05',
+      description: `<h1><span style="color: #236fa1;">First Paragraph&nbsp;</span></h1>
+        <p><span style="color: #000000;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.</span></p>
+        <ul>
+        <li>Praesent eleifend,</li>
+        <li>Quisque in.</li>
+        </ul>
+        <h2><span style="color: #ba372a;">Second Paragraph</span></h2>
+        <p>Suspendisse potenti. Suspendisse nec est nunc. Nunc eu sodales est. Integer eu sem sodales, commodo enim eu, tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Donec at condimentum lectus. Integer pellentesque nec velit vel pretium. Etiam sollicitudin malesuada arcu in elementum. In nec ullamcorper dui, id eleifend sem. Sed varius luctus dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia quam diam, a dapibus sem faucibus a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>`,
     },
   ],
 };

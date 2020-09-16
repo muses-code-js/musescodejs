@@ -11,6 +11,7 @@ const EventItem = event => {
   const {
     id,
     name,
+    slug,
     startTime,
     description,
     talks,
@@ -46,7 +47,7 @@ const EventItem = event => {
         }}
       >
         <div css={{ maxHeight: 400, overflow: 'hidden' }}>
-          <Link href={`/event/[id]`} as={`/event/${id}`}>
+          <Link href={`/event/[slug]`} as={`/event/${slug}`} passHref>
             <a
               css={{
                 color: 'inherit',
