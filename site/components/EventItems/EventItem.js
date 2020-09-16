@@ -7,7 +7,7 @@ import { colors, gridSize, shadows } from '../../theme';
 import { isInFuture, formatPastDate, formatFutureDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
-const EventItem = event => {
+const EventItem = (event) => {
   const {
     id,
     name,
@@ -97,7 +97,7 @@ const EventItem = event => {
 // Styled Components
 // ------------------------------
 
-const Mask = props => (
+const Mask = (props) => (
   <div
     css={{
       position: 'absolute',
@@ -110,7 +110,7 @@ const Mask = props => (
     {...props}
   />
 );
-const RsvpPositioner = props => (
+const RsvpPositioner = (props) => (
   <div
     css={{
       background: 'white',
