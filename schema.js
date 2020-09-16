@@ -180,9 +180,10 @@ exports.Rsvp = {
 exports.Sponsor = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
-    name: { type: Text },
+    name: { type: Text, isRequired: true },
     website: { type: Text },
-    logo: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+    image: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
+    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
   },
 };
 

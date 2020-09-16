@@ -10,6 +10,11 @@ export const colors = {
   orange: '#EC855A',
   rose: '#FA94D9',
   aqua: '#7DDBBA',
+  gold: '#FFD700',
+  silver: '#B4B4B4',
+  bronze: '#cd7f32',
+  platinum: '#D7D7D7',
+
 };
 
 export const breakpoints = {
