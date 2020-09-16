@@ -1,10 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
-import { withApollo } from '../../lib/withApollo';
 
 import Rsvp from '../../components/Rsvp';
-import { Avatar, Container, Error, Hero, H1, H2, Loading } from '../../primitives';
+import { Avatar, Container, Error, Hero, H1, H2, Loading, Html } from '../../primitives';
 import Talks from '../../components/Talks';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -14,20 +13,26 @@ import { GET_EVENT_DETAILS } from '../../graphql/events';
 import { isInFuture, formatFutureDate, formatPastDate, stripTags } from '../../helpers';
 import { mq } from '../../helpers/media';
 
-const Event = ({ id, loadingColor }) => {
-  const { data, loading, error } = useQuery(GET_EVENT_DETAILS, { variables: { event: id } });
+const Event = ({ slug, loadingColor }) => {
+  const { data, loading, error } = useQuery(GET_EVENT_DETAILS, { variables: { event: slug } });
 
-  if (loading) return <Loading isCentered color={loadingColor} size="xlarge" />;
+  if (loading) {
+    return <Loading isCentered color={loadingColor} size="xlarge" />;
+  }
 
   if (error) {
-    console.error('Failed to load event', id, error);
+    console.error('Failed to load event', slug, error);
     return <Error message="Something went wrong. Please try again later." />;
   }
-  if (!data.Event) {
-    return <p>Event not found</p>;
+
+  const eventObj = data.allEvents.find(eventObj => eventObj.slug == slug);
+
+  if (!eventObj) {
+    return <Error message="Event not found" />;
   }
 
-  const { description, name, startTime, locationAddress, talks } = data.Event;
+  const { description, name, startTime, locationAddress, talks } = eventObj;
+
   const { allRsvps } = data;
 
   const prettyDate = isInFuture(startTime)
@@ -40,7 +45,7 @@ const Event = ({ id, loadingColor }) => {
     <>
       <Meta title={name} description={stripTags(description)}>
         <meta property="og:description" content={metaDescription} />
-        <meta property="og:url" content={makeMetaUrl(`/event/${id}`)} />
+        <meta property="og:url" content={makeMetaUrl(`/event/${slug}`)} />
         <meta property="og:title" content={name} />
         <meta property="og:type" content="article" />
         <meta name="twitter:description" content={metaDescription} />
@@ -48,12 +53,12 @@ const Event = ({ id, loadingColor }) => {
       <Navbar />
       <Hero align="left" superTitle={prettyDate} title={name}>
         <p css={{ fontWeight: 100 }}>{locationAddress}</p>
-        <p>{description}</p>
+        <Html markup={description} />
       </Hero>
 
       <Container css={{ marginTop: gridSize * 3 }}>
         <div css={mq({ float: [null, 'right'] })}>
-          <Rsvp event={data.Event}>{({ message, component }) => component || message}</Rsvp>
+          <Rsvp event={eventObj}>{({ message, component }) => component || message}</Rsvp>
         </div>
         <H2 hasSeparator css={mq({ marginBottom: '2rem', marginTop: ['2rem', null] })}>
           Talks
@@ -96,8 +101,8 @@ const Event = ({ id, loadingColor }) => {
 };
 
 Event.getInitialProps = ({ query }) => {
-  const { id, hex } = query;
-  return { id, loadingColor: hex ? `#${hex}` : 'currentColor' };
+  const { slug, hex } = query;
+  return { slug, loadingColor: hex ? `#${hex}` : 'currentColor' };
 };
 
 export default Event;
