@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { createItems } = require('@keystonejs/server-side-graphql-client');
 
 // Lets not hardcode password, even for test data
 const password = process.env.INITIAL_DATA_PASSWORD;
@@ -27,13 +28,54 @@ module.exports = async keystone => {
     // Ensure a valid initial password is available to be used
     validatePassword();
     // Drop the connected database to ensure no existing collections remain
-    Object.values(keystone.adapters).forEach(async adapter => {
-      await adapter.dropDatabase();
-    });
+    await Promise.all(Object.values(keystone.adapters).map(adapter => adapter.dropDatabase()));
     console.log('💾 Creating initial data...');
-    await keystone.createItems(initialData);
+    await seedData(initialData, keystone);
   }
 };
+
+async function seedData(intitialData, keystone) {
+  /* 1. Insert the data which has no associated relationships
+   * 2. Insert the data with the required relationships using connect
+   */
+
+  const users = await createItems({
+    keystone,
+    listKey: 'User',
+    items: initialData['User'].map(x => ({ data: x })),
+    // name field is required for connect query for setting up Organiser list
+    returnFields: 'id, name',
+  });
+
+  await Promise.all(
+    ['Post', 'Event', 'Talk', 'Rsvp', 'Sponsor'].map(list =>
+      createItems({ keystone, listKey: list, items: intitialData[list].map(x => ({ data: x })) })
+    )
+  );
+
+  // Preparing the Organiser list with connect nested mutation
+  const organisers = Array(3)
+    .fill(true)
+    .map(createOrganisers(users));
+
+  // Run the GraphQL query to insert all the organisers
+  await createItems({ keystone, listKey: 'Organiser', items: organisers });
+}
+
+function createOrganisers(users) {
+  return (_, i) => {
+    console.log('_, i', _, i);
+    return {
+      data: {
+        order: i + 1,
+        role: 'Organiser',
+        user: {
+          connect: { id: users.find(user => user.name === `Organiser ${i + 1}`).id },
+        },
+      },
+    };
+  };
+}
 
 const initialData = {
   User: [
@@ -134,19 +176,15 @@ const initialData = {
   ],
   Post: [
     {
-      member: 'Organiser 2',
       title: 'First Post',
       slug: 'first-post',
-      author: 'Amanda Smith',
       date: '2020-04-23',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.Praesent eleifend, nulla a varius pretium, libero nisl vestibulum orci, at maximus turpis odio at quam. Praesent aliquet egestas mauris, ut varius erat tincidunt at. Integer in lacus eu diam porttitor posuere. Curabitur quis lorem non nunc efficitur feugiat tempor ut odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur massa magna, pretium sed nisl ac, porta dignissim urna. Etiam enim eros, consectetur sed lacus et, commodo mattis leo. Proin malesuada ligula ut enim posuere sagittis.',
     },
     {
-      member: 'Organiser 1',
       title: 'Second Post',
       slug: 'second-post',
-      author: 'Ben White ',
       date: '2020-05-05',
       description: `<h1><span style="color: #236fa1;">First Paragraph&nbsp;</span></h1>
         <p><span style="color: #000000;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in lorem eget risus convallis ultricies sed ut orci. Pellentesque euismod eleifend metus at pharetra. Phasellus imperdiet, dolor vel dapibus tempor, felis nibh facilisis nisi, nec congue enim ex ac neque. Curabitur et libero ut odio consequat luctus. Mauris non ex consectetur, semper risus eu, aliquet leo. Aliquam erat volutpat. Vestibulum eget consequat orci. Morbi ultricies diam euismod dui ornare, convallis tempus neque mollis.</span></p>
@@ -158,4 +196,7 @@ const initialData = {
         <p>Suspendisse potenti. Suspendisse nec est nunc. Nunc eu sodales est. Integer eu sem sodales, commodo enim eu, tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Donec at condimentum lectus. Integer pellentesque nec velit vel pretium. Etiam sollicitudin malesuada arcu in elementum. In nec ullamcorper dui, id eleifend sem. Sed varius luctus dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce lacinia quam diam, a dapibus sem faucibus a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>`,
     },
   ],
+  Talk: [{ name: 'Introducing Keystone 5 🎉' }, { name: 'Keystone 5 - Under the hood' }],
+  Rsvp: [],
+  Sponsor: [{ name: 'Thinkmill', website: 'www.thinkmill.com.au' }],
 };

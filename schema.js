@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
-  CloudinaryImage,
   Checkbox,
   DateTime,
   Integer,
@@ -13,7 +12,8 @@ const {
   Text,
   Slug,
 } = require('@keystonejs/fields');
-const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
+const { CloudinaryAdapter, CloudinaryFileAdapter } = require('@keystonejs/file-adapters');
+const { CloudinaryImage } = require('@keystonejs/fields-cloudinary-image');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 
 const cloudinaryAdapter = new CloudinaryAdapter({
@@ -183,7 +183,7 @@ exports.Resource = {
     title: { type: Text },
     topic: { type: Text },
     level: { type: Text },
-    url: { type: Text }
+    url: { type: Text },
   },
 };
 
@@ -192,45 +192,39 @@ exports.Sponsor = {
   fields: {
     name: { type: Text, isRequired: true },
     website: { type: Text },
-    image: { type: CloudinaryImage, adapter: cloudinaryAdapter, isRequired: true },
-    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze', isRequired: true },
+    image: { type: CloudinaryImage, adapter: cloudinaryAdapter },
+    category: { type: Select, options: 'Platinum, Gold, Silver, Bronze' },
   },
 };
 
 exports.Post = {
   access: DEFAULT_LIST_ACCESS,
   fields: {
-    member: { type: Relationship, ref: 'User', many: false },
     title: { type: Text },
     slug: { type: Slug, from: 'title' },
-    author: { type: Text },
+    author: { type: Relationship, ref: 'User', many: false },
     date: { type: DateTime },
+    image: { type: CloudinaryImage, adapter: cloudinaryAdapter },
     description: { type: Wysiwyg },
   },
 };
 
 exports.Enquiry = {
-  access: {
-    create: true,
-    update: access.userIsAdmin,
-    delete: access.userIsAdmin
-  },
+  access: DEFAULT_LIST_ACCESS,
   fields: {
     name: { type: Text, isRequired: true },
-    email: { type: String, isRequired: true },
-    city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong'},      
-    message: { type: String, isRequired: true },
+    email: { type: Text, isRequired: true },
+    city: {
+      type: Select,
+      options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong',
+    },
+    message: { type: Text, isRequired: true },
     createdAt: { type: DateTime, isRequired: true },
-  }
-}
+  },
+};
 
 exports.ForgottenPasswordToken = {
-  access: {
-    create: true,
-    read: true,
-    update: access.userIsAdmin,
-    delete: access.userIsAdmin,
-  },
+  access: DEFAULT_LIST_ACCESS,
   fields: {
     user: {
       type: Relationship,
