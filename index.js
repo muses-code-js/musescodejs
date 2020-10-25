@@ -17,13 +17,13 @@ const {
   Post,
   Resource,
   ForgottenPasswordToken,
-  Enquiry
+  Enquiry,
 } = require('./schema');
 
 // const initialiseData = require('./initialData');
 const keystone = new Keystone({
   name: 'MusesCodeJS',
-  adapter: new MongooseAdapter(),
+  adapter: new MongooseAdapter({ mongoUri: 'mongodb://localhost/muses-code-js' }),
   // onConnect: initialiseData,
 });
 
