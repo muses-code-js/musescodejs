@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useRef } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { createContext, useContext, useState } from 'react';
+import { gql, useQuery, useMutation, useApolloClient } from '@apollo/client';
 
 /**
  * AuthContext
@@ -19,6 +18,34 @@ export const useAuth = () => useContext(AuthContext);
 
 const userFragment = `
   id
+  name
+  isAdmin
+`;
+
+const USER_QUERY = gql`
+  query {
+    authenticatedUser {
+      ${userFragment}
+    }
+  }
+`;
+
+const AUTH_MUTATION = gql`
+  mutation signin($email: String, $password: String) {
+    authenticateUserWithPassword(email: $email, password: $password) {
+      item {
+        ${userFragment}
+      }
+    }
+  }
+`;
+
+const UNAUTH_MUTATION = gql`
+  mutation {
+    unauthenticateUser {
+      success
+    }
+  }
 `;
 
 /**
@@ -28,76 +55,64 @@ const userFragment = `
  * authenticated state and provides methods for managing the auth state.
  */
 export const AuthProvider = ({ children, initialUserValue }) => {
-  const [authenticatedUser, setAuthenticatedUser] = useState(initialUserValue);
-  const isLoading = useRef(true);
+  const [user, setUser] = useState(initialUserValue);
+  const client = useApolloClient();
 
-  const [signIn] = useMutation(
-    gql`
-    mutation signin($email: String, $password: String) {
-      authenticateUserWithPassword(email: $email, password: $password) {
-        item {
-          ${userFragment}
-        }
+  const { loading: userLoading } = useQuery(USER_QUERY, {
+    fetchPolicy: 'no-cache',
+    onCompleted: ({ authenticatedUser, error }) => {
+      if (error) {
+        throw error;
       }
-    }
-  `,
-    { fetchPolicy: 'no-cache' }
-  );
 
-  const [signOut] = useMutation(
-    gql`
-      mutation {
-        unauthenticateUser {
-          success
-        }
+      setUser(authenticatedUser);
+    },
+    onError: console.error,
+  });
+
+  const [signin, { loading: authLoading }] = useMutation(AUTH_MUTATION, {
+    onCompleted: async ({ authenticateUserWithPassword: { item } = {}, error }) => {
+      if (error) {
+        throw error;
       }
-    `,
-    { fetchPolicy: 'no-cache' }
+
+      // Ensure there's no old unauthenticated data hanging around
+      await client.resetStore();
+
+      if (item) {
+        setUser(item);
+      }
+    },
+    onError: console.error,
+  });
+
+  const [signout, { loading: unauthLoading }] = useMutation(UNAUTH_MUTATION, {
+    onCompleted: async ({ unauthenticateUser: { success } = {}, error }) => {
+      if (error) {
+        throw error;
+      }
+
+      // Ensure there's no old authenticated data hanging around
+      await client.resetStore();
+
+      if (success) {
+        setUser(null);
+      }
+    },
+    onError: console.error,
+  });
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isAuthenticated: !!user,
+        isLoading: userLoading || authLoading || unauthLoading,
+        signin,
+        signout,
+        user,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
-
-  const signin = async ({ email, password }) => {
-    const {
-      data: { authenticateUserWithPassword },
-      error,
-    } = await signIn({
-      variables: {
-        email,
-        password,
-      },
-    });
-
-    if (error) {
-      throw error;
-    }
-
-    if (!isLoading) isLoading.current = false;
-    if (authenticateUserWithPassword && authenticateUserWithPassword.item) {
-      setAuthenticatedUser(authenticateUserWithPassword.item);
-    }
-  };
-
-  const signout = async () => {
-    const {
-      data: { unauthenticateUser },
-      error,
-    } = await signOut();
-
-    if (error) {
-      throw error;
-    }
-
-    if (unauthenticateUser && unauthenticateUser.success) {
-      setAuthenticatedUser(null);
-    }
-  };
-
-  const value = {
-    user: authenticatedUser,
-    isAuthenticated: !!authenticatedUser,
-    isLoading,
-    signin,
-    signout,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

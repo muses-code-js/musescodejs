@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { createPortal } from 'react-dom';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { useKeydown, useLogoDimension } from '../helpers';
 import { mq } from '../helpers/media';
@@ -13,7 +13,7 @@ import { colors, fontSizes } from '../theme';
 // Exports
 // ==============================
 
-export const Modal = props => {
+export const Modal = (props) => {
   if (!canUseDOM) return null;
 
   // the modal element component is separated so the keydown handler attaches
@@ -21,7 +21,7 @@ export const Modal = props => {
   return props.isOpen ? createPortal(<ModalElement {...props} />, document.body) : null;
 };
 
-const ModalElement = props => {
+const ModalElement = (props) => {
   const { children, onClose, title } = props;
 
   useKeydown('Escape', onClose);
@@ -93,7 +93,7 @@ const Blanket = ({ ariaLabel, ...props }) => (
     {...props}
   />
 );
-const Close = props => (
+const Close = (props) => (
   <button
     css={{
       background: 0,
@@ -120,7 +120,7 @@ const Close = props => (
     <XIcon />
   </button>
 );
-const Title = props => (
+const Title = (props) => (
   <h2
     css={{
       fontSize: fontSizes.md,

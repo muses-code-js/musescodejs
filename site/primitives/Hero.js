@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { Container } from '../primitives';
 import { H1 } from '../primitives/Typography';

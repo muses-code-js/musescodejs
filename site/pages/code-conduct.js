@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { Container, H1, H5 } from '../primitives';
 import Navbar from '../components/Navbar';
@@ -81,7 +81,7 @@ const CodeConduct = () => {
             <li>Posting or displaying sexually explicit or violent material.</li>
             <li>
               Posting or threatening to post other people’s personally identifying information
-              ("doxing").
+              (&quot;doxing&quot;).
             </li>
             <li>
               Personal insults, particularly those related to gender, sexual orientation, race,
@@ -227,6 +227,6 @@ const CodeConduct = () => {
   );
 };
 
-const Content = props => <div css={{ maxWidth: 720 }} {...props} />;
+const Content = (props) => <div css={{ maxWidth: 720 }} {...props} />;
 
 export default CodeConduct;

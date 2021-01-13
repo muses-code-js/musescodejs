@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { fontSizes } from '../theme';
 import { mq } from '../helpers/media';
 
@@ -27,12 +27,12 @@ export const Headline = ({ as: Tag, hasSeparator, size, ...props }) => {
   return <Tag css={[baseStyles, fontStyle, separatorStyles]} {...props} />;
 };
 
-export const H1 = props => <Headline as="h1" size={1} {...props} />;
-export const H2 = props => <Headline as="h2" size={2} {...props} />;
-export const H3 = props => <Headline as="h3" size={3} {...props} />;
-export const H4 = props => <Headline as="h4" size={4} {...props} />;
-export const H5 = props => <Headline as="h5" size={5} {...props} />;
-export const H6 = props => <Headline as="h6" size={6} {...props} />;
+export const H1 = (props) => <Headline as="h1" size={1} {...props} />;
+export const H2 = (props) => <Headline as="h2" size={2} {...props} />;
+export const H3 = (props) => <Headline as="h3" size={3} {...props} />;
+export const H4 = (props) => <Headline as="h4" size={4} {...props} />;
+export const H5 = (props) => <Headline as="h5" size={5} {...props} />;
+export const H6 = (props) => <Headline as="h6" size={6} {...props} />;
 
 Headline.propTypes = {
   as: PropTypes.string.isRequired,
@@ -43,7 +43,7 @@ Headline.defaultProps = {
   as: 'h2',
 };
 
-const getSeparatorStyles = gutter => ({
+const getSeparatorStyles = (gutter) => ({
   '&:after': {
     backgroundColor: 'currentColor',
     content: '" "',

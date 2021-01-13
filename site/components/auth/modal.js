@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { useEffect, useState } from 'react';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import Signin from '../../components/auth/signin';
 import Signup from '../../components/auth/signup';
@@ -28,24 +28,24 @@ const AuthModal = ({ children, mode: initialMode }) => {
   const [mode, setMode] = useState(initialMode);
 
   // helpers
-  const closeModal = event => {
+  const closeModal = (event) => {
     if (event) {
       event.preventDefault();
     }
     setOpen(false);
   };
-  const openModal = event => {
+  const openModal = (event) => {
     if (event) {
       event.preventDefault();
     }
     setOpen(true);
   };
 
-  const onClickForgot = event => {
+  const onClickForgot = (event) => {
     event.preventDefault();
     setMode('forgot');
   };
-  const onClickSignin = event => {
+  const onClickSignin = (event) => {
     event.preventDefault();
     setMode('signin');
   };

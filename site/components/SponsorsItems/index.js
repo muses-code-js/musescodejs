@@ -1,28 +1,27 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import SponsorCard from './SponsorCard'
+import { jsx } from '@emotion/react';
+import SponsorCard from './SponsorCard';
 import { gridSize } from '../../theme';
 import { H5 } from '../../primitives';
 
-const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
+const SponsorItems = ({ sponsors, offsetTop, ...props }) => {
+  const platinumSponsors = sponsors.filter(function (sponsor) {
+    return sponsor.category == 'Platinum';
+  });
 
-  const platinumSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Platinum";
-  })
+  const goldSponsors = sponsors.filter(function (sponsor) {
+    return sponsor.category == 'Gold';
+  });
 
-  const goldSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Gold";
-  })
+  const silverSponsors = sponsors.filter(function (sponsor) {
+    return sponsor.category == 'Silver';
+  });
 
-  const silverSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Silver";
-  })
+  const bronzeSponsors = sponsors.filter(function (sponsor) {
+    return sponsor.category == 'Bronze';
+  });
 
-  const bronzeSponsors = sponsors.filter(function(sponsor) {
-    return sponsor.category == "Bronze";
-  })
-
-  return(
+  return (
     <div
       css={{
         display: 'flex',
@@ -33,117 +32,109 @@ const SponsorItems = ({ sponsors, offsetTop, ... props }) => {
         padding: `${gridSize * 3}px ${gridSize * 3}px ${gridSize * 3}px`,
         listStyle: 'none',
       }}
-      {... props}
+      {...props}
     >
-      {platinumSponsors.length > 0 &&
-        <div 
-        css={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          padding: `${gridSize * 3}px 0px 0px`
-        }}>
+      {platinumSponsors.length > 0 && (
+        <div
+          css={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'column',
+            padding: `${gridSize * 3}px 0px 0px`,
+          }}
+        >
           <H5>Platinum Sponsors</H5>
           <div
-          css={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginTop: '0.5rem',
-          }}
+            css={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              marginTop: '0.5rem',
+            }}
           >
             {platinumSponsors.map((sponsor) => (
-            <SponsorCard
-              key={sponsor.id}
-            {...sponsor}
-            />
-          ))}
+              <SponsorCard key={sponsor.id} {...sponsor} />
+            ))}
           </div>
         </div>
-      }      
+      )}
 
-      {goldSponsors.length > 0 &&
-        <div 
-        css={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          padding: `${gridSize * 3}px 0px 0px`
-        }}>
+      {goldSponsors.length > 0 && (
+        <div
+          css={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'column',
+            padding: `${gridSize * 3}px 0px 0px`,
+          }}
+        >
           <H5>Gold Sponsors</H5>
           <div
-          css={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginTop: '0.5rem',
-          }}
+            css={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              marginTop: '0.5rem',
+            }}
           >
             {goldSponsors.map((sponsor) => (
-            <SponsorCard
-              key={sponsor.id}
-            {...sponsor}
-            />
-          ))}
+              <SponsorCard key={sponsor.id} {...sponsor} />
+            ))}
           </div>
         </div>
-      }      
-      
-      {silverSponsors.length > 0 &&
-        <div 
-        css={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          padding: `${gridSize * 3}px 0px 0px`,
-        }}>
+      )}
+
+      {silverSponsors.length > 0 && (
+        <div
+          css={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            flexDirection: 'column',
+            padding: `${gridSize * 3}px 0px 0px`,
+          }}
+        >
           <H5>Silver Sponsors</H5>
           <div
-          css={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginTop: '0.5rem',
-          }}
+            css={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              marginTop: '0.5rem',
+            }}
           >
             {silverSponsors.map((sponsor) => (
-            <SponsorCard
-              key={sponsor.id}
-            {...sponsor}
-            />
-          ))}
+              <SponsorCard key={sponsor.id} {...sponsor} />
+            ))}
           </div>
         </div>
-      }
+      )}
 
-      {bronzeSponsors.length > 0 &&
-        <div 
-        css={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          flexDirection: 'column',
-          padding: `${gridSize * 3}px 0px 0px`,
-        }}>
-          <H5>Bronze Sponsors</H5>
-          <div
+      {bronzeSponsors.length > 0 && (
+        <div
           css={{
             display: 'flex',
             flexWrap: 'wrap',
-            flexDirection: 'row',
-            marginTop: '0.5rem'
+            flexDirection: 'column',
+            padding: `${gridSize * 3}px 0px 0px`,
           }}
+        >
+          <H5>Bronze Sponsors</H5>
+          <div
+            css={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              flexDirection: 'row',
+              marginTop: '0.5rem',
+            }}
           >
             {bronzeSponsors.map((sponsor) => (
-            <SponsorCard
-              key={sponsor.id}
-            {...sponsor}
-            />
-          ))}
+              <SponsorCard key={sponsor.id} {...sponsor} />
+            ))}
           </div>
         </div>
-      }
+      )}
     </div>
-    );
-  };
+  );
+};
 
 export default SponsorItems;

@@ -41,4 +41,4 @@ export const mediaOnly = bpEntries.reduce((obj, entry, idx) => {
   })} />
 */
 
-export const mq = facepaint(Object.values(breakpoints).map(value => minWidth(value)));
+export const mq = facepaint(Object.values(breakpoints).map((value) => minWidth(value)));

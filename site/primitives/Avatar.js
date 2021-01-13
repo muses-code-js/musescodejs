@@ -1,13 +1,13 @@
 /** @jsx jsx */
 
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 function getInitials(str) {
   if (str == null) return '';
   return str
     .split(' ')
-    .map(s => s.slice(0, 1))
+    .map((s) => s.slice(0, 1))
     .join('')
     .toUpperCase();
 }
@@ -69,7 +69,7 @@ const AvatarText = ({ initials, ...props }) => {
     </AvatarBase>
   );
 };
-const AvatarImage = props => <AvatarBase as="img" {...props} />;
+const AvatarImage = (props) => <AvatarBase as="img" {...props} />;
 
 export const Avatar = ({ alt, name, src, ...props }) =>
   src ? (

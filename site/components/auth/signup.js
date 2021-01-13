@@ -3,12 +3,12 @@ import gql from 'graphql-tag';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import Router from 'next/router';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useAuth } from '../../lib/authetication';
 import { Button, Field, Label, Input } from '../../primitives/forms';
 import { gridSize, colors } from '../../theme';
 
-const onChange = handler => e => handler(e.target.value);
+const onChange = (handler) => (e) => handler(e.target.value);
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -17,7 +17,7 @@ const Signup = () => {
   const [errorState, setErrorState] = useState(false);
   const { isAuthenticated, signin } = useAuth();
 
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER, {
+  const [createUser, { loading, error }] = useMutation(CREATE_USER, {
     onCompleted: async () => {
       setErrorState(false);
       try {
@@ -46,7 +46,7 @@ const Signup = () => {
       <form
         css={{ marginTop: gridSize * 3 }}
         noValidate
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           createUser({ variables: { name, email, password } });
         }}

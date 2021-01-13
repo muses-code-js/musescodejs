@@ -1,12 +1,11 @@
 /** @jsx jsx */
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { jsx } from '@emotion/core';
-import getConfig from 'next/config';
+import { jsx } from '@emotion/react';
 import { Button as ButtonPrimitive, CheckmarkIcon, Loading } from '../primitives';
 import { useAuth } from '../lib/authetication';
 import { GET_RSVPS, UPDATE_RSVP, ADD_RSVP } from '../graphql/rsvps';
 import AuthModal from './auth/modal';
-import { color } from '../theme';
+import { colors } from '../theme';
 
 function validateRsvp({ userRsvps, eventRsvps, event }) {
   if (!event || !event.isRsvpAvailable) {
@@ -98,7 +97,7 @@ const Rsvp = ({ children, event, text }) => {
     return children({ message: mutationError.message });
   }
 
-  const doRespond = status =>
+  const doRespond = (status) =>
     updateRsvp({
       variables: {
         rsvp: hasResponded ? userResponse.id : null,
@@ -140,7 +139,7 @@ Rsvp.defaultProps = {
   text: 'Are you going?',
 };
 
-const ButtonWrapper = props => (
+const ButtonWrapper = (props) => (
   <div
     css={{
       alignItems: 'center',

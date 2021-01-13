@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useState } from 'react';
 
 import Router from 'next/router';
@@ -30,9 +30,11 @@ const ContactForm = ({ ...props }) => {
     },
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
+    // eslint-disable-next-line no-shadow
     const name = e.target.name;
     const value = e.target.value;
+    // eslint-disable-next-line no-unused-expressions
     name === 'name'
       ? setName(value)
       : name === 'email'
@@ -42,7 +44,7 @@ const ContactForm = ({ ...props }) => {
       : setMessage(value);
   };
 
-  const handleSubmission = e => {
+  const handleSubmission = (e) => {
     e.preventDefault();
     const createdAt = new Date();
     sendEnquiry({ variables: { name, email, city, message, createdAt } });
@@ -54,7 +56,7 @@ const ContactForm = ({ ...props }) => {
         <FormFields
           onChange={handleChange}
           options={cityOptions}
-          textArea={true}
+          textArea
           btnText="Send your message"
         />
       </form>

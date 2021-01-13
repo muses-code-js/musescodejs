@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useQuery } from '@apollo/react-hooks';
 
 import { Container, Loading, H2 } from '../primitives';

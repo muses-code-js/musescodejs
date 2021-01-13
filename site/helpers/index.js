@@ -10,11 +10,11 @@ const {
 } = getConfig();
 
 // Check if date is in future or past
-export const isInFuture = date => isFuture(parseISO(date));
+export const isInFuture = (date) => isFuture(parseISO(date));
 
 // Pretty date formatting
-export const formatFutureDate = date => format(parseISO(date), 'dd MMM yyyy, h:mm a');
-export const formatPastDate = date => format(parseISO(date), 'MMM yyyy');
+export const formatFutureDate = (date) => format(parseISO(date), 'dd MMM yyyy, h:mm a');
+export const formatPastDate = (date) => format(parseISO(date), 'MMM yyyy');
 
 // Singular / Plural
 export const pluralLabel = (num, single, plural) => {
@@ -22,7 +22,7 @@ export const pluralLabel = (num, single, plural) => {
 };
 
 // Get A11Y contrast-compliant foreground color from background color
-export const getForegroundColor = backgroundColor => {
+export const getForegroundColor = (backgroundColor) => {
   const darkFgScore = contrast.ratio(colors.greyDark, backgroundColor);
   const lightFgScore = contrast.ratio('white', backgroundColor);
 
@@ -46,7 +46,7 @@ export const useLogoDimension = () => {
 // Key handling
 export function useKeydown(key, callback) {
   useEffect(() => {
-    const handler = function(event) {
+    const handler = function (event) {
       if (event.key === key) {
         callback();
       }
@@ -59,6 +59,6 @@ export function useKeydown(key, callback) {
 }
 
 // Strip Tags
-export const stripTags = htmlString => {
+export const stripTags = (htmlString) => {
   return (htmlString || '').replace(/(<([^>]+)>)/gi, '');
 };

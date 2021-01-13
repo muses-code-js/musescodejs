@@ -1,8 +1,6 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import getConfig from 'next/config';
-
-import { Button, Html } from '../primitives';
+import { jsx } from '@emotion/react';
+import { Button } from '../primitives';
 import { colors, gridSize, shadows } from '../theme';
 import { getForegroundColor } from '../helpers';
 import { mq } from '../helpers/media';
@@ -41,14 +39,22 @@ const Footer = ({ callToAction = true }) => {
           },
         }}
       >
-        <p><a href='/code-conduct'>Code of Conduct</a></p>
-        <p>Copyright © Muses Code JS, powered by <a href="https://v5.keystonejs.com" target="_blank" rel="noopener noreferrer">KeystoneJS</a>.</p>
+        <p>
+          <a href="/code-conduct">Code of Conduct</a>
+        </p>
+        <p>
+          Copyright © Muses Code JS, powered by{' '}
+          <a href="https://v5.keystonejs.com" target="_blank" rel="noopener noreferrer">
+            KeystoneJS
+          </a>
+          .
+        </p>
       </section>
     </div>
   );
 };
 
-const CallToAction = props => {
+const CallToAction = (props) => {
   const paddingHorizontal = ['2rem', '6rem'];
   const paddingVertical = '2rem';
 

@@ -1,24 +1,32 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { Children } from 'react';
 
 import { gridSize, colors } from '../../theme';
 
 import { Input, Label, Button, TextArea, Select } from '../../primitives/forms';
 
-const style = {marginBottom: gridSize * 2.5};
+const style = { marginBottom: gridSize * 2.5 };
 
-export const Asterisk = () => <span css={{color: colors.red}}>*</span>
+export const Asterisk = () => <span css={{ color: colors.red }}>*</span>;
 
-export const FormFields = ({children, textArea, btnText, ...props}) => {
-  const [ labelHelp, selectHelp, inputOther, labelComment, inputComment ] = Children.toArray(children);
-  
+export const FormFields = ({ children, textArea, btnText, ...props }) => {
+  const [labelHelp, selectHelp, inputOther, labelComment, inputComment] = Children.toArray(
+    children
+  );
+
   return (
     <div>
-      <Label>Name<Asterisk /></Label>
+      <Label>
+        Name
+        <Asterisk />
+      </Label>
       <Input type="text" name="name" onChange={props.onChange} css={style} minLength="2" required />
 
-      <Label>Email<Asterisk /></Label>
+      <Label>
+        Email
+        <Asterisk />
+      </Label>
       <Input
         type="email"
         name="email"
@@ -28,7 +36,10 @@ export const FormFields = ({children, textArea, btnText, ...props}) => {
         required
       />
 
-      <Label>City<Asterisk /></Label>
+      <Label>
+        City
+        <Asterisk />
+      </Label>
       <Select
         type="select"
         name="city"
@@ -38,20 +49,23 @@ export const FormFields = ({children, textArea, btnText, ...props}) => {
         required
       />
 
-      {textArea  && 
+      {textArea && (
         <>
-          <Label>Your message<Asterisk /></Label>
+          <Label>
+            Your message
+            <Asterisk />
+          </Label>
           <TextArea
             type="text"
             name="message"
             onChange={props.onChange}
             placeholder="Type here..."
-            minLength="10"        
+            minLength="10"
             css={style}
             required
           />
         </>
-      }
+      )}
 
       {labelHelp}
       {selectHelp}
@@ -59,10 +73,7 @@ export const FormFields = ({children, textArea, btnText, ...props}) => {
       {labelComment}
       {inputComment}
 
-      <Button type="submit">
-        {btnText}
-      </Button>
+      <Button type="submit">{btnText}</Button>
     </div>
   );
 };
-

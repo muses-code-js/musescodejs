@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { H3, Html, AvatarStack } from '../primitives';
 import { mq } from '../helpers/media';
@@ -8,7 +8,7 @@ import { colors } from '../theme';
 const Talks = ({ talks }) => {
   return (
     <Wrapper>
-      {talks.map(talk => {
+      {talks.map((talk) => {
         const hasSpeakers = Boolean(talk.speakers && talk.speakers.length);
 
         return (
@@ -48,7 +48,7 @@ export default Talks;
 
 const CONTENT_GUTTER = 12;
 
-const Wrapper = props => (
+const Wrapper = (props) => (
   <div
     css={mq({
       display: ['block', 'flex'],
@@ -59,7 +59,7 @@ const Wrapper = props => (
     {...props}
   />
 );
-const Talk = props => (
+const Talk = (props) => (
   <div
     css={{
       flex: 1,
@@ -73,7 +73,7 @@ const Talk = props => (
     {...props}
   />
 );
-const Content = props => (
+const Content = (props) => (
   <div
     css={{
       flex: 1,
@@ -82,7 +82,7 @@ const Content = props => (
     {...props}
   />
 );
-const Bolt = props => (
+const Bolt = (props) => (
   <div
     css={{
       color: colors.greyMedium,

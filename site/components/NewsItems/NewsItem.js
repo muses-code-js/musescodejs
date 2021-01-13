@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import Link from 'next/link';
 import { H4, H5, Html } from '../../primitives';
 import { colors, gridSize, shadows } from '../../theme';
 import { formatPastDate } from '../../helpers';
 import { mq } from '../../helpers/media';
 
-const NewsItem = post => {
-  const { id, title, slug, author, date, description } = post;
+const NewsItem = (post) => {
+  const { title, author, date, description, slug } = post;
 
   const prettyDate = formatPastDate(date);
 
@@ -81,7 +81,7 @@ const NewsItem = post => {
 // Styled Components
 // ------------------------------
 
-const Mask = props => (
+const Mask = (props) => (
   <div
     css={{
       position: 'absolute',

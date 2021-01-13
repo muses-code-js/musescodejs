@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useState, useEffect, Component } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import Router from 'next/router';
@@ -52,7 +52,7 @@ const ChangePasswordForm = ({ token, accessedAt }) => {
 
   const minPasswordLength = 8;
 
-  const handleSubmit = changePasswordWithToken => event => {
+  const handleSubmit = (changePasswordWithToken) => (event) => {
     event.preventDefault();
     if (password !== confirmedPassword) {
       setErrorState('Passwords do not match');
@@ -108,7 +108,7 @@ const ChangePasswordForm = ({ token, accessedAt }) => {
                 placeholder="supersecret"
                 disabled={isAuthenticated}
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Field>
             <Field>
@@ -122,7 +122,7 @@ const ChangePasswordForm = ({ token, accessedAt }) => {
                 placeholder="supersecret"
                 disabled={isAuthenticated}
                 value={confirmedPassword}
-                onChange={e => setConfirmedPassword(e.target.value)}
+                onChange={(e) => setConfirmedPassword(e.target.value)}
               />
             </Field>
             {errorState ? <p css={{ color: colors.red }}>{errorState}</p> : null}

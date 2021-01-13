@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import Link from 'next/link';
 import Rsvp from '../../components/Rsvp';
 import { H3, H5, Html, PinIcon } from '../../primitives';

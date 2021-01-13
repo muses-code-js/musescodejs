@@ -2,7 +2,7 @@
 
 import { useContext, createContext } from 'react';
 import getConfig from 'next/config';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import Link from 'next/link';
 import { useAuth } from '../lib/authetication';
@@ -18,7 +18,7 @@ const useTheme = () => useContext(ThemeContext);
 const { publicRuntimeConfig } = getConfig();
 const { meetup } = publicRuntimeConfig;
 
-const NavAnchor = props => {
+const NavAnchor = (props) => {
   const { foreground } = useTheme();
   const paddingHorizontal = [gridSize, gridSize, gridSize * 3];
   const paddingVertical = gridSize;
@@ -48,7 +48,7 @@ const NavLink = ({ href, as, ...props }) => (
     <NavAnchor {...props} />
   </Link>
 );
-const NavButton = props => (
+const NavButton = (props) => (
   <NavLink
     css={mq({
       backgroundColor: colors.pink,
@@ -64,14 +64,14 @@ const NavButton = props => (
   />
 );
 
-const NavText = props => {
+const NavText = (props) => {
   const { foreground } = useTheme();
   return <span css={{ color: foreground, fontSize: fontSizes.sm }} {...props} />;
 };
 
 export const HEADER_GUTTER = [gridSize * 2, gridSize * 6];
 
-const Header = props => {
+const Header = (props) => {
   const { background } = useTheme();
 
   return (
@@ -94,7 +94,7 @@ const hideOnMobile = mq({
 // TODO: Implement log out
 const UserActions = ({ user }) => {
   const { signout } = useAuth();
-  const onSignout = event => {
+  const onSignout = (event) => {
     event.preventDefault();
     signout();
   };

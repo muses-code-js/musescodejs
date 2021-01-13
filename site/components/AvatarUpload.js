@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
@@ -19,7 +19,7 @@ export const AvatarUpload = ({ userId, size }) => {
   const user = data.User;
   if (!user) return null;
 
-  const handleImageChange = files => {
+  const handleImageChange = (files) => {
     const file = files ? files[0] : false;
     if (!file) return;
 
@@ -55,7 +55,7 @@ export const AvatarUpload = ({ userId, size }) => {
           autoDismiss: true,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
       });
@@ -96,7 +96,7 @@ export const AvatarUpload = ({ userId, size }) => {
       <input
         accept={validImageTypes}
         type="file"
-        onChange={e => handleImageChange(e.target.files)}
+        onChange={(e) => handleImageChange(e.target.files)}
         css={{
           height: 0,
           opacity: 0,

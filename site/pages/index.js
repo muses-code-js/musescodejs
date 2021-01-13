@@ -1,7 +1,7 @@
 /** @jsx jsx */
+import { jsx } from '@emotion/react';
 import { useQuery } from '@apollo/react-hooks';
 import getConfig from 'next/config';
-import { jsx } from '@emotion/core';
 
 import EventItems from '../components/EventItems';
 import Navbar from '../components/Navbar';
@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import Meta from '../components/Meta';
 import { GET_CURRENT_EVENTS } from '../graphql/events';
 import { GET_EVENT_RSVPS } from '../graphql/rsvps';
-import { GET_SPONSORS } from '../graphql/sponsors';
 import Link from 'next/link';
 
 import Talks from '../components/Talks';
@@ -27,21 +26,14 @@ import {
 } from '../primitives';
 import { H2, H3 } from '../primitives/Typography';
 import { colors, gridSize, fontSizes } from '../theme';
-import {
-  isInFuture,
-  formatFutureDate,
-  formatPastDate,
-  getForegroundColor,
-  pluralLabel,
-} from '../helpers';
+import { isInFuture, formatFutureDate, formatPastDate, pluralLabel } from '../helpers';
 import { mq } from '../helpers/media';
 
 const { publicRuntimeConfig } = getConfig();
 
 // Featured Event
 const FeaturedEvent = ({ isLoading, error, event }) => {
-  const { description, id, locationAddress, maxRsvps, name, startTime, talks } =
-    event || {};
+  const { description, id, locationAddress, maxRsvps, name, startTime, talks } = event || {};
   const { data, loading: queryLoading, error: queryError } = useQuery(GET_EVENT_RSVPS, {
     variables: { event: id },
     skip: !event,
@@ -134,9 +126,7 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
               justifyContent: 'space-between',
             })}
           >
-            <Rsvp event={event}>
-              {({ message, component }) => component || message}
-            </Rsvp>
+            <Rsvp event={event}>{({ message, component }) => component || message}</Rsvp>
             <div
               css={{
                 alignItems: 'center',
@@ -169,7 +159,7 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
                     {attending} {isInFuture(startTime) ? 'attending' : 'attended'}
                   </div>
                   <AvatarStack
-                    users={allRsvps.filter(rsvp => rsvp.user).map(rsvp => rsvp.user)}
+                    users={allRsvps.filter((rsvp) => rsvp.user).map((rsvp) => rsvp.user)}
                     size="small"
                   />
                 </>
@@ -252,10 +242,11 @@ function processEventsData(data) {
 
 const Home = ({ now }) => {
   const { meetup } = publicRuntimeConfig;
-  const { data: eventsData, loading: eventsLoading, error: eventsError } = useQuery(
-    GET_CURRENT_EVENTS,
-    { variables: { now } }
-  );
+  const {
+    data: eventsData,
+    loading: eventsLoading,
+    error: eventsError,
+  } = useQuery(GET_CURRENT_EVENTS, { variables: { now } });
   const { featuredEvent, moreEvents } = processEventsData(eventsData);
 
   return (
@@ -263,7 +254,10 @@ const Home = ({ now }) => {
       <Meta titleExclusive={meetup.name} description={meetup.description} />
       <Navbar background={colors.purple} />
       <Hero title={meetup.name}>
-        <p>Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around Australia.</p>
+        <p>
+          Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around
+          Australia.
+        </p>
       </Hero>
       <FeaturedEvent isLoading={eventsLoading} error={eventsError} event={featuredEvent} />
       <Container css={{ marginTop: '3rem' }}>
@@ -315,7 +309,7 @@ const Home = ({ now }) => {
 
 // styled components
 
-const Section = props => (
+const Section = (props) => (
   <section
     css={{
       position: 'relative',
@@ -344,7 +338,7 @@ const Slant = ({ fill, height = 5, placement }) => {
   );
 };
 
-Home.getInitialProps = async ({ apolloClient }) => {
+Home.getInitialProps = async () => {
   return {
     now: new Date().toISOString(),
   };

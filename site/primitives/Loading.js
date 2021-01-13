@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
@@ -54,7 +54,7 @@ Loading.defaultProps = {
   size: 'medium',
 };
 
-const centerStyles = width => ({
+const centerStyles = (width) => ({
   lineHeight: 10,
   marginLeft: 'auto',
   marginRight: 'auto',

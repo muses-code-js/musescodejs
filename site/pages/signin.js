@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Router from 'next/router';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import Signin from '../components/auth/signin';
 import { useAuth } from '../lib/authetication';

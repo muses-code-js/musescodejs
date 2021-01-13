@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { useFormState } from 'react-use-form-state';
 import { useToasts } from 'react-toast-notifications';
 import { useMutation } from '@apollo/react-hooks';
-import { withApollo } from '../lib/withApollo';
+import withApolloClient from '../lib/with-apollo-client';
 
 import { AvatarUpload } from '../components/AvatarUpload';
 import Meta from '../components/Meta';
@@ -25,7 +25,7 @@ class ProfilePage extends Component {
       };
     } catch (error) {
       // If there was an error, we need to pass it down so the page can handle it.
-      console.log('error', error);
+      console.error('error', error);
       return { error };
     }
   }
@@ -67,10 +67,11 @@ const Profile = ({ user }) => {
     updatingUser ||
     (formState.touched.email && !formState.validity.email) ||
     (formState.touched.password && !formState.validity.password) ||
-    (!formState.values.password || !formState.values.confirmPassword);
+    !formState.values.password ||
+    !formState.values.confirmPassword;
 
   const handleSubmit = useCallback(
-    async event => {
+    async (event) => {
       event.preventDefault();
       if (formState.values.password !== formState.values.confirmPassword) {
         setValidationErrors({ password: 'Your password should match.' });
@@ -199,4 +200,4 @@ const UPDATE_USER = gql`
   }
 `;
 
-export default withApollo(ProfilePage);
+export default withApolloClient(ProfilePage);

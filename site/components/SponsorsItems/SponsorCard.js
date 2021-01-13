@@ -1,28 +1,20 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { colors, gridSize, shadows } from '../../theme';
 import { mq } from '../../helpers/media';
 
-const SponsorCard = sponsor => {
-  const {
-    id,
-    name,
-    category,
-    website,
-    image,
-    ...props
-  } = sponsor;
+const SponsorCard = (sponsor) => {
+  const { id, name, category, website, image, ...props } = sponsor;
 
   return (
-  <li {...props} ccss={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
-    
-    <div
+    <li {...props} ccss={mq({ width: ['100%', '50%', '50%', '33.33%'] })}>
+      <div
         css={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'white', 
+          backgroundColor: 'white',
           width: '150px',
           height: '150px',
           borderTop: `solid 8px ${colors[category.toLowerCase()]}`,
@@ -41,12 +33,11 @@ const SponsorCard = sponsor => {
           },
         }}
       >
-        <a href={website} target="_blank">
-           <img src={image.publicUrlTransformed}></img>
+        <a href={website} target="_blank" rel="noreferrer">
+          <img src={image.publicUrlTransformed} />
         </a>
-
-    </div>
-  </li>
+      </div>
+    </li>
   );
 };
 

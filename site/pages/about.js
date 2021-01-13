@@ -1,10 +1,9 @@
 /** @jsx jsx */
 
 import { useQuery } from '@apollo/react-hooks';
-import getConfig from 'next/config';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
-import { Avatar, Container, Error, H1, H2, H3, H5, Html, Loading } from '../primitives';
+import { Avatar, Container, Error, H1, H3, Loading } from '../primitives';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Meta from '../components/Meta';
@@ -16,7 +15,7 @@ const About = () => {
   const { data, loading, error } = useQuery(GET_ORGANISERS);
   const hasOrganisers = Boolean(data && data.allOrganisers && data.allOrganisers.length);
   const allOrganisers = hasOrganisers
-    ? data.allOrganisers.filter(o => o.user).map(o => o.user)
+    ? data.allOrganisers.filter((o) => o.user).map((o) => o.user)
     : [];
   return (
     <>
@@ -59,7 +58,7 @@ const About = () => {
               </H3>
             }
           >
-            {allOrganisers.map(organiser => {
+            {allOrganisers.map((organiser) => {
               return <Organiser key={organiser.id} organiser={organiser} />;
             })}
           </OrganiserList>
@@ -70,7 +69,7 @@ const About = () => {
   );
 };
 
-const twitterLink = handle => `https://twitter.com/${handle.slice(1)}`;
+const twitterLink = (handle) => `https://twitter.com/${handle.slice(1)}`;
 
 const OrganiserList = ({ title, ...props }) => (
   <div
@@ -114,6 +113,7 @@ const Organiser = ({ organiser }) => (
           css={{ color: colors.greyDark }}
           href={twitterLink(organiser.twitterHandle)}
           target="_blank"
+          rel="noreferrer"
         >
           {organiser.twitterHandle}
         </a>
@@ -121,6 +121,6 @@ const Organiser = ({ organiser }) => (
     </div>
   </li>
 );
-const Content = props => <div css={{ maxWidth: 720 }} {...props} />;
+const Content = (props) => <div css={{ maxWidth: 720 }} {...props} />;
 
 export default About;

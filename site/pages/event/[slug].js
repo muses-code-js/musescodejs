@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useQuery } from '@apollo/react-hooks';
 
 import Rsvp from '../../components/Rsvp';
@@ -25,7 +25,7 @@ const Event = ({ slug, loadingColor }) => {
     return <Error message="Something went wrong. Please try again later." />;
   }
 
-  const eventObj = data.allEvents.find(eventObj => eventObj.slug == slug);
+  const eventObj = data.allEvents.find((event) => event.slug == slug);
 
   if (!eventObj) {
     return <Error message="Event not found" />;
@@ -82,8 +82,8 @@ const Event = ({ slug, loadingColor }) => {
             }}
           >
             {allRsvps
-              .filter(rsvp => rsvp.user)
-              .map(rsvp => (
+              .filter((rsvp) => rsvp.user)
+              .map((rsvp) => (
                 <div key={rsvp.id} css={{ marginLeft: '0.25em', marginRight: '0.25em' }}>
                   <Avatar
                     alt={`${rsvp.user.name} Avatar`}

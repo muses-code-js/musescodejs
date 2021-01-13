@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuid } = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
@@ -12,7 +12,7 @@ const {
   Text,
   Slug,
 } = require('@keystonejs/fields');
-const { CloudinaryAdapter, CloudinaryFileAdapter } = require('@keystonejs/file-adapters');
+const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
 const { CloudinaryImage } = require('@keystonejs/fields-cloudinary-image');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 

@@ -36,7 +36,7 @@ export const Avatar = ({ alt, margin, size, shape, image, src, ...props }) => {
     <span css={[styles, fallbackStyles]} {...props}>
       {alt
         .split(' ')
-        .map(w => w.charAt(0))
+        .map((w) => w.charAt(0))
         .join('')
         .toUpperCase()}
     </span>

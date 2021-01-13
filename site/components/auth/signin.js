@@ -1,22 +1,22 @@
 /** @jsx jsx */
 
 import { useState } from 'react';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { useAuth } from '../../lib/authetication';
 import { Button, Field, Group, Label, Link, Input } from '../../primitives/forms';
 import { gridSize, colors } from '../../theme';
 
-const onChange = handler => e => handler(e.target.value);
+const onChange = (handler) => (e) => handler(e.target.value);
 
-export default ({ onSuccess, onClickForgot }) => {
+const Signin = ({ onSuccess, onClickForgot }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const { isAuthenticated, signin } = useAuth();
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     setIsLoading(true);
@@ -82,3 +82,5 @@ export default ({ onSuccess, onClickForgot }) => {
     </>
   );
 };
+
+export default Signin;

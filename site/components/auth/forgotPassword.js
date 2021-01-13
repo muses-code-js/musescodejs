@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Mutation } from 'react-apollo';
 import Router from 'next/router';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import gql from 'graphql-tag';
 
 import { useAuth } from '../../lib/authetication';
@@ -18,12 +18,12 @@ export const CREATE_FOGOT_PASSWORD_TOKEN = gql`
   }
 `;
 
-export default ({ onSuccess, onClickSignin }) => {
+const ForgotPassword = ({ onSuccess, onClickSignin }) => {
   const [email, setEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const { isAuthenticated } = useAuth();
 
-  const handleSubmit = startPasswordRecovery => event => {
+  const handleSubmit = (startPasswordRecovery) => (event) => {
     event.preventDefault();
     startPasswordRecovery({ variables: { email } });
   };
@@ -50,7 +50,9 @@ export default ({ onSuccess, onClickSignin }) => {
         return (
           <>
             {mutationError && (
-              <p css={{ color: colors.red }}>There is no account with the email "{email}"</p>
+              <p css={{ color: colors.red }}>
+                There is no account with the email &quot;{email}&quot;
+              </p>
             )}
 
             <form
@@ -68,7 +70,7 @@ export default ({ onSuccess, onClickSignin }) => {
                   placeholder="you@awesome.com"
                   disabled={isAuthenticated}
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Field>
 
@@ -93,3 +95,5 @@ export default ({ onSuccess, onClickSignin }) => {
     </Mutation>
   );
 };
+
+export default ForgotPassword;

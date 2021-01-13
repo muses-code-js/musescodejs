@@ -1,20 +1,18 @@
 import React from 'react';
-import App from 'next/app';
-import { withApollo } from '../lib/withApollo';
-import gql from 'graphql-tag';
-
 import Head from 'next/head';
 import { ToastProvider } from 'react-toast-notifications';
 import { AuthProvider } from '../lib/authetication';
 import StylesBase from '../primitives/StylesBase';
 import GoogleAnalytics from '../components/GoogleAnalytics';
+import { useApollo } from '../lib/apollo-client';
+import { ApolloProvider } from '@apollo/client';
 
-class Layout extends React.Component {
-  render() {
-    const { children, user } = this.props;
-    return (
-      <ToastProvider>
-        <AuthProvider initialUserValue={user}>
+const MyApp = ({ Component, pageProps }) => {
+  const apolloClient = useApollo(pageProps.initialApolloState);
+  return (
+    <ToastProvider>
+      <ApolloProvider client={apolloClient}>
+        <AuthProvider>
           <Head>
             <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
             <meta
@@ -23,42 +21,12 @@ class Layout extends React.Component {
             />
           </Head>
           <StylesBase />
-          {children}
+          <Component {...pageProps} />
         </AuthProvider>
-        <GoogleAnalytics />
-      </ToastProvider>
-    );
-  }
-}
-
-Layout.getInitialProps = async ({ apolloClient }) => {
-  const data = await apolloClient.query({
-    query: gql`
-      query {
-        authenticatedUser {
-          id
-          name
-          isAdmin
-        }
-      }
-    `,
-    fetchPolicy: 'network-only',
-  });
-
-  return {
-    user: data.data ? data.data.authenticatedUser : undefined,
-  };
+      </ApolloProvider>
+      <GoogleAnalytics />
+    </ToastProvider>
+  );
 };
 
-const WrappedLayout = withApollo(Layout);
-
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <WrappedLayout>
-        <Component {...pageProps} />
-      </WrappedLayout>
-    );
-  }
-}
+export default MyApp;

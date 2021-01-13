@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -13,7 +13,7 @@ import { Container, H2 } from '../primitives';
 const style = {
   marginTop: gridSize * 5,
   maxWidth: 700,
-}
+};
 
 const Contact = () => {
   return (
@@ -22,7 +22,7 @@ const Contact = () => {
       <Navbar />
       <Container css={{ marginTop: gridSize * 3 }}>
         <H2 hasSeparator>Contact</H2>
-        <ContactForm css={style} />        
+        <ContactForm css={style} />
       </Container>
       <Footer />
     </>

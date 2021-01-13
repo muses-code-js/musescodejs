@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import Router from 'next/router';
 
 import Navbar from '../../components/Navbar';
@@ -22,7 +22,7 @@ const Thanks = () => {
           </p>
           <Button
             css={btnStyle}
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               Router.push('/');
             }}

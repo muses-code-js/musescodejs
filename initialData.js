@@ -20,7 +20,7 @@ const validatePassword = () => {
   }
 };
 
-module.exports = async keystone => {
+module.exports = async (keystone) => {
   // Check the users list to see if there are any; if we find none, assume
   // it's a new database and initialise the demo data set.
   const users = await keystone.lists.User.adapter.findAll();
@@ -28,7 +28,10 @@ module.exports = async keystone => {
     // Ensure a valid initial password is available to be used
     validatePassword();
     // Drop the connected database to ensure no existing collections remain
-    await Promise.all(Object.values(keystone.adapters).map(adapter => adapter.dropDatabase()));
+    Object.values(keystone.adapters).forEach(async (adapter) => {
+      await adapter.dropDatabase();
+    });
+    // eslint-disable-next-line no-console
     console.log('💾 Creating initial data...');
     await seedData(initialData, keystone);
   }
@@ -42,21 +45,19 @@ async function seedData(intitialData, keystone) {
   const users = await createItems({
     keystone,
     listKey: 'User',
-    items: initialData['User'].map(x => ({ data: x })),
+    items: initialData['User'].map((x) => ({ data: x })),
     // name field is required for connect query for setting up Organiser list
     returnFields: 'id, name',
   });
 
   await Promise.all(
-    ['Post', 'Event', 'Talk', 'Rsvp', 'Sponsor'].map(list =>
-      createItems({ keystone, listKey: list, items: intitialData[list].map(x => ({ data: x })) })
+    ['Post', 'Event', 'Talk', 'Rsvp', 'Sponsor'].map((list) =>
+      createItems({ keystone, listKey: list, items: intitialData[list].map((x) => ({ data: x })) })
     )
   );
 
   // Preparing the Organiser list with connect nested mutation
-  const organisers = Array(3)
-    .fill(true)
-    .map(createOrganisers(users));
+  const organisers = Array(3).fill(true).map(createOrganisers(users));
 
   // Run the GraphQL query to insert all the organisers
   await createItems({ keystone, listKey: 'Organiser', items: organisers });
@@ -70,7 +71,7 @@ function createOrganisers(users) {
         order: i + 1,
         role: 'Organiser',
         user: {
-          connect: { id: users.find(user => user.name === `Organiser ${i + 1}`).id },
+          connect: { id: users.find((user) => user.name === `Organiser ${i + 1}`).id },
         },
       },
     };

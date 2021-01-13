@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import PropTypes from 'prop-types';
 import { colors } from '../theme';
 import NextLink from 'next/link';
@@ -10,8 +10,12 @@ const Link = ({ as, href, ...props }) => (
     <a {...props} />
   </NextLink>
 );
+Link.propTypes = {
+  as: PropTypes.string,
+  href: PropTypes.string,
+};
 
-const getTag = props => {
+const getTag = (props) => {
   let tag = 'button';
   if (props.href) {
     tag = /^https?:/.test(props.href) ? 'a' : Link;

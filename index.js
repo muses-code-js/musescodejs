@@ -5,7 +5,7 @@ const { PasswordAuthStrategy } = require('@keystonejs/auth-password');
 const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
-const { NextApp } = require('@keystone-alpha/app-next');
+const { NextApp } = require('@keystonejs/app-next');
 
 const {
   Event,
@@ -20,11 +20,11 @@ const {
   Enquiry,
 } = require('./schema');
 
-// const initialiseData = require('./initialData');
+const initialiseData = require('./initialData');
 const keystone = new Keystone({
   name: 'MusesCodeJS',
   adapter: new MongooseAdapter({ mongoUri: 'mongodb://localhost/muses-code-js' }),
-  // onConnect: initialiseData,
+  onConnect: initialiseData,
 });
 
 keystone.createList('Event', Event);

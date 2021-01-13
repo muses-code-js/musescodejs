@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 import { useQuery } from '@apollo/react-hooks';
 
 import { Error, Hero, Loading, H4, Html, Container } from '../../primitives';
@@ -19,7 +19,7 @@ const Post = ({ slug, loadingColor }) => {
     return <Error message="Something went wrong. Please try again later." />;
   }
 
-  const postObj = data.allPosts.find(postObj => postObj.slug == slug);
+  const postObj = data.allPosts.find((post) => post.slug == slug);
 
   if (!postObj) {
     return <Error message="Post not found" />;

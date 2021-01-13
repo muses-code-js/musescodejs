@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { Container, H1 } from '../primitives';
 import Navbar from '../components/Navbar';
