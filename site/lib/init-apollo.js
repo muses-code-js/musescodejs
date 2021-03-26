@@ -1,12 +1,9 @@
 import fetch from 'isomorphic-unfetch';
-import getConfig from 'next/config';
 
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 
-const {
-  publicRuntimeConfig: { serverUrl },
-} = getConfig();
+const serverUrl = process.env.SERVER_URL || 'http://localhost:3000';
 
 let apolloClient = null;
 

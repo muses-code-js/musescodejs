@@ -1,7 +1,5 @@
-/** @jsx jsx */
-
-import { useState } from 'react';
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React, { useState } from 'react';
 
 import { useAuth } from '../../lib/authetication';
 import { Button, Field, Group, Label, Link, Input } from '../../primitives/forms';

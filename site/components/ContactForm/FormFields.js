@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
-import { Children } from 'react';
+/** @jsxImportSource @emotion/react */
+import React, { Children } from 'react';
 
 import { gridSize, colors } from '../../theme';
 

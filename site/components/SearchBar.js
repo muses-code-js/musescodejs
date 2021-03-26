@@ -1,5 +1,6 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
+
 import { Button, Input } from '../primitives/forms';
 import { colors } from '../theme';
 

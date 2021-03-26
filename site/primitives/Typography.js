@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/react';
 import { fontSizes } from '../theme';
 import { mq } from '../helpers/media';
 
@@ -14,7 +13,8 @@ const SIZE_MAP = [
   fontSizes.xs,
 ];
 const baseStyles = {
-  fontWeight: 600,
+  fontFamily: 'Didot',
+  fontWeight: 400,
   lineHeight: 1.05,
   margin: 0,
 };

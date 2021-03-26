@@ -28,9 +28,7 @@ module.exports = async (keystone) => {
     // Ensure a valid initial password is available to be used
     validatePassword();
     // Drop the connected database to ensure no existing collections remain
-    Object.values(keystone.adapters).forEach(async (adapter) => {
-      await adapter.dropDatabase();
-    });
+    await keystone.adapter.dropDatabase();
     // eslint-disable-next-line no-console
     console.log('💾 Creating initial data...');
     await seedData(initialData, keystone);

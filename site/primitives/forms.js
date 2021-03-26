@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
-import { Children } from 'react';
+/** @jsxImportSource @emotion/react */
+import React, { Children } from 'react';
 import NextLink from 'next/link';
 
 import { colors, gridSize, borderRadius } from '../theme';

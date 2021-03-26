@@ -1,6 +1,7 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import Link from 'next/link';
+
 import Rsvp from '../../components/Rsvp';
 import { H3, H5, Html, PinIcon } from '../../primitives';
 import { colors, gridSize, shadows } from '../../theme';

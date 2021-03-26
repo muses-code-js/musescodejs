@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { jsx } from '@emotion/react';
 
 import { Avatar, Container, Error, H1, H3, Loading } from '../primitives';
 import Navbar from '../components/Navbar';

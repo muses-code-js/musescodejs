@@ -1,6 +1,5 @@
-/** @jsx jsx */
-
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
@@ -12,7 +11,7 @@ const SIZE_MAP = {
   xlarge: 72,
 };
 
-export default function Loading({ isCentered, size }) {
+export const Loading = ({ isCentered, size }) => {
   const sizePx = SIZE_MAP[size];
 
   return (
@@ -43,7 +42,7 @@ export default function Loading({ isCentered, size }) {
       </svg>
     </div>
   );
-}
+};
 
 Loading.propTypes = {
   isCentered: PropTypes.bool,

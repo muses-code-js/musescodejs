@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import getConfig from 'next/config';
 
 import EventItems from '../components/EventItems';
 import Navbar from '../components/Navbar';
@@ -9,13 +7,16 @@ import Footer from '../components/Footer';
 import Meta from '../components/Meta';
 import { GET_CURRENT_EVENTS } from '../graphql/events';
 import { GET_EVENT_RSVPS } from '../graphql/rsvps';
+import { GET_ALL_SPONSORS } from '../graphql/sponsors';
 import Link from 'next/link';
 
 import Talks from '../components/Talks';
 import Rsvp from '../components/Rsvp';
 import {
   AvatarStack,
+  Button,
   Container,
+  ClipWrapper,
   Error,
   Hero,
   Html,
@@ -24,12 +25,10 @@ import {
   PinIcon,
   UserIcon,
 } from '../primitives';
-import { H2, H3 } from '../primitives/Typography';
+import { H1, H2, H3 } from '../primitives/Typography';
 import { colors, gridSize, fontSizes } from '../theme';
 import { isInFuture, formatFutureDate, formatPastDate, pluralLabel } from '../helpers';
 import { mq } from '../helpers/media';
-
-const { publicRuntimeConfig } = getConfig();
 
 // Featured Event
 const FeaturedEvent = ({ isLoading, error, event }) => {
@@ -172,47 +171,50 @@ const FeaturedEvent = ({ isLoading, error, event }) => {
   );
 };
 
-// const Sponsors = () => {
-//   const { data: { allSponsors } = {}, loading, error } = useQuery(GET_SPONSORS);
-//   return (
-//     <Container css={{ textAlign: 'center' }}>
-//       <H3>Our sponsors</H3>
-//       {loading ? (
-//         <Loading />
-//       ) : error ? (
-//         <Error error={error} />
-//       ) : (
-//         <ul
-//           css={{
-//             display: 'flex',
-//             justifyContent: 'space-between',
-//             alignItems: 'center',
-//             listStyle: 'none',
-//             padding: 0,
-//           }}
-//         >
-//           {allSponsors.map(sponsor => (
-//             <li key={sponsor.id} css={{ flex: 1, margin: 12 }}>
-//               <a href={sponsor.website} target="_blank">
-//                 {sponsor.logo ? (
-//                   <img
-//                     alt={sponsor.name}
-//                     css={{ maxWidth: '100%', maxHeight: 140 }}
-//                     src={sponsor.logo.publicUrl}
-//                   />
-//                 ) : (
-//                   sponsor.name
-//                 )}
-//               </a>
-//             </li>
-//           ))}
-//         </ul>
-//       )}
-//     </Container>
-//   );
-// };
+const Sponsors = () => {
+  const { data: { allSponsors } = {}, loading, error } = useQuery(GET_ALL_SPONSORS);
+  console.log('allSponsors', allSponsors);
+  console.log('loading', loading);
+  console.log('error', error);
+  return (
+    <>
+      <H1>Our Partners</H1>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        <ul
+          css={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            listStyle: 'none',
+            padding: 0,
+          }}
+        >
+          {allSponsors.map((sponsor) => (
+            <li key={sponsor.id} css={{ flex: 1, margin: 12 }}>
+              <a href={sponsor.website} target="_blank" rel="noreferrer">
+                {sponsor.logo ? (
+                  <img
+                    alt={sponsor.name}
+                    css={{ maxWidth: '100%', maxHeight: 140 }}
+                    src={sponsor.logo.publicUrl}
+                  />
+                ) : (
+                  sponsor.name
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+};
 
-function processEventsData(data) {
+const processEventsData = (data) => {
   if (!data || !data.upcomingEvents || !data.previousEvents) {
     return {
       featuredEvent: null,
@@ -238,10 +240,9 @@ function processEventsData(data) {
     featuredEvent,
     moreEvents,
   };
-}
+};
 
 const Home = ({ now }) => {
-  const { meetup } = publicRuntimeConfig;
   const {
     data: eventsData,
     loading: eventsLoading,
@@ -250,65 +251,100 @@ const Home = ({ now }) => {
   const { featuredEvent, moreEvents } = processEventsData(eventsData);
 
   return (
-    <div>
-      <Meta titleExclusive={meetup.name} description={meetup.description} />
-      <Navbar background={colors.purple} />
-      <Hero title={meetup.name}>
-        <p>
-          Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around
-          Australia.
-        </p>
-      </Hero>
-      <FeaturedEvent isLoading={eventsLoading} error={eventsError} event={featuredEvent} />
-      <Container css={{ marginTop: '3rem' }}>
-        {featuredEvent && featuredEvent.talks ? <Talks talks={featuredEvent.talks} /> : null}
-      </Container>
-      <Section css={{ padding: '3rem 0' }}>
-        {/* <Container>
-          <Sponsors />
-        </Container> */}
-      </Section>
-      {moreEvents.length ? (
-        <>
-          <Section
+    <>
+      <Meta
+        titleExclusive="MusesCodeJS"
+        description="Muses run JavaScript and Node.js workshops for women, non-binary and trans folk around Australia."
+      />
+      <ClipWrapper placement="top" image="./girls.jpg">
+        <Navbar />
+        <Hero image="./we_code.svg">
+          <H2
             css={{
-              backgroundColor: colors.greyLight,
-              margin: '5rem 0',
-              paddingTop: '5rem',
+              textAlign: 'center',
+              color: colors.white,
             }}
           >
-            <Slant placement="top" fill={colors.greyLight} />
-            <Container>
-              <H2 hasSeparator>More Meetups</H2>
-              <EventItems events={moreEvents} offsetTop css={{ marginTop: '3rem' }} />
-              <Link href="/events">
-                <a
-                  css={{
-                    color: 'black',
-                    cursor: 'pointer',
-                    fontSize: fontSizes.md,
-                    marginTop: '1rem',
+            We run JavaScript and Node.js workshops for women, non-binary and trans folk around
+            Australia.
+          </H2>
+          <Button
+            background={colors.white}
+            href="https://www.patreon.com/musescodejs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Support us on <img src="./patreon_black.svg" css={{ margin: '0 0.5rem' }} />{' '}
+            <strong>PATREON</strong>
+          </Button>
+        </Hero>
+      </ClipWrapper>
+      <main>
+        <FeaturedEvent isLoading={eventsLoading} error={eventsError} event={featuredEvent} />
+        <Container>
+          {featuredEvent && featuredEvent.talks ? <Talks talks={featuredEvent.talks} /> : null}
+        </Container>
+        <ClipWrapper placement="middle" color={colors.gradientVertical}>
+          <Container textAlign="center" color={colors.white} padding="8rem">
+            <H1>About</H1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra dolor vitae sem
+              gravida, sit amet rhoncus elit aliquam. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Morbi viverra dolor vitae sem gravida, sit amet rhoncus elit aliquam.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra dolor vitae sem
+              gravida, sit amet rhoncus elit aliquam. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Morbi viverra dolor vitae sem gravida, sit amet rhoncus elit aliquam.{' '}
+            </p>
 
-                    ':hover > span': {
-                      textDecoration: 'underline',
-                    },
-                  }}
-                >
-                  <span>View all</span> &rarr;
-                </a>
-              </Link>
-            </Container>
-            <Slant placement="bottom" fill={colors.greyLight} />
-          </Section>
-        </>
-      ) : null}
+            <p>
+              Find out more about us and <a href="./about">meet the team here</a>
+            </p>
+          </Container>
+        </ClipWrapper>
+        <Section css={{ padding: '3rem 0' }}>
+          <Container textAlign="center">
+            <Sponsors />
+          </Container>
+        </Section>
+        {moreEvents.length ? (
+          <>
+            <Section
+              css={{
+                backgroundColor: colors.greyLight,
+                margin: '5rem 0',
+                paddingTop: '5rem',
+              }}
+            >
+              <Container>
+                <H2 hasSeparator>More Meetups</H2>
+                <EventItems events={moreEvents} offsetTop css={{ marginTop: '3rem' }} />
+                <Link href="/events">
+                  <a
+                    css={{
+                      color: 'black',
+                      cursor: 'pointer',
+                      fontSize: fontSizes.md,
+                      marginTop: '1rem',
+
+                      ':hover > span': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    <span>View all</span> &rarr;
+                  </a>
+                </Link>
+              </Container>
+            </Section>
+          </>
+        ) : null}
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
 // styled components
-
 const Section = (props) => (
   <section
     css={{
@@ -317,26 +353,6 @@ const Section = (props) => (
     {...props}
   />
 );
-const Slant = ({ fill, height = 5, placement }) => {
-  const points = placement === 'bottom' ? '0, 100 0, 0 100, 0' : '0 100, 100 0, 100, 100';
-
-  return (
-    <svg
-      css={{
-        height: `${height}vw`,
-        width: '100vw',
-        display: 'block',
-        position: 'absolute',
-        [placement]: `-${height}vw`,
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-    >
-      <polygon fill={fill} points={points} />
-    </svg>
-  );
-};
 
 Home.getInitialProps = async () => {
   return {

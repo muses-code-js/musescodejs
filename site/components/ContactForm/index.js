@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
-import { useState } from 'react';
+/** @jsxImportSource @emotion/react */
+import React, { useState } from 'react';
 
 import Router from 'next/router';
 import { SEND_ENQUIRY } from '../../graphql/enquiries';

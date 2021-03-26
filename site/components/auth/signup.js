@@ -1,9 +1,10 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import gql from 'graphql-tag';
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import Router from 'next/router';
-import { jsx } from '@emotion/react';
+
 import { useAuth } from '../../lib/authetication';
 import { Button, Field, Label, Input } from '../../primitives/forms';
 import { gridSize, colors } from '../../theme';

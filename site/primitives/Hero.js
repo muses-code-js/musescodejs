@@ -1,12 +1,10 @@
-/** @jsx jsx */
-
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/react';
 
 import { Container } from '../primitives';
 import { H1 } from '../primitives/Typography';
 import { colors, fontSizes } from '../theme';
-import { getForegroundColor } from '../helpers';
 
 export const Hero = ({
   align,
@@ -15,34 +13,22 @@ export const Hero = ({
   subTitle,
   superTitle,
   title,
+  image,
   ...props
 }) => {
   const horizontalMargin = align === 'center' ? 'auto' : null;
-  const foregroundColor = getForegroundColor(backgroundColor);
 
   return (
     <>
-      <Wrapper
-        align={align}
-        backgroundColor={backgroundColor}
-        foregroundColor={foregroundColor}
-        {...props}
-      >
-        <Container>
+      <Wrapper align={align} {...props}>
+        <Container textAlign="center" css={{ marginBottom: '8rem' }}>
           {superTitle && <Subtitle>{superTitle}</Subtitle>}
           <H1>{title}</H1>
+          {image && <img src={image} alt="We code" width="602" height="180" />}
           {subTitle && <Subtitle>{subTitle}</Subtitle>}
           <Content horizontalMargin={horizontalMargin}>{children}</Content>
         </Container>
       </Wrapper>
-      <svg
-        css={{ height: '5vw', width: '100vw' }}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        <polygon fill={backgroundColor} points="0, 100 0, 0 100, 0" />
-      </svg>
     </>
   );
 };
@@ -51,9 +37,10 @@ Hero.propTypes = {
   align: PropTypes.oneOf(['left', 'center', 'right']),
   backgroundColor: PropTypes.string.isRequired,
   children: PropTypes.node,
+  image: PropTypes.string,
   subTitle: PropTypes.string,
   superTitle: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 Hero.defaultProps = {
   align: 'center',
@@ -61,11 +48,10 @@ Hero.defaultProps = {
 };
 
 // styled components
-
 const Wrapper = ({ align, backgroundColor, foregroundColor, ...props }) => (
   <div
     css={{
-      backgroundColor: backgroundColor,
+      backgroundColor: 'transparent',
       color: foregroundColor,
       padding: '7rem 0',
       textAlign: align,

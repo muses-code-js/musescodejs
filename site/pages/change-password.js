@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
-import { useState, useEffect, Component } from 'react';
+/** @jsxImportSource @emotion/react */
+import React, { useState, useEffect, Component } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import Router from 'next/router';
 

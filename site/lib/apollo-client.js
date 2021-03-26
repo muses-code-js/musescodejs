@@ -5,13 +5,15 @@ import { createUploadLink } from 'apollo-upload-client';
 
 let apolloClient;
 
+const serverUrl = 'http://localhost:4000';
+
 function createApolloClient(req) {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: createUploadLink({
       // TODO: server-side requests must have an absolute URI. We should find a way
       // to make this part of the project config, seems highly opinionated here
-      uri: 'http://localhost:3000/admin/api',
+      uri: `${serverUrl}/admin/api`,
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       headers: req && req.headers,
     }),

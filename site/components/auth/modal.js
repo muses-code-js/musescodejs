@@ -1,7 +1,5 @@
-/** @jsx jsx */
-
-import { useEffect, useState } from 'react';
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React, { useEffect, useState } from 'react';
 
 import Signin from '../../components/auth/signin';
 import Signup from '../../components/auth/signup';

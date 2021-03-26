@@ -1,13 +1,8 @@
 import { useEffect } from 'react';
 import { format, isFuture, parseISO } from 'date-fns';
-import getConfig from 'next/config';
 import contrast from 'get-contrast';
 
 import { colors } from '../theme';
-
-const {
-  publicRuntimeConfig: { meetup },
-} = getConfig();
 
 // Check if date is in future or past
 export const isInFuture = (date) => isFuture(parseISO(date));
@@ -35,8 +30,8 @@ export const getForegroundColor = (backgroundColor) => {
 
 // Logo dimensions
 export const useLogoDimension = () => {
-  const logoWidth = meetup.logo.width;
-  const logoHeight = meetup.logo.height;
+  const logoWidth = 178;
+  const logoHeight = 41;
   const logoWidthSm = logoWidth / 1.5;
   const logoHeightSm = logoHeight / 1.5;
 

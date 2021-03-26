@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import Router from 'next/router';
 
 import Navbar from '../../components/Navbar';

@@ -1,9 +1,7 @@
-/** @jsx jsx */
-
-import { useState, useEffect } from 'react';
+/** @jsxImportSource @emotion/react */
+import React, { useState, useEffect } from 'react';
 import { Mutation } from 'react-apollo';
 import Router from 'next/router';
-import { jsx } from '@emotion/react';
 import gql from 'graphql-tag';
 
 import { useAuth } from '../../lib/authetication';

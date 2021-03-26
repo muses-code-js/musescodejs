@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import SponsorCard from './SponsorCard';
 import { gridSize } from '../../theme';
 import { H5 } from '../../primitives';

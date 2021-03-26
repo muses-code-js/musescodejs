@@ -1,11 +1,10 @@
-/** @jsx jsx */
-
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { AlertIcon, Container, H1 } from '../primitives';
 import Link from 'next/link';
 
-export default function Error({ message, title }) {
+export const Error = ({ message, title }) => {
   return (
     <Container css={{ marginTop: '3rem', textAlign: 'center' }}>
       <AlertIcon size={48} />
@@ -16,7 +15,7 @@ export default function Error({ message, title }) {
       </Link>
     </Container>
   );
-}
+};
 
 Error.propTypes = {
   message: PropTypes.string.isRequired,

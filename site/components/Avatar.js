@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { Children } from 'react';
-import { jsx } from '@emotion/core';
+/** @jsxImportSource @emotion/react */
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 

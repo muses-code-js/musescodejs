@@ -2,7 +2,7 @@
 
 Project [link](https://github.com/muses-code-js/musescodejs/projects/1)
 
-A free, open source website. Powered by [Keystone 5](https://www.keystonejs.com/), [Next.js](https://nextjs.org/) and [Emotion](https://emotion.sh/).
+A free, open source website. Powered by [Keystone](https://www.keystonejs.com/), [Next.js](https://nextjs.org/) and [Emotion](https://emotion.sh/).
 
 Note: This is a work in progress and we'd love your contributions. Please see the read the issues and [contributing guidelines](CONTRIBUTING.md) if you'd like to help make this project better.
 
@@ -56,3 +56,7 @@ Follow the [official guide](https://docs.mongodb.com/manual/tutorial/install-mon
 
 **Setup**
 By default the Mongoose Adapter will attempt to connect to MongoDB as the current user and create a new database using the project name. You can override these options when [configuring the Mongoose Adapter](https://www.keystonejs.com/keystonejs/adapter-mongoose/).
+
+_TODO_
+Replace with Keystone Next
+Figure out what to do with the .env in the browser

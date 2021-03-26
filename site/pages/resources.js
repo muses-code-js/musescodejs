@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_RESOURCES } from '../graphql/resources';
 

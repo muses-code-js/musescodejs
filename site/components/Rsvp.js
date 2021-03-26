@@ -1,6 +1,7 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { jsx } from '@emotion/react';
+
 import { Button as ButtonPrimitive, CheckmarkIcon, Loading } from '../primitives';
 import { useAuth } from '../lib/authetication';
 import { GET_RSVPS, UPDATE_RSVP, ADD_RSVP } from '../graphql/rsvps';

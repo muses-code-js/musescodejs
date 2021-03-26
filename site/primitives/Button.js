@@ -1,7 +1,7 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import PropTypes from 'prop-types';
-import { colors } from '../theme';
+import { colors, borderRadius } from '../theme';
 import NextLink from 'next/link';
 import { getForegroundColor } from '../helpers';
 
@@ -29,7 +29,7 @@ const SIZE_MAP = {
   medium: '.9rem 2rem',
 };
 
-export default function Button({ background, outline, size, ...props }) {
+export const Button = ({ background, outline, size, ...props }) => {
   const Tag = getTag(props);
   const foreground = background ? getForegroundColor(background) : colors.greyDark;
 
@@ -41,7 +41,7 @@ export default function Button({ background, outline, size, ...props }) {
         alignItems: 'center',
         background: outline ? 'transparent' : background,
         border: `solid 2px ${outline ? 'rgba(0, 0, 0, 0.1)' : 'transparent'}`,
-        borderRadius: 40,
+        borderRadius: borderRadius * 2,
         color: foreground,
         cursor: 'pointer',
         display: 'inline-flex',
@@ -56,7 +56,7 @@ export default function Button({ background, outline, size, ...props }) {
       {...props}
     />
   );
-}
+};
 
 Button.propTypes = {
   background: PropTypes.string,

@@ -1,12 +1,14 @@
 import React from 'react';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 
 export default function StylesBase() {
   return (
     <Global
       styles={css`
-        ${normalize};
-        $@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+        ${
+          '' /* $@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;700;900&display=swap'); */
+        }
+        $@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
         body {
           max-width: 100%;
           overflow-x: hidden;
@@ -20,6 +22,7 @@ export default function StylesBase() {
           -moz-osx-font-smoothing: grayscale;
           -webkit-font-smoothing: antialiased;
         }
+        ${normalize};
       `}
     />
   );
@@ -33,6 +36,7 @@ const normalize = css`
   }
   body {
     margin: 0;
+    font-size: 1.1em;
   }
   main {
     display: block;

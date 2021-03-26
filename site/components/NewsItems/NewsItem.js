@@ -1,6 +1,7 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import Link from 'next/link';
+
 import { H4, H5, Html } from '../../primitives';
 import { colors, gridSize, shadows } from '../../theme';
 import { formatPastDate } from '../../helpers';

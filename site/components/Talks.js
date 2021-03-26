@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
-
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 import { H3, Html, AvatarStack } from '../primitives';
 import { mq } from '../helpers/media';
 import { colors } from '../theme';

@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
 
 import NewsItem from './NewsItem';
 import { gridSize } from '../../theme';

@@ -1,5 +1,6 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/react';
+/** @jsxImportSource @emotion/react */
+import React from 'react';
+
 import { colors, gridSize, shadows } from '../../theme';
 import { mq } from '../../helpers/media';
 
