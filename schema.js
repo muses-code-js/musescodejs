@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid');
 const { sendEmail } = require('./emails');
 
 const {
-  CloudinaryImage,
   Checkbox,
   DateTime,
   Integer,
@@ -13,6 +12,7 @@ const {
   Text,
 } = require('@keystonejs/fields');
 const { CloudinaryAdapter } = require('@keystonejs/file-adapters');
+const { CloudinaryImage } = require('@keystonejs/fields-cloudinary-image');
 const { Wysiwyg } = require('@keystonejs/fields-wysiwyg-tinymce');
 
 const cloudinaryAdapter = new CloudinaryAdapter({
@@ -203,9 +203,9 @@ exports.Enquiry = {
   },
   fields: {
     name: { type: Text, isRequired: true },
-    email: { type: String, isRequired: true },
+    email: { type: Text, isRequired: true },
     city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong'},      
-    message: { type: String, isRequired: true },
+    message: { type: Text, isRequired: true },
     createdAt: { type: DateTime, isRequired: true },
   }
 }
@@ -218,11 +218,11 @@ exports.Volunteer = {
   },
   fields: {
     name: { type: Text, isRequired: true },
-    email: { type: String, isRequired: true },
+    email: { type: Text, isRequired: true },
     city: { type: Select, options: 'Sydney, Melbourne, Brisbane, Perth, Canberra, Hobart, Wollongong', isRequired: true},      
     how: { type: Select, dataType: 'string', options: ['Mentorship', 'Organisation', 'Workshop Proposal', 'Other'], isRequired: true },
-    other: { type: String },
-    comment: { type: String },
+    other: { type: Text },
+    comment: { type: Text },
     // createdAt: { type: DateTime, isRequired: true },
   }
 }
