@@ -1,6 +1,14 @@
 import { config, list } from '@keystone-6/core';
-import {} from '@keystone-6/core';
-import { checkbox, image, password, relationship, text } from '@keystone-6/core/fields';
+import {
+  checkbox,
+  image,
+  password,
+  relationship,
+  text,
+  integer,
+  select,
+  timestamp,
+} from '@keystone-6/core/fields';
 import { document } from '@keystone-6/fields-document';
 
 // import { sendEmail } from './emails';
@@ -38,6 +46,16 @@ const DEFAULT_LIST_ACCESS = {
   update: isAdmin,
   delete: isAdmin,
 };
+
+const documentFieldConfig = {
+  formatting: true,
+  dividers: true,
+  links: true,
+  layouts: [
+    [1, 1],
+    [1, 1, 1],
+  ],
+} as const;
 
 export default config(
   withAuth({
@@ -102,18 +120,112 @@ export default config(
         fields: {
           name: text(),
           speakers: relationship({ ref: 'User.talks', many: true }),
+          event: relationship({ ref: 'Event.talks' }),
           isLightningTalk: checkbox(),
-          description: document({
-            formatting: true,
-            dividers: true,
-            links: true,
-            layouts: [
-              [1, 1],
-              [1, 1, 1],
+          description: document(documentFieldConfig),
+        },
+      }),
+      Organiser: list({
+        access: {
+          item: DEFAULT_LIST_ACCESS,
+        },
+        fields: {
+          user: relationship({ ref: 'User ' }),
+          order: integer(),
+          role: text(),
+        },
+      }),
+      Event: list({
+        access: {
+          item: DEFAULT_LIST_ACCESS,
+        },
+        fields: {
+          name: text(),
+          // TODO let's make this work, we don't have a slug field
+          // anymore, but can reimplement this easily and quickly
+          slug: text(),
+          status: select({
+            options: [
+              { label: 'Draft', value: 'draft' },
+              { label: 'Active', value: 'active' },
+            ],
+            defaultValue: 'draft',
+          }),
+          // date-time doesn't exist - timestamp does the same thing.
+          startTime: timestamp(),
+          durationMins: integer(),
+          description: document(documentFieldConfig),
+          talks: relationship({ ref: 'Talk.event', many: true }),
+          locationAddress: text(),
+          locationDescription: text(),
+          maxRsvps: integer({ defaultValue: 120 }),
+          isRsvpAvailable: checkbox({ defaultValue: true }),
+        },
+      }),
+      Rsvp: list({
+        access: {},
+        fields: {
+          event: relationship({ ref: 'Event' }),
+          user: relationship({ ref: 'User' }),
+          status: select({
+            options: [
+              { label: 'yes', value: 'yes' },
+              { label: 'no', value: 'no' },
+            ],
+          }),
+        },
+        hooks: {
+          // This validate input hook is designed to check that
+          // the event isn't full - implement this
+          validateInput: async ({ context }) => {
+            return;
+          },
+        },
+      }),
+      Resource: list({
+        access: { item: DEFAULT_LIST_ACCESS },
+        fields: {
+          title: text(),
+          topic: text(),
+          level: text(),
+          url: text(),
+        },
+      }),
+      Sponsor: list({
+        access: { item: DEFAULT_LIST_ACCESS },
+        fields: {
+          name: text({ validation: { isRequired } }),
+          website: text(),
+          image: image(),
+          category: select({
+            options: [
+              { value: 'Platinum', label: 'Platinum' },
+              { value: 'Gold', label: 'Gold' },
+              { value: 'Silver', label: 'Silver' },
+              { value: 'Bronze', label: 'Bronze' },
             ],
           }),
         },
       }),
+      Post: list({
+        access: { item: DEFAULT_LIST_ACCESS },
+        fields: {
+          title: text(),
+          // TODO let's make this work, we don't have a slug field
+          // anymore, but can reimplement this easily and quickly
+          slug: text(),
+          author: relationship({ ref: 'User', many: false }),
+          date: timestamp(),
+          image: image(),
+          description: document(documentFieldConfig),
+        },
+      }),
+      Enquiry: list({
+        access: { item: DEFAULT_LIST_ACCESS },
+        fields: {},
+      }),
+      // I want to reimplement forgotten password differently, as
+      // we have much better ways of doing this now
     },
     session,
     ui: {
