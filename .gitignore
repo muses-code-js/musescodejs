@@ -83,3 +83,8 @@ package-lock.json
 
 dist/
 site/.next
+.keystone
+keystone-example.db
+schema.graphql
+schema.prisma
+.next
